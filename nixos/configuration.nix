@@ -97,7 +97,7 @@
 
   # DONE: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEFIVariables = true;
+  #boot.loader.efi.canTouchEFIVariables = true;
   boot.loader.systemd-boot.configurationLimit = 15;
 
   # Set your time zone.
