@@ -9,4 +9,5 @@
   tofi = import ./tofi;
   eww = import ./eww;
   waybar = import ./waybar;
+  gbar = import ./gbar;
 }

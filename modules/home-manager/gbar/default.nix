@@ -11,9 +11,6 @@ let
 in {
     options.modules.gbar= { enable = mkEnableOption "gbar"; };
     config = mkIf cfg.enable {
-	home.packages = with pkgs; [
-	    gbar
-	];
 
 	programs.gBar = {
         enable = true;
@@ -29,11 +26,13 @@ in {
 	    MaxDownloadBytes = 10485760;
 	    MinUploadBytes = 0;
 	    MaxUploadBytes = 5242880;
+	    DateTimeStyle = "%A %D - %H:%M:%S";
 
 	    BatteryFolder = "/sys/class/power_supply/BAT0";
+	    NetworkAdapter = "wlp0s20f3";
 	    DefaultWorkspaceSymbol = "";
-	    UseHyprlandIPC = "true";
-	    CenterTime = "true";
+	    UseHyprlandIPC = true;
+	    CenterTime = true;
         };
 	};
 
