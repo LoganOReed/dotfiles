@@ -93,9 +93,9 @@
 
   # Enable hyprland
   programs.hyprland.enable = true;
-  programs.kitty.enable = true;
 
   modules.zsh.enable = true;
+  modules.kitty.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
