@@ -5,4 +5,5 @@
   # my-module = import ./my-module.nix;
   hyprland = import ./hyprland;
   zsh = import ./zsh;
+  kitty = import ./kitty;
 }

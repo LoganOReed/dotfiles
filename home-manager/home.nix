@@ -93,6 +93,7 @@
 
   # Enable hyprland
   programs.hyprland.enable = true;
+  programs.kitty.enable = true;
 
   modules.zsh.enable = true;
 
