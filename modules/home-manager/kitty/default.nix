@@ -4,16 +4,12 @@
 
 with lib;
 let 
-  cfg = config.module.kitty;
+  cfg = config.modules.kitty;
 
 
 in {
-    options.module.kitty= { enable = mkEnableOption "kitty"; };
+    options.modules.kitty= { enable = mkEnableOption "kitty"; };
     config = mkIf cfg.enable {
-	home.packages = with pkgs; [
-	    kitty
-	];
-
 	programs.kitty = {
 	  enable = true;
 	  shellIntegration.enableZshIntegration = true;
