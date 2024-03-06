@@ -88,6 +88,8 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     neovim
     kitty
+    acpi
+    tlp
     wget
     curl
   ];
@@ -171,6 +173,13 @@
       extraGroups = ["networkmanager" "wheel"];
     };
   };
+
+  fonts = {
+      packages = with pkgs; [
+          iosevka-comfy.comfy
+	  noto-fonts
+	  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
