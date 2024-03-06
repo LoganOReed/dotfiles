@@ -20,8 +20,8 @@ in {
 	    syntaxHighlighting.enable = true;
 
 	    initExtra = ''
-	        PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
 		bindkey '^ ' autosuggest-accept
+		prompt pure
 	    '';
 
 	    history = {
@@ -32,9 +32,20 @@ in {
 
 	    shellAliases = {
 	        l = "eza -a --icons";
-		rebuild = "sudo nixos-rebuild switch --flake . --fast";
+		deploy = "sudo nixos-rebuild switch --flake .";
 		n = "nvim";
 	    };
+	    plugins = [
+	    {
+	      name = "pure";
+	      src = pkgs.fetchFromGitHub {
+	        owner = "sindresorhus";
+		repo = "pure";
+		rev = "v1.23.0";
+		sha256 = "sha256-BmQO4xqd/3QnpLUitD2obVxL0UulpboT8jGNEh4ri8k=";
+	      };
+	    }
+	    ];
 	};
     };
 }
