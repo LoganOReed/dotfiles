@@ -7,4 +7,5 @@
   zsh = import ./zsh;
   kitty = import ./kitty;
   tofi = import ./tofi;
+  eww = import ./eww;
 }
