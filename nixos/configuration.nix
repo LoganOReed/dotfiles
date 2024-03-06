@@ -115,6 +115,7 @@
 
   # Might Need for XWayland.
   services.xserver.enable = true;
+  services.xserver.xkbOptions = "ctrl:nocaps";
 
 
 
