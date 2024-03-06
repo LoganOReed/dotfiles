@@ -91,6 +91,9 @@
     userEmail = "me@loganreed.org";
   };
 
+  # Enable hyprland
+  programs.hyprland.enable = true;
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
