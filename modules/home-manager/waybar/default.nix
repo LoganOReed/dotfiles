@@ -1,55 +1,49 @@
-{config,lib,pkgs,font,...}:
+{ pkgs, lib, config, ... }:
 with lib;
 let cfg = config.modules.waybar;
 in {
     options.modules.waybar = { enable = mkEnableOption "waybar"; };
 
     config = mkIf cfg.enable {
+	programs.waybar = {
+	  enable = true;
+          package = pkgs.waybar.overrideAttrs (oldAttrs: {
+            postPatch = ''
+              # use hyprctl to switch workspaces
+              sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprworkspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+              sed -i 's/gIPC->getSocket1Reply("dispatch workspace " + std::to_string(id()));/const std::string command = "hyprworkspace " + std::to_string(id());\n\tsystem(command.c_str());/g' src/modules/hyprland/workspaces.cpp
+            '';
+          });
+          settings = {
+	    mainBar = {
+	      layer = "top";
+	      position = "top";
+	      mode = "dock";
+	      exclusive = "true";
+	      passthrough = "false";
 
-   programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      postPatch = ''
-        # use hyprctl to switch workspaces
-        sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprworkspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-        sed -i 's/gIPC->getSocket1Reply("dispatch workspace " + std::to_string(id()));/const std::string command = "hyprworkspace " + std::to_string(id());\n\tsystem(command.c_str());/g' src/modules/hyprland/workspaces.cpp
-      '';
-    });
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 35;
-        margin = "7 7 3 7";
-        spacing = 2;
-
-        modules-left = [ "custom/os" "custom/hyprprofile" "battery" "backlight" "pulseaudio" "cpu" "memory" ];
-        modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "idle_inhibitor" "tray" "clock" ];
+              modules-left = ["custom/os" "cpu" "memory" "hyprland/workspaces"];
+              modules-right = ["backlight" "tray" "clock"];
+              modules-center = [];
 
         "custom/os" = {
           "format" = " {} ";
           "exec" = ''echo "" '';
           "interval" = "once";
         };
-        "custom/hyprprofile" = {
-          "format" = "   {}";
-          "exec" = ''cat ~/.hyprprofile'';
-          "interval" = 3;
-          "on-click" = "hyprprofile-dmenu";
-        };
+
         "hyprland/workspaces" = {
           "format" = "{icon}";
           "format-icons" = {
-            "1" = "󱚌";
-            "2" = "󰖟";
-            "3" = "";
-            "4" = "󰎄";
-            "5" = "󰋩";
-            "6" = "";
-            "7" = "󰄖";
-            "8" = "󰑴";
-            "9" = "󱎓";
+            "1" = " ";
+            "2" = " ";
+            "3" = " ";
+            "4" = " ";
+            "5" = " ";
+            "6" = " ";
+            "7" = " ";
+            "8" = " ";
+            "9" = " ";
             "scratch_term" = "_";
             "scratch_ranger" = "_󰴉";
             "scratch_musikcube" = "_";
@@ -81,248 +75,175 @@ in {
           #};
         };
 
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰅶";
-            deactivated = "󰾪";
-          };
-        };
-        tray = {
-          #"icon-size" = 21;
-          "spacing" = 10;
-        };
-        clock = {
-          "interval" = 1;
-          "format" = "{:%a %Y-%m-%d %I:%M:%S %p}";
-          "timezone" = "America/New_York";
-          "tooltip-format" = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-        };
-        cpu = {
-          "format" = "{usage}% ";
-        };
-        memory = { "format" = "{}% "; };
-        backlight = {
-          "format" = "{percent}% {icon}";
-          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-        };
-        battery = {
-          "states" = {
-            "good" = 90;
-            "warning" = 30;
-            "critical" = 15;
-          };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          #"format-good" = ""; # An empty format will hide the module
-          #"format-full" = "";
-          "format-icons" = [ "" "" "" "" "" ];
-        };
-        pulseaudio = {
-          "scroll-step" = 1;
-          "format" = "{volume}% {icon}  {format_source}";
-          "format-bluetooth" = "{volume}% {icon}  {format_source}";
-          "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
-          "format-muted" = "󰸈 {format_source}";
-          "format-source" = "{volume}% ";
-          "format-source-muted" = " ";
-          "format-icons" = {
-            "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "" "" "" ];
-          };
-          "on-click" = "pypr toggle pavucontrol && hyprctl dispatch bringactivetotop";
-        };
-      };
+    tray = {
+        "spacing" = 10;
     };
-    style = with config.colorscheme.palette; ''
-      * {
-          /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome, ''+font+'';
+    clock = {
+        "interval" = 1;
+        "format" = "{:%H:%M}";
+        "format-alt" = "{:%b %d %Y}";
+        "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+    };
 
-          font-size: 20px;
-      }
+    cpu = {
+      "format" = " {}%";
+    };
+    memory = {
+        "format" = " {}%";
+        "format-alt" = " {used:0.1f}GB";
+        "max-length" = 10;
+    };
+    
+    backlight = {
+        "device" = "acpi_video0";
+        "format" = "{icon}";
+        "tooltip-format" = "{percent}";
+        "format-icons" = ["󱩎 " "󱩏 " "󱩐 " "󱩑 " "󱩒 " "󱩓 " "󱩔 " "󱩕 " "󱩖 " "󰛨 "];
 
-      window#waybar {
-          background-color: #'' + base00 + '';
-          opacity: 0.75;
-          border-radius: 8px;
-          color: #'' + base07 + '';
-          transition-property: background-color;
-          transition-duration: .2s;
-      }
+              };
+	    };
+	  };
 
-      window > box {
-          border-radius: 8px;
-          opacity: 0.94;
-      }
-
-      window#waybar.hidden {
-          opacity: 0.2;
-      }
-
-      button {
-          border: none;
-      }
-
-      #custom-hyprprofile {
-          color: #'' + base0D + '';
-      }
-
-      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      button:hover {
-          background: inherit;
-      }
-
-      #workspaces button {
-          padding: 0 7px;
-          background-color: transparent;
-          color: #'' + base04 + '';
-      }
-
-      #workspaces button:hover {
-          color: #'' + base07 + '';
-      }
-
-      #workspaces button.active {
-          color: #'' + base08 + '';
-      }
-
-      #workspaces button.focused {
-          color: #'' + base0A + '';
-      }
-
-      #workspaces button.visible {
-          color: #'' + base05 + '';
-      }
-
-      #workspaces button.urgent {
-          color: #'' + base09 + '';
-      }
-
-      #clock,
-      #battery,
-      #cpu,
-      #memory,
-      #disk,
-      #temperature,
-      #backlight,
-      #network,
-      #pulseaudio,
-      #wireplumber,
-      #custom-media,
-      #tray,
-      #mode,
-      #idle_inhibitor,
-      #scratchpad,
-      #mpd {
-          padding: 0 10px;
-          color: #'' + base07 + '';
-          border: none;
-          border-radius: 8px;
-      }
-
-      #window,
-      #workspaces {
-          margin: 0 4px;
-      }
-
-      /* If workspaces is the leftmost module, omit left margin */
-      .modules-left > widget:first-child > #workspaces {
-          margin-left: 0;
-      }
-
-      /* If workspaces is the rightmost module, omit right margin */
-      .modules-right > widget:last-child > #workspaces {
-          margin-right: 0;
-      }
-
-      #clock {
-          color: #'' + base0D + '';
-      }
-
-      #battery {
-          color: #'' + base0B + '';
-      }
-
-      #battery.charging, #battery.plugged {
-          color: #'' + base0C + '';
-      }
-
-      @keyframes blink {
-          to {
-              background-color: #'' + base07 + '';
-              color: #'' + base00 + '';
-          }
-      }
-
-      #battery.critical:not(.charging) {
-          background-color: #'' + base08 + '';
-          color: #'' + base07 + '';
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-
-      label:focus {
-          background-color: #'' + base00 + '';
-      }
-
-      #cpu {
-          color: #'' + base0D + '';
-      }
-
-      #memory {
-          color: #'' + base0E + '';
-      }
-
-      #disk {
-          color: #'' + base0F + '';
-      }
-
-      #backlight {
-          color: #'' + base0A + '';
-      }
-
-      #pulseaudio {
-          color: #'' + base0C + '';
-      }
-
-      #pulseaudio.muted {
-          color: #'' + base04 + '';
-      }
-
-      #tray > .passive {
-          -gtk-icon-effect: dim;
-      }
-
-      #tray > .needs-attention {
-          -gtk-icon-effect: highlight;
-      }
-
-      #idle_inhibitor {
-          color: #'' + base04 + '';
-      }
-
-      #idle_inhibitor.activated {
-          color: #'' + base0F + '';
-      }
-      '';
-  };
-  home.file.".config/gtklock/style.css".text = ''
-    window {
-      background-image: url("${NIXOS_CONFIG_DIR}/pics/rainbow.png");
-      background-size: auto 100%;
-    }
-  '';
-  };
+          style = with config.colorscheme.palette; ''
+	  * {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, Iosevka Comfy, Material Design Icons, JetBrainsMono Nerd Font, Iosevka Nerd Font;
+  font-size: 19px;
+  border: none;
+  border-radius: 0;
 }
+window#waybar {
+  background-color: rgba(26, 27, 38, 0);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+
+#window,   
+#clock,
+#cpu,
+#memory,
+#custom-media,
+#tray,
+#mode,
+#custom-lock,
+#workspaces,
+#idle_inhibitor,
+#custom-power-menu,
+#custom-launcher,
+#custom-spotify,
+#custom-weather,
+#custom-weather.severe,
+#custom-weather.sunnyDay,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.default {
+  color: #e5e5e5;
+  border-radius: 6px;
+  padding: 2px 10px;
+  background-color: #252733;
+  border-radius: 8px;
+  font-size: 18.5px;
+
+  margin-left: 4px;
+  margin-right: 4px;
+
+  margin-top: 8.5px;
+  margin-bottom: 8.5px;
+}
+
+#cpu {
+  color: #fb958b;
+}
+
+#memory {
+  color: #a1c999;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #313244;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #a6adc8;
+    background-color: #0F52BA ;
+    border-radius: 10px;
+}
+
+#workspaces button.focused {
+    color: #ff0000;
+    background: #ff0000;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #0F52BA;
+    color: #cdd6f4;
+    border-radius: 10px;
+
+}
+#workspaces {
+    background: #252733;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+	
+}
+
+#custom-launcher {
+  margin-left: 12px;
+
+  padding-right: 18px;
+  padding-left: 14px;
+
+  font-size: 22px;
+
+  color: #7a95c9;
+
+  margin-top: 8.5px;
+  margin-bottom: 8.5px;
+}
+
+#backlight,
+#battery,
+#pulseaudio,
+#network {
+  background-color: #252733;
+  padding: 0em 2em;
+
+  font-size: 20px;
+
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+  font-size: 20px;
+}
+
+	  '';
+	  };
+      };
+}
+
+
+
