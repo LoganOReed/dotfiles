@@ -5,7 +5,7 @@ in {
     options.modules.zsh = { enable = mkEnableOption "zsh"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	    zsh fzf exa
+	    zsh fzf eza
 	];
 
 	programs.zsh = {
@@ -21,7 +21,7 @@ in {
 	    };
 
 	    shellAliases = {
-	        l = "exa -ac --icons";
+	        l = "eza -ac --icons";
 	    };
 	};
     };
