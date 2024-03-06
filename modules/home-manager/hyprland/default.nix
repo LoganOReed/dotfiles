@@ -5,11 +5,11 @@
 
 with lib;
 let 
-  cfg = config.programs.hyprland;
+  cfg = config.modules.hyprland;
 
 
 in {
-    options.programs.hyprland= { enable = mkEnableOption "hyprland"; };
+    options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
 	    wofi swaybg wlsunset wl-clipboard hyprland

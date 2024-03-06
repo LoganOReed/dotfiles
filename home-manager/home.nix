@@ -92,7 +92,7 @@
   };
 
   # Enable hyprland
-  programs.hyprland.enable = true;
+  modules.hyprland.enable = true;
 
   modules.zsh.enable = true;
   modules.kitty.enable = true;

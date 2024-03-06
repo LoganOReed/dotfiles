@@ -19,7 +19,7 @@ in {
 	    font_family = "Iosevka Comfy";
 	    italic_font = "auto";
 	    bold_font = "auto";
-	    font_size = 16;
+	    font_size = 12;
 	    enable_audio_bell = "no";
 	  };
 	};
