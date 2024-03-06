@@ -12,7 +12,12 @@ in {
 	    enable = true;
 	    enableCompletion = true;
 	    enableAutosuggestions = true;
-	    enableSyntaxHighlighting = true;
+	    syntaxHighlighting.enable = true;
+
+	    initExtra = ''
+	        PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
+		bindkey '^ ' autosuggest-accept
+	    '';
 
 	    history = {
 	        save = 10000;
@@ -21,7 +26,8 @@ in {
 	    };
 
 	    shellAliases = {
-	        l = "eza -ac --icons";
+	        l = "eza -a --icons";
+		rebuild = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
 	    };
 	};
     };
