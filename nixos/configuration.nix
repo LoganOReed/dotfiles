@@ -202,7 +202,6 @@
   };
 
   # XRemap setup
-  hardware.uinput.enabled = true;
   users.groups.uinput.members = [ "occam" ];
   users.groups.input.members = [ "occam" ];
 
