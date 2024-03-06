@@ -5,8 +5,13 @@ in {
     options.modules.zsh = { enable = mkEnableOption "zsh"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	    zsh fzf eza
+	    zsh fzf eza zoxide
 	];
+
+	programs.zoxide = {
+	  enable = true;
+	  enableZshIntegration = true;
+	};
 
 	programs.zsh = {
 	    enable = true;
