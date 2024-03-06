@@ -74,8 +74,8 @@
   ripgrep # recursively searches directories for a regex pattern
   eza # A modern replacement for ‘ls’
   fzf # A command-line fuzzy finder
-  just # Like a simplified MakeFile for project specific commands
   manix # CLI Nix Documentation Search
+  zev # check keycodes
 
   ];
 
