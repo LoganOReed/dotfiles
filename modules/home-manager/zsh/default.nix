@@ -21,7 +21,7 @@ in {
 
 	    initExtra = ''
 		bindkey '^ ' autosuggest-accept
-		prompt pure
+		neofetch
 	    '';
 
 	    history = {

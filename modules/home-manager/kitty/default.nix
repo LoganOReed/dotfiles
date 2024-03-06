@@ -14,13 +14,123 @@ in {
 	  enable = true;
 	  shellIntegration.enableZshIntegration = true;
 
-	  # Basically just kitty.conf in nixlang
+          keybindings = {
+            "ctrl+shift+v" = "paste_from_clipboard";
+            "ctrl+shift+s" = "paste_from_selection";
+            "ctrl+shift+c" = "copy_to_clipboard";
+            "shift+insert" = "paste_from_selection";
+            
+            "ctrl+shift+up" = "scroll_line_up";
+            "ctrl+shift+down" = "scroll_line_down";
+            "ctrl+shift+]" = "scroll_line_up";
+            "ctrl+shift+[" = "scroll_line_down";
+            "ctrl+shift+page_up" = "scroll_page_up";
+            "ctrl+shift+page_down" = "scroll_page_down";
+            "ctrl+shift+home" = "scroll_home";
+            "ctrl+shift+end" = "scroll_end";
+            "ctrl+shift+n" = "show_scrollback";
+            
+            "ctrl+shift+'" = "new_window_with_cwd";
+            "ctrl+shift+/" = "new_window";
+            "ctrl+shift+q" = "close_window";
+            "ctrl+shift+j" = "next_window";
+            "ctrl+shift+k" = "previous_window";
+            "ctrl+shift+f" = "move_window_forward";
+            "ctrl+shift+b" = "move_window_backward";
+            "ctrl+shift+`" = "nth_window -1";
+            "ctrl+shift+1" = "first_window";
+            "ctrl+shift+2" = "second_window";
+            "ctrl+shift+3" = "third_window";
+            "ctrl+shift+4" = "fourth_window";
+            "ctrl+shift+5" = "fifth_window";
+            "ctrl+shift+6" = "sixth_window";
+            "ctrl+shift+7" = "seventh_window";
+            "ctrl+shift+8" = "eighth_window";
+            "ctrl+shift+9" = "ninth_window";
+            "ctrl+shift+0" = "tenth_window";
+            
+            "ctrl+shift+l" = "next_tab";
+            "ctrl+shift+h" = "previous_tab";
+            "ctrl+shift+t" = "new_tab";
+            "ctrl+shift+tab" = "next_layout";
+            "ctrl+shift+right" = "move_tab_forward";
+            "ctrl+shift+left" = "move_tab_backward";
+            "ctrl+shift+alt+t" = "set_tab_title";
+            
+            "ctrl+shift+equal" = "increase_font_size";
+            "ctrl+shift+minus" = "decrease_font_size";
+            "ctrl+shift+backspace" = "restore_font_size";
+	  };
+
 	  settings = {
 	    font_family = "Iosevka Comfy";
 	    italic_font = "auto";
 	    bold_font = "auto";
 	    font_size = 12;
-	    enable_audio_bell = "no";
+
+            adjust_line_height = "0";
+            adjust_column_width = "0";
+            box_drawing_scale = "0.001, 1, 1.5, 2";
+
+            # Cursor
+            cursor_shape = "underline";
+            cursor_blink_interval = "0";
+            cursor_stop_blinking_after = "15.0";
+
+            # Scrollback
+            scrollback_lines = "10000";
+            scrollback_pager = "/usr/bin/less";
+            wheel_scroll_multiplier = "5.0";
+
+            # URLs
+            url_style = "double";
+            open_url_modifiers = "ctrl+shift";
+            open_url_with = "firefox";
+            copy_on_select = "yes";
+
+            # Selection
+            rectangle_select_modifiers = "ctrl+shift";
+            select_by_word_characters = ":@-./_~?&=%+#";
+
+            # Mouse
+            click_interval = "0.5";
+            mouse_hide_wait = "0";
+            focus_follows_mouse = "no";
+
+            # Performance
+            repaint_delay = "20";
+            input_delay = "2";
+            sync_to_monitor = "no";
+
+            # Bell
+            visual_bell_duration = "0.0";
+            enable_audio_bell = "no";
+
+            # Window
+            remember_window_size = "no";
+            initial_window_width = "700";
+            initial_window_height = "400";
+            window_border_width = "0";
+            window_margin_width = "0";
+            window_padding_width = "0";
+            inactive_text_alpha = "1.0";
+            background_opacity = "1.0";
+
+            # Layouts
+            enabled_layouts = "*";
+
+            # Tabs
+            tab_bar_edge = "bottom";
+            tab_separator = " ┇";
+            active_tab_font_style = "bold";
+            inactive_tab_font_style = "normal";
+
+            # Shell
+            shell = ".";
+            close_on_child_death = "no";
+            allow_remote_control = "yes";
+            term = "xterm-kitty";
+
 
 
 	    # Base16 Dracula - kitty color config
