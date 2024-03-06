@@ -20,7 +20,7 @@
     # ./nvim.nix
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
-  colorScheme = nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
   nixpkgs = {
     # You can add overlays here
