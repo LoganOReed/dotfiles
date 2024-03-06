@@ -104,6 +104,10 @@
   #boot.loader.efi.canTouchEFIVariables = true;
   boot.loader.systemd-boot.configurationLimit = 15;
 
+
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # programs.hyprland = { 
   #   enable = true;
   #  xwayland.enable = true;
