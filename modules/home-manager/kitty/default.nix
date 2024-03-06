@@ -66,7 +66,7 @@ in {
 	    font_family = "Iosevka Comfy";
 	    italic_font = "auto";
 	    bold_font = "auto";
-	    font_size = 12;
+	    font_size = 16;
 
             adjust_line_height = "0";
             adjust_column_width = "0";

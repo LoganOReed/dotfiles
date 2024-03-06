@@ -117,7 +117,7 @@ home.pointerCursor =
 
   # Enable hyprland
   modules.hyprland.enable = true;
-  modules.wofi.enable = true;
+  modules.tofi.enable = true;
 
   modules.zsh.enable = true;
   modules.kitty.enable = true;
