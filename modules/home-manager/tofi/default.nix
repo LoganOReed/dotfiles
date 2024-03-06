@@ -12,26 +12,26 @@ in {
 	history     = true
 
 	# font
-	font = JetBrains Mono
-	font-size=14
+	font = Iosevka Comfy
+	font-size=32
 	# style
-	border-width = 1
-	outline-width = 1
-	height = 450
-	width = 450
-	padding-left = 30
-	padding-top = 20
-	prompt-padding = 5
+	border-width = 0
+	outline-width = 0
+	height = 100%
+	width = 100%
+	padding-left = 35% 
+	padding-top = 17% 
+	prompt-padding = 20
 	result-spacing = 5
 	# colors
 
-	placeholder-color = #928374
-	background-color = #1B1B1B
-	border-color = #458588
+	placeholder-color = #${base02}
+	background-color = #${base00}
+	border-color = #${base00}
 	outline-color= #000000
-	selection-color = #458588
-	text-color = #BDAE93
-	prompt-color = #928374
+	selection-color = #${base0A}
+	text-color = #${base05}
+	prompt-color = #${base08}
       '';
     };
 
