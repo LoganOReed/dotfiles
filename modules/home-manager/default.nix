@@ -8,4 +8,5 @@
   kitty = import ./kitty;
   tofi = import ./tofi;
   eww = import ./eww;
+  waybar = import ./waybar;
 }

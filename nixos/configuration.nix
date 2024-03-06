@@ -195,7 +195,9 @@
       packages = with pkgs; [
           iosevka-comfy.comfy
 	  noto-fonts
-	  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+	  font-awesome
+	  powerline-symbols
+	  (nerdfonts.override { fonts = [ "Iosevka" ]; })
       ];
   };
 
