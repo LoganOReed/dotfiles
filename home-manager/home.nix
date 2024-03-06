@@ -72,8 +72,8 @@
 
   # utils
   ripgrep # recursively searches directories for a regex pattern
-  eza # A modern replacement for ‘ls’
-  fzf # A command-line fuzzy finder
+  #eza # A modern replacement for ‘ls’
+  #fzf # A command-line fuzzy finder
   manix # CLI Nix Documentation Search
   wev # check keycodes
 
@@ -93,6 +93,8 @@
 
   # Enable hyprland
   programs.hyprland.enable = true;
+
+  modules.zsh.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
