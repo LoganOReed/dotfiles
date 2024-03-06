@@ -124,6 +124,15 @@
   # makes a couple small things easier (like removable drives)
   services.xserver.desktopManager.xfce.enable = true;
 
+  # set environment variables
+  environment.variables = {
+    NIXOS_CONFIG_DIR = "$HOME/dotfiles";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
+  };
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
