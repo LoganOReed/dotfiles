@@ -12,13 +12,18 @@ in {
     options.modules.gbar= { enable = mkEnableOption "gbar"; };
     config = mkIf cfg.enable {
 
-	programs.gBar = {
+	programs.gBar = with config.colorscheme.palette; {
         enable = true;
         config = {
+	    #LockCommand = "";
+	    #ExitCommand = "killall Hyprland";
+	    #SuspendCommand = "Systemctl suspend";
+
+
             Location = "T";
-            EnableSNI = true;
+            EnableSNI = false;
             SNIIconSize = {
-	        "*" = 25;
+	        "*" = 32;
                 Discord = 26;
                 OBS = 23;
             };
@@ -32,31 +37,11 @@ in {
 	    NetworkAdapter = "wlp0s20f3";
 	    DefaultWorkspaceSymbol = "";
 	    UseHyprlandIPC = true;
-	    CenterTime = true;
-	    TimeSpace = 1000;
+	    CenterTime = false;
+	    TimeSpace = 100;
+	    DateTimeLocale = "en_US.utf8";
         };
 	};
-
-        home.file.".config/gBar/style.scss".text = ''
-// colorscheme(dracula)
-// See https://github.com/dracula/dracula-theme/blob/master/LICENSE or dracula/LICENSE for the license
-$bg: #282a36;
-$fg: #f8f8f2;
-$inactive: #44475a;
-$darkblue: #6272a4;
-$cyan: #8be9fd;
-$green: #50fa7b;
-$orange: #ffb86c;
-$pink: #ff79c6;
-$purple: #bd93f9;
-$red: #ff5555;
-$yellow: #f1fa8c;
-
-
-$btblue: #1793D1;
-
-	'';
-
 
         home.file.".config/gBar/style.css".text = ''
 * {

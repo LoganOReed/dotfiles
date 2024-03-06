@@ -12,7 +12,7 @@ in {
     options.modules.hyprland= { enable = mkEnableOption "hyprland"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	    tofi swaybg wlsunset wl-clipboard hyprland pavucontrol rofi-wayland swaylock-effects
+	    tofi swaybg wlsunset wl-clipboard hyprland pavucontrol
 	];
 
         home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;

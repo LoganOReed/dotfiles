@@ -69,8 +69,13 @@
   xz
   unzip
   p7zip
+  glib
 
   firefox
+
+  grim # screenshot functionality
+  slurp # screenshot functionality
+  wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
 
 
   # utils
@@ -122,8 +127,6 @@ home.pointerCursor =
   # Enable hyprland
   modules.hyprland.enable = true;
   modules.tofi.enable = true;
-  modules.eww.enable = true;
-  modules.waybar.enable = true;
   modules.gbar.enable = true;
 
   modules.zsh.enable = true;

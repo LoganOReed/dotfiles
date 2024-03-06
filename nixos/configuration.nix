@@ -93,6 +93,7 @@
     tlp
     wget
     curl
+    blueman
   ];
   environment.variables.EDITOR = "neovim";
 
@@ -155,6 +156,10 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -237,9 +242,12 @@ services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
   };
 
+  # Enable the gnome-keyrig secrets vault. 
+  # Will be exposed through DBus to programs willing to store secrets.
+  services.gnome.gnome-keyring.enable = true; 
 
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
