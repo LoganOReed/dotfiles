@@ -67,7 +67,7 @@
   unzip
   p7zip
 
-  chromium
+  firefox
 
 
   # utils

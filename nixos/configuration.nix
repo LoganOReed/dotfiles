@@ -100,6 +100,24 @@
   #boot.loader.efi.canTouchEFIVariables = true;
   boot.loader.systemd-boot.configurationLimit = 15;
 
+  # I use greetd now instead of sddm
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+
+  programs.hyprland = { 
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Might Need for XWayland.
+  services.xserver.enable = true;
+
+
+
+  # Currently enabled due to lazyness
+  # makes a couple small things easier (like removable drives)
+  services.xserver.desktopManager.xfce.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
