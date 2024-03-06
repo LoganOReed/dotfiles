@@ -213,7 +213,7 @@
 	  {
 	    name = "NoCaps";
 	    remap = {
-	      "CapsLock" = "Esc";
+	      "CapsLock" = "LeftCtrl";
 	    };
 	  }
 	];
