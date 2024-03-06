@@ -15,6 +15,7 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     inputs.nix-colors.homeManagerModules.default
+    inputs.gBar.homeManagerModules.x86_64-linux.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -107,6 +108,9 @@ home.pointerCursor =
         "Dracula-cursors";
 
 
+  
+
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {
@@ -120,6 +124,7 @@ home.pointerCursor =
   modules.tofi.enable = true;
   modules.eww.enable = true;
   modules.waybar.enable = true;
+  modules.gbar.enable = true;
 
   modules.zsh.enable = true;
   modules.kitty.enable = true;
