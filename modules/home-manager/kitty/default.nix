@@ -15,7 +15,6 @@ in {
 	];
 
 	programs.kitty = {
-	  enable = true;
 	  shellIntegration.enableZshIntegration = true;
 
 	  # Basically just kitty.conf in nixlang
