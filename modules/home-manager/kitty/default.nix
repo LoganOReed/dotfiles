@@ -21,6 +21,10 @@ in {
 	    bold_font = "auto";
 	    font_size = 12;
 	    enable_audio_bell = "no";
+
+	    foreground = "#${config.colorscheme.palette.base05}";
+	    background = "#${config.colorscheme.palette.base00}";
+
 	  };
 	};
     };

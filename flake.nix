@@ -31,6 +31,7 @@
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
     xremap-flake.url = "github:xremap/nix-flake";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # TODO: Add nix-colors and dracula
     # Shameless plug: looking for a way to nixify your themes and make
