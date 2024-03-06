@@ -75,7 +75,7 @@
   eza # A modern replacement for ‘ls’
   fzf # A command-line fuzzy finder
   manix # CLI Nix Documentation Search
-  zev # check keycodes
+  wev # check keycodes
 
   ];
 
