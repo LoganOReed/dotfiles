@@ -10,7 +10,5 @@
       # Import your home-manager configuration
       occam = import ../home-manager/home.nix;
     };
-    useUserPackages = true;
-    useGlobalPkgs = true;
   };
 }
