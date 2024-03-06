@@ -18,7 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-  ] ++ (builtins.attrValues outputs.homeManagerModules;
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {
     # You can add overlays here
