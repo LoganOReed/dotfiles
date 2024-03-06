@@ -95,6 +95,7 @@
 
   # DONE: Set your hostname
   networking.hostName = "razor";
+  networking.networkmanager.enable = true;
 
   # DONE: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
