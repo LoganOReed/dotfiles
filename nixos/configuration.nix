@@ -206,13 +206,13 @@
   users.groups.input.members = [ "occam" ];
 
   services.xremap = {
-      withHypr = true;
+      withWlroots = true;
       userName = "occam";
       yamlConfig = ''
       modmap:
         - name : NoCaps
 	  remap:
-	    CapsLock: Esc
+            CapsLock: Esc
       '';
   };
 
