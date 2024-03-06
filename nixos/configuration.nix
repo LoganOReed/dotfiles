@@ -21,6 +21,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     ./home-manager.nix
+    ./xfce.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -102,10 +103,10 @@
   #boot.loader.efi.canTouchEFIVariables = true;
   boot.loader.systemd-boot.configurationLimit = 15;
 
-  programs.hyprland = { 
-    enable = true;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = { 
+  #   enable = true;
+  #  xwayland.enable = true;
+  #};
 
   # Might Need for XWayland.
   services.xserver.enable = true;
