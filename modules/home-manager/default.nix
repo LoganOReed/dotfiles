@@ -6,4 +6,5 @@
   hyprland = import ./hyprland;
   zsh = import ./zsh;
   kitty = import ./kitty;
+  wofi = import ./wofi;
 }

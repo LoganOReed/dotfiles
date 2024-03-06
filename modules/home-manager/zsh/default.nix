@@ -32,7 +32,8 @@ in {
 
 	    shellAliases = {
 	        l = "eza -a --icons";
-		deploy = "sudo nixos-rebuild switch --flake .";
+		cd = "zoxide";
+		deploy = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast";
 		n = "nvim";
 	    };
 	    plugins = [
