@@ -208,12 +208,16 @@
   services.xremap = {
       withWlroots = true;
       userName = "occam";
-      yamlConfig = ''
-      modmap:
-        - name : NoCaps
-	  remap:
-            CapsLock: Esc
-      '';
+      config = {
+        modmap = [
+	  {
+	    name = "NoCaps";
+	    remap = {
+	      "CapsLock" = "Esc";
+	    };
+	  }
+	];
+      };
   };
 
 
