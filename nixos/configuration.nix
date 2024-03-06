@@ -17,10 +17,12 @@
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
+    inputs.xremap-flake.nixosModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     ./home-manager.nix
+
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -198,6 +200,23 @@
       PasswordAuthentication = false;
     };
   };
+
+  # XRemap setup
+  hardware.uinput.enabled = true;
+  users.groups.uinput.members = [ "occam" ];
+  users.groups.input.members = [ "occam" ];
+
+  services.xremap = {
+      withHypr = true;
+      userName = "occam";
+      yamlConfig = ''
+      modmap:
+        - name : NoCaps
+	  remap:
+	    CapsLock: Esc
+      '';
+  };
+
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
