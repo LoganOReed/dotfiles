@@ -82,7 +82,29 @@
   ];
 
 
+  # Dracula Cursor
 
+home.pointerCursor = 
+    let 
+      getFrom = url: hash: name: {
+          gtk.enable = true;
+          x11.enable = true;
+          name = name;
+          size = 48;
+          package = 
+            pkgs.runCommand "moveUp" {} ''
+              mkdir -p $out/share/icons
+              ln -s ${pkgs.fetchzip {
+                url = url;
+                hash = hash;
+              }} $out/share/icons/${name}
+          '';
+        };
+    in
+      getFrom 
+        "https://github.com/dracula/gtk/releases/download/v4.0.0/Dracula-cursors.tar.xz"
+        "sha256-FCjsCGiaDqWisNe7cMgkKv1LLye6OLBOfhtRnkmXsnY="
+        "Dracula-cursors";
 
 
   # Enable home-manager and git
