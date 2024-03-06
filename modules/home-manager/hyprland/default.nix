@@ -7,5 +7,5 @@
     wofi swaybg wlsunset wl-clipboard hyprland
   ];
 
-  home.file."~/.config/hypr/hyprland.conf".source = ./hyperland.conf;
+  home.file."~/.config/hypr/hyprland.conf".source = ./hyprland.conf;
 }
