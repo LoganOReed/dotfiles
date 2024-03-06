@@ -12,6 +12,7 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
+    outputs.nixosModules.greetd
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -99,10 +100,6 @@
   boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEFIVariables = true;
   boot.loader.systemd-boot.configurationLimit = 15;
-
-  # I use greetd now instead of sddm
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
 
   programs.hyprland = { 
     enable = true;
