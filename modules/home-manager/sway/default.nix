@@ -3,27 +3,26 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let 
+let
   cfg = config.modules.hyprland;
-
 
 in {
     options.modules.sway= { enable = mkEnableOption "sway"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	    dunst tofi swaybg wlsunset pavucontrol swaylock swayidle kitti3
+	 dunst tofi swaybg wlsunset pavucontrol swaylock swayidle kitti3 autotiling wayland 
 	];
 
-	wayland.windowManager.sway = {
-          enable = true;
-	  wrapperFeatures.gtk = true;
-	  extraConfig = ''
+  # enable sway window manager
+  wayland.windowManager.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraConfig = ''
 exec_always swaybg -i $NIXOS_CONFIG_DIR/pics/RainbowDracula.png
-exec_always gBar bar
 exec_always --no-startup-id autotiling
 #exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 # notification manager
-exec_always --no-startup-id /usr/bin/dunst
+exec_always --no-startup-id dunst
 # https://github.com/LandingEllipse/kitti3
 exec_always --no-startup-id kitti3 -n packageupdater -p RC -s .35 1 
 exec_always --no-startup-id kitti3 -n scratchpad -p CC -s 0.6 0.6 
@@ -54,8 +53,8 @@ floating_modifier $mod
 # Fonts
 # Iosevka package on arch uses NF abbr.
 font pango:Iosevka Comfy 16
-font pango:Iosevka Nerd Font 12
-font pango:Iosevka Nerd Font 12
+font pango:Iosevka Nerd Font 16
+font pango:Iosevka Nerd Font 16
 
 # Dracula Color Palette
 
@@ -325,7 +324,14 @@ bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_S
 # Brightness
 bindsym XF86MonBrightnessDown exec light -U 10
 bindsym XF86MonBrightnessUp exec light -A 10
-	  '';
-        };
+
+
+
+# Need for nixos
+exec dbus-sway-environment
+exec configure-gtk
+    '';
+  };
+
     };
 }
