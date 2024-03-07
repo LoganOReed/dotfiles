@@ -118,14 +118,14 @@
   #};
 
   # Might Need for XWayland.
-  services.xserver.enable = true;
-  services.xserver.xkbOptions = "ctrl:nocaps";
+  #services.xserver.enable = true;
+  #services.xserver.xkbOptions = "ctrl:nocaps";
 
 
 
   # Currently enabled due to lazyness
   # makes a couple small things easier (like removable drives)
-  services.xserver.desktopManager.xfce.enable = true;
+  #services.xserver.desktopManager.xfce.enable = true;
 
   # set environment variables
   environment.variables = {
@@ -238,16 +238,16 @@
   };
 
 
-services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
-  };
+  #services.dbus.enable = true;
+  #xdg.portal = {
+  #  enable = true;
+  #  wlr.enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
+  #};
 
   # Enable the gnome-keyrig secrets vault. 
   # Will be exposed through DBus to programs willing to store secrets.
-  services.gnome.gnome-keyring.enable = true; 
+  #services.gnome.gnome-keyring.enable = true; 
 
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

@@ -20,6 +20,7 @@ in {
 	    syntaxHighlighting.enable = true;
 
 	    initExtra = ''
+		dbus-update-activation-environment WAYLAND_DISPLAY
 		bindkey '^ ' autosuggest-accept
 		neofetch
 	    '';

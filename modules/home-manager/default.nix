@@ -4,6 +4,7 @@
   # List your module files here
   # my-module = import ./my-module.nix;
   hyprland = import ./hyprland;
+  sway = import ./sway;
   zsh = import ./zsh;
   kitty = import ./kitty;
   tofi = import ./tofi;
