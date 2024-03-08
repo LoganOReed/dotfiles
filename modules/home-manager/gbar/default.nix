@@ -15,8 +15,8 @@ in {
 	programs.gBar = with config.colorscheme.palette; {
         enable = true;
         config = {
-	    #LockCommand = "";
-	    #ExitCommand = "killall Hyprland";
+	    LockCommand = "swaylock";
+	    ExitCommand = "killall Hyprland";
 	    #SuspendCommand = "Systemctl suspend";
 
 
