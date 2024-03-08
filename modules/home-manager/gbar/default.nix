@@ -31,14 +31,15 @@ in {
 	    MaxDownloadBytes = 10485760;
 	    MinUploadBytes = 0;
 	    MaxUploadBytes = 5242880;
-	    DateTimeStyle = "%A %D - %I:%M:%S %p";
+	    #DateTimeStyle = "%A %D - %I:%M:%S %p";
+	    DateTimeStyle = "%I:%M:%S";
 
 	    BatteryFolder = "/sys/class/power_supply/BAT0";
 	    NetworkAdapter = "wlp0s20f3";
 	    DefaultWorkspaceSymbol = "";
 	    UseHyprlandIPC = true;
 	    CenterTime = false;
-	    TimeSpace = 100;
+	    TimeSpace = 200;
 	    DateTimeLocale = "en_US.utf8";
         };
 	};
@@ -63,7 +64,8 @@ in {
 }
 
 .time-text {
-  font-size: 16px;
+  font-size: 20px;
+  padding-left: 6em;
 }
 
 .reboot-button {
