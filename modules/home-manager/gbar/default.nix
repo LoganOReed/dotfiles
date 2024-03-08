@@ -32,7 +32,7 @@ in {
 	    MinUploadBytes = 0;
 	    MaxUploadBytes = 5242880;
 	    #DateTimeStyle = "%A %D - %I:%M:%S %p";
-	    DateTimeStyle = "%I:%M:%S";
+	    DateTimeStyle = "";
 
 	    BatteryFolder = "/sys/class/power_supply/BAT0";
 	    NetworkAdapter = "wlp0s20f3";
