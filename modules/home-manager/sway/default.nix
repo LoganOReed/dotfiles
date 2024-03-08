@@ -13,9 +13,12 @@ in {
 	 dunst tofi swaybg wlsunset pavucontrol swaylock swayidle kitti3 autotiling wayland 
 	];
 
+
+
   # enable sway window manager
   wayland.windowManager.sway = {
     enable = true;
+    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraConfig = ''
 exec_always swaybg -i $NIXOS_CONFIG_DIR/pics/RainbowDracula.png
@@ -29,7 +32,7 @@ exec_always --no-startup-id kitti3 -n scratchpad -p CC -s 0.6 0.6
 
 
 
-
+corner_radius 20
 
 
 #
