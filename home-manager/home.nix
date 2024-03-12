@@ -134,6 +134,7 @@ home.pointerCursor =
   modules.zsh.enable = true;
   modules.kitty.enable = true;
   modules.nvim.enable = true;
+  modules.scripts.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

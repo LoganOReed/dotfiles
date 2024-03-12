@@ -12,4 +12,5 @@
   nvim = import ./nvim;
   dunst = import ./dunst;
   xdg = import ./xdg;
+  scripts = import ./scripts;
 }

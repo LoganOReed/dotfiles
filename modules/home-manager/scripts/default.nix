@@ -4,11 +4,11 @@ with lib;
 let cfg = 
     config.modules.scripts;
     #screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
-    bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
-    #maintenance = pkgs.writeShellScriptBin "maintenance" ''${builtins.readFile ./maintenance}'';
+    #bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
+    bashmount = pkgs.writeShellScriptBin "bashmount" ''${builtins.readFile ./bashmount}'';
 
 in {
-    options.modules.packages = { enable = mkEnableOption "packages"; };
+    options.modules.scripts = { enable = mkEnableOption "scripts"; };
     config = mkIf cfg.enable {
     	home.packages = with pkgs; [
             ripgrep ffmpeg tealdeer
@@ -19,8 +19,8 @@ in {
             imagemagick age libnotify
             git python3 lua zig 
             mpv firefox pqiv
-            screen bandw maintenance
-            wf-recorder anki-bin 
+            #screen bandw maintenance
+            bashmount
         ];
     };
 }
