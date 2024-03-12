@@ -7,14 +7,26 @@
 {
   services.greetd = {
     enable = true;
-    settings = {
-     default_session.command = ''
+    settings = rec {
+     initial_session = {
+       user = "occam";
+       command = ''
       ${pkgs.greetd.tuigreet}/bin/tuigreet \
         --time \
         --asterisks \
         --user-menu \
         --cmd Hyprland
-    '';
+    '';};
+    sway_session = {
+       user = "occam";
+       command = ''
+      ${pkgs.greetd.tuigreet}/bin/tuigreet \
+        --time \
+        --asterisks \
+        --user-menu \
+        --cmd sway
+    '';};
+    default_session = initial_session;
     };
   };
 

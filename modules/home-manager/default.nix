@@ -10,4 +10,5 @@
   tofi = import ./tofi;
   gbar = import ./gbar;
   nvim = import ./nvim;
+  dunst = import ./dunst;
 }

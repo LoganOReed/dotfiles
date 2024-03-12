@@ -126,6 +126,7 @@ home.pointerCursor =
 
   # Enable hyprland
   modules.hyprland.enable = true;
+  modules.dunst.enable = true;
   modules.tofi.enable = true;
   modules.gbar.enable = true;
 

@@ -15,8 +15,26 @@ in {
 	programs.gBar = with config.colorscheme.palette; {
         enable = true;
         config = {
-	    LockCommand = "swaylock";
-	    ExitCommand = "killall Hyprland";
+	    LockCommand = "swaylock \
+        --screenshots \
+        --clock \
+        --indicator \
+        --indicator-radius 200 \
+        --indicator-thickness 10 \
+        --effect-blur 7x5 \
+        --effect-vignette 0.5:0.5 \
+        --ring-color 6272a4 \
+        --key-hl-color ff79c6 \
+        --line-color 6272a400 \
+        --inside-color 282a3688 \
+        --separator-color 282a3600 \
+        --fade-in 0.2 \
+        --font 'Iosevka Comfy' \
+        --font-size 32 \
+        --timestr '%I:%M:%S' \
+        --datestr '%A %e %B %Y' \
+        --text-color f8f8f2";
+	    ExitCommand = "hyprctl dispatch exit";
 	    #SuspendCommand = "Systemctl suspend";
 
 
