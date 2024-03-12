@@ -96,9 +96,10 @@ in {
 	    };
 
 	    shellAliases = {
-	        l = "eza -a --icons";
+	        l = "eza --icons";
+	        la = "eza -a --icons";
 		cd = "z";
-		deploy = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast";
+		deploy = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR";
 		n = "nvim";
 	    };
 	    plugins = [

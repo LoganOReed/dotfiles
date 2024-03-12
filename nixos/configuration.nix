@@ -220,7 +220,7 @@ in
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    gtkUsePortal = true;
+    config.common.default = "*"; 
   };
 
   hardware.bluetooth.enable = true;
