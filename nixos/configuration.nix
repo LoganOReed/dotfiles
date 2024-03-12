@@ -137,6 +137,13 @@ in
     gnome3.adwaita-icon-theme
     dracula-theme
     glib
+
+    # for c comp exec (nvim requires it)
+    gnumake
+    cmake
+    clangStdenv
+    clang
+    #ccls
   ];
   # Moved to nvim module
   #environment.variables.EDITOR = "neovim";

@@ -1,0 +1,67 @@
+snippet im "import"
+import ${0:${VISUAL}}
+endsnippet
+
+snippet fr "from import"
+from $1 import ${0:${VISUAL}}
+endsnippet
+
+# New Function
+snippet def
+def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+	"""${3:docstring for $1}"""
+	${0:${VISUAL}}
+endsnippet
+
+snippet cl "Class" 
+class ${1:CName}(${2:Object}):
+	"""${3:Docstr}"""
+	def __init__(self, ${4:arg}):
+		${5:super($1, self).__init__()}
+		self.$4 = $4
+
+		${0:${VISUAL}}
+endsnippet
+
+
+snippet pr "Formatted literal print"
+print(f"$0")
+endsnippet
+
+# Conditionals
+snippet if
+if $1:
+	${0:${VISUAL}}
+endsnippet
+
+snippet el
+else:
+	${0:${VISUAL}}
+endsnippet
+
+snippet ei
+elif $1:
+	${0:${VISUAL}}
+endsnippet
+
+snippet for
+for ${1:i} in ${2:items}:
+	${0:${VISUAL}}
+endsnippet
+
+snippet forr "ranged for loop"
+for ${1:i} in range(${2:items}):
+	${0:${VISUAL}}
+endsnippet
+
+snippet wh "While" 
+while ${1}:
+	${0:${VISUAL}}
+endsnippet
+
+
+# if __name__ == "__main__":
+snippet main
+if __name__ == "__main__":
+	${0:run()}
+endsnippet

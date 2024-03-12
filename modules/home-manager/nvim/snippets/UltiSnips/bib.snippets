@@ -1,0 +1,43 @@
+snippet bk "Book Reference" bA
+@book{${1:trigger},
+    author    = ${2:author},
+    title     =	${3:Title},
+    edition   = ${4:Edition},
+    publisher = ${5:Publisher},
+    year      = ${6:Year}
+}
+$0
+endsnippet
+
+snippet pa "Paper/Journal" b
+@article{${1:Trigger},
+		author    = ${2:Author(s)},
+		year      = ${3:Year},
+		pages     = ${4:Page Numbers},
+		title     = ${5:Title},
+		journal   = ${6:Journal},
+}
+$0
+endsnippet
+
+snippet ar "Paper/Journal" b
+@article{${1:Trigger},
+		author    = {${2:Author(s)}},
+		year      = {${3:Year}},
+		pages     = {${4:Page Numbers}},
+		title     = {${5:Title}},
+		journal	  = {${6:Journal}},
+}
+$0
+endsnippet
+
+snippet web "Online Reference" b
+@online{${1:Trigger},
+    author    = {${2:Author}},
+    title     = {${3:Title}},
+    year      = {${4:Year}},
+    url       = {${5:URL}}
+}
+$0
+endsnippet
+
