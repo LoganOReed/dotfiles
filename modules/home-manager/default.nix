@@ -11,4 +11,5 @@
   gbar = import ./gbar;
   nvim = import ./nvim;
   dunst = import ./dunst;
+  xdg = import ./xdg;
 }

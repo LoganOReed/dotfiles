@@ -125,6 +125,7 @@ home.pointerCursor =
   };
 
   # Enable hyprland
+  modules.xdg.enable = true;
   modules.hyprland.enable = true;
   modules.dunst.enable = true;
   modules.tofi.enable = true;
