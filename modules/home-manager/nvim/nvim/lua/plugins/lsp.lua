@@ -17,25 +17,28 @@ local M = {
     config = function()
       -- This is where you modify the settings for lsp-zero
       -- Note: autocompletion settings will not take effect
+      
 
-      require('lsp-zero.settings').preset({
-        float_border = 'rounded',
-        call_servers = 'local',
-        configure_diagnostics = true,
-        setup_servers_on_start = true,
-        set_lsp_keymaps = {
-          preserve_mappings = false,
-          omit = {},
-        },
-        manage_nvim_cmp = {
-          set_sources = 'recommended',
-          set_basic_mappings = true,
-          set_extra_mappings = true,
-          use_luasnip = true,
-          set_format = true,
-          documentation_window = true,
-        },
-      })
+      -- I think this replaces below
+      lsp.preset('recommended')
+      -- require('lsp-zero').preset({
+      --   float_border = 'rounded',
+      --   call_servers = 'local',
+      --   configure_diagnostics = true,
+      --   setup_servers_on_start = true,
+      --   set_lsp_keymaps = {
+      --     preserve_mappings = false,
+      --     omit = {},
+      --   },
+      --   manage_nvim_cmp = {
+      --     set_sources = 'recommended',
+      --     set_basic_mappings = true,
+      --     set_extra_mappings = true,
+      --     use_luasnip = true,
+      --     set_format = true,
+      --     documentation_window = true,
+      --   },
+      -- })
     end
   },
 
