@@ -6,6 +6,7 @@ let cfg =
     #screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
     #bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
     bashmount = pkgs.writeShellScriptBin "bashmount" ''${builtins.readFile ./bashmount}'';
+    rxfetch = pkgs.writeShellScriptBin "rxfetch" ''${builtins.readFile ./rxfetch}'';
 
 in {
     options.modules.scripts = { enable = mkEnableOption "scripts"; };
@@ -20,7 +21,7 @@ in {
             git python3 lua zig 
             mpv firefox pqiv
             #screen bandw maintenance
-            bashmount
+            bashmount rxfetch
         ];
     };
 }
