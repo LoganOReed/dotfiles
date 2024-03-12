@@ -13,7 +13,7 @@ in {
 	  source = ./nvim;
 	  recursive = true;
 	};
-        home.file."dotfiles/snippets" = {
+        home.file.".snippets" = {
           source = ./snippets;
           recursive = true;
         };

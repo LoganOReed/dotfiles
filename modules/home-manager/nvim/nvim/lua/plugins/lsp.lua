@@ -31,7 +31,7 @@ local M = {
           set_sources = 'recommended',
           set_basic_mappings = true,
           set_extra_mappings = true,
-          use_luasnip = false,
+          use_luasnip = true,
           set_format = true,
           documentation_window = true,
         },
