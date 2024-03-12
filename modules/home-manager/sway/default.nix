@@ -10,7 +10,7 @@ in {
     options.modules.sway= { enable = mkEnableOption "sway"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	 dunst tofi swaybg wlsunset pavucontrol swaylock swayidle kitti3 autotiling wayland 
+	 dunst tofi swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland 
 	];
 
 

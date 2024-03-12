@@ -127,7 +127,6 @@ in
   environment.systemPackages = with pkgs; [
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
     acpi
     tlp
     wget
@@ -139,7 +138,8 @@ in
     dracula-theme
     glib
   ];
-  environment.variables.EDITOR = "neovim";
+  # Moved to nvim module
+  #environment.variables.EDITOR = "neovim";
 
   security.polkit.enable = true;
 

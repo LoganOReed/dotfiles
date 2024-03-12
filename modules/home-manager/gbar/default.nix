@@ -10,8 +10,8 @@ let
 
 in {
     options.modules.gbar= { enable = mkEnableOption "gbar"; };
-    config = mkIf cfg.enable {
 
+    config = mkIf cfg.enable {
 	programs.gBar = with config.colorscheme.palette; {
         enable = true;
         config = {

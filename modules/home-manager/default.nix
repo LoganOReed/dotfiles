@@ -9,4 +9,5 @@
   kitty = import ./kitty;
   tofi = import ./tofi;
   gbar = import ./gbar;
+  nvim = import ./nvim;
 }
