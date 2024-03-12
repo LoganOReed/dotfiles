@@ -20,7 +20,7 @@ dashboard.section.header.val = {
   dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
   dashboard.button("p", " " .. " Find project", ":lua require('telescope').extensions.projects.projects()<CR>"),
   dashboard.button("g", " " .. " VimBeGood game", ":VimBeGood <CR>"),
-  dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+  dashboard.button("c", " " .. " Config", ":e $HOME/dotfiles <CR>"),
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }
 local function footer()
