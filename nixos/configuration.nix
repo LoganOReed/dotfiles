@@ -135,7 +135,6 @@ in
     blueman
     dbus-sway-environment
     configure-gtk 
-    gnome3.adwaita-icon-theme
     dracula-theme
     glib
 
@@ -258,7 +257,7 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEl/zJqwIFf9HzFg3UEf9WvXQtr62VKsP+dwZbr3XH5E occam@razor"
       ];
       # DONE: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["networkmanager" "wheel"];
+      extraGroups = ["networkmanager" "wheel" "video"];
     };
   };
 
@@ -311,6 +310,7 @@ in
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true; 
 
+  programs.light.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
