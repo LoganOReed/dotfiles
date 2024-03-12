@@ -17,7 +17,7 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     event = { "BufReadPost", "BufNewFile" },
-    --main = "nvim-treesitter.configs",
+    main = "nvim-treesitter.configs",
     dev = true,
     opts = {
         autotag = {

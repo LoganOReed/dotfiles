@@ -4,6 +4,7 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -20,7 +21,7 @@ local M = {
       
 
       -- I think this replaces below
-      lsp.preset('recommended')
+      require('lsp-zero').preset('recommended')
       -- require('lsp-zero').preset({
       --   float_border = 'rounded',
       --   call_servers = 'local',

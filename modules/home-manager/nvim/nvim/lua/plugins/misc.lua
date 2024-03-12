@@ -186,12 +186,17 @@ return {
     config = true,
   },
   {
-    'echasnovski/mini.comment',
-    event = "InsertEnter",
-    init = function()
-      require("mini.comment").setup()
-    end,
-  },
+        "numToStr/Comment.nvim",
+        opts = {},
+        event = { "BufReadPost", "BufNewFile" },
+      },
+  -- {
+  --   'echasnovski/mini.comment',
+  --   event = "InsertEnter",
+  --   init = function()
+  --     require("mini.comment").setup()
+  --   end,
+  -- },
 
   {
     'stevearc/oil.nvim',
