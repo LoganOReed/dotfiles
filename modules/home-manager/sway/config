@@ -61,7 +61,7 @@ gaps outer $outer_gaps
 
 # #---Basic Bindings---# #
 
-# bindsym $mod+Return 		         exec $term --hold -e rxfetch
+# bindsym $mod+Return 		         exec $term --hold -e disfetch
 bindsym $mod+Return 		         exec notify-send "Use slash or semicolon punk "
 bindsym $mod+Shift+Return	       exec $term --hold -e neofetch
 
@@ -198,8 +198,8 @@ bindsym $mod+Shift+m		        exec --no-startup-id minecraft
 bindsym $mod+Tab		            layout toggle tabbed split
 bindsym $mod+grave		          workspace back_and_forth
 # bindsym $mod+Shift+Tab		      workspace prev
-bindsym $mod+apostrophe		      split horizontal ;; exec $term --hold -e rxfetch
-bindsym $mod+slash		          split vertical ;; exec $term --hold -e rxfetch
+bindsym $mod+apostrophe		      split horizontal ;; exec $term --hold -e disfetch
+bindsym $mod+slash		          split vertical ;; exec $term --hold -e disfetch
 bindsym $mod+Shift+slash	      kill
 # bindsym $mod+backslash		      workspace back_and_forth
 

@@ -6,7 +6,7 @@ let cfg =
     #screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
     #bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
     bashmount = pkgs.writeShellScriptBin "bashmount" ''${builtins.readFile ./bashmount}'';
-    rxfetch = pkgs.writeShellScriptBin "rxfetch" ''${builtins.readFile ./rxfetch}'';
+    ufetch = pkgs.writeShellScriptBin "ufetch" ''${builtins.readFile ./ufetch}'';
 
 in {
     options.modules.scripts = { enable = mkEnableOption "scripts"; };
@@ -19,9 +19,9 @@ in {
             grim slurp slop
             imagemagick age libnotify
             git python3 lua zig 
-            mpv firefox pqiv
+            mpv firefox pqiv procps
             #screen bandw maintenance
-            bashmount rxfetch
+            bashmount rxfetch ufetch
         ];
     };
 }

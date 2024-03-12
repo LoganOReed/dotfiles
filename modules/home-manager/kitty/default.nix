@@ -178,5 +178,10 @@ in {
             color21 = "#${base06}";
 	  };
 	};
+  programs.zsh = {
+    initExtra = ''
+      export TERM="xterm-kitty"
+      '';
+  };
     };
 }

@@ -5,7 +5,7 @@ in {
     options.modules.zsh = { enable = mkEnableOption "zsh"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	    zsh fzf eza zoxide
+	    zsh fzf eza zoxide disfetch
 	];
 
 	programs.zoxide = {
@@ -26,7 +26,7 @@ in {
 	    initExtra = ''
 		dbus-update-activation-environment WAYLAND_DISPLAY
 		bindkey '^ ' autosuggest-accept
-		neofetch
+		disfetch
 
     # Customizing FZF
         export FZF_DEFAULT_COMMAND='rg --files --hidden'
