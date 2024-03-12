@@ -13,4 +13,5 @@
   dunst = import ./dunst;
   xdg = import ./xdg;
   scripts = import ./scripts;
+  zathura = import ./zathura;
 }

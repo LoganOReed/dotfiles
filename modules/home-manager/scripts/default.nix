@@ -21,7 +21,7 @@ in {
             git python3 lua zig 
             mpv firefox pqiv procps
             #screen bandw maintenance
-            bashmount rxfetch ufetch
+            bashmount ufetch
         ];
     };
 }
