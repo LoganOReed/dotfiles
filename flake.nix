@@ -33,6 +33,7 @@
     xremap-flake.url = "github:xremap/nix-flake";
     nix-colors.url = "github:misterio77/nix-colors";
     gBar.url = "github:scorpion-26/gBar";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # TODO: Add nix-colors and dracula
     # Shameless plug: looking for a way to nixify your themes and make

@@ -3,7 +3,43 @@
 with lib;
 let 
 
-  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withAllGrammars);
+  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+    p.bash
+    p.bibtex
+    p.comment
+    p.c
+    p.css
+    p.cpp
+    p.csv
+    p.dockerfile
+    p.fish
+    p.gitattributes
+    p.gitignore
+    p.go
+    p.gomod
+    p.gowork
+    p.hcl
+    p.haskell
+    p.javascript
+    p.jq
+    p.json5
+    p.json
+    p.julia
+    p.latex
+    p.lua
+    p.make
+    p.markdown
+    p.matlab
+    p.nix
+    p.php
+    p.python
+    p.rust
+    p.sql
+    p.toml
+    p.typescript
+    p.vue
+    p.yaml
+  ]));
 
   cfg = config.modules.nvim;
 in {
@@ -15,6 +51,7 @@ in {
    go php lua54Packages.luarocks zulu17
    julia python311Packages.pip lua
    python310Packages.pynvim
+   black
 	];
       home.file.".config/nvim" = {
         source = ./nvim;
@@ -38,7 +75,7 @@ in {
 
         programs.neovim = {
             enable = true;
-            # package = pkgs.neovim;
+            package = pkgs.neovim-nightly;
             vimAlias = true;
             coc.enable = false;
             withNodeJs = true;

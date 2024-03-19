@@ -161,7 +161,7 @@ local M = {
       require('mason-lspconfig').setup({
         -- Replace the language servers listed here 
         -- with the ones you want to install
-        ensure_installed = {'pyright', 'lua_ls', 'phpactor', 'yamlls', 'jsonls'},
+        ensure_installed = {'pyright', 'lua_ls', 'yamlls', 'jsonls'},
         handlers = {
           lsp.default_setup,
         },
