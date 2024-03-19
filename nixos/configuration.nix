@@ -123,7 +123,7 @@ in
     options = "--delete-older-than 30d";
   };
 
-  # FIXME: Add the rest of your current configuration
+  # DONE: Add the rest of your current configuration
   environment.systemPackages = with pkgs; [
     git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -137,6 +137,7 @@ in
     configure-gtk 
     dracula-theme
     glib
+    texlive.combined.scheme-full
 
     # for c comp exec (nvim requires it)
     gnumake
