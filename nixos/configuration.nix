@@ -56,7 +56,7 @@ in
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
-    inputs.xremap-flake.nixosModules.default
+    # inputs.xremap-flake.nixosModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -283,24 +283,41 @@ in
     };
   };
 
-  # XRemap setup
-  users.groups.uinput.members = [ "occam" ];
-  users.groups.input.members = [ "occam" ];
 
-  services.xremap = {
-      withWlroots = true;
-      userName = "occam";
-      config = {
-        modmap = [
-	  {
-	    name = "NoCaps";
-	    remap = {
-	      "CapsLock" = "LeftCtrl";
-	    };
-	  }
-	];
-      };
-  };
+   # A key remapping daemon for linux.
+   # https://github.com/rvaiya/keyd
+   services.keyd = {
+     enable = true;
+     keyboards = {
+       default = {
+         settings = {
+           main = {
+             # overloads the capslock key to function as both escape (when tapped) and control (when held)
+             capslock = "overload(control, esc)";
+           };
+         };
+       };
+     };
+   };
+
+  # XRemap setup
+ #  users.groups.uinput.members = [ "occam" ];
+ #  users.groups.input.members = [ "occam" ];
+	#
+ #  services.xremap = {
+ #      withWlroots = true;
+ #      userName = "occam";
+ #      config = {
+ #        modmap = [
+	#   {
+	#     name = "NoCaps";
+	#     remap = {
+	#       "CapsLock" = "LeftCtrl";
+	#     };
+	#   }
+	# ];
+ #      };
+ #  };
 
   security.pam.services.swaylock = {
     text = "auth include login";
