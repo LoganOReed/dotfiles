@@ -14,7 +14,7 @@ in {
         # Add completion to zsh
         programs.zsh = {
             initExtra = ''
-                fpath=( "''$HOME/.zsh/completion/watson"} "''${fpath[@]}" )
+                fpath=( "''$HOME/.zsh/completion/watson" "''${fpath[@]}" )
                 export WATSON_DIR="''$HOME/.watson"
             '';
         };
