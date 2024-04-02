@@ -77,6 +77,7 @@
   grim # screenshot functionality
   slurp # screenshot functionality
   wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+  poetry
 
 
   # utils
@@ -129,6 +130,7 @@ home.pointerCursor =
   modules.xdg.enable = true;
   modules.hyprland.enable = true;
   modules.dunst.enable = true;
+  modules.watson.enable = true;
   modules.tofi.enable = true;
   modules.gbar.enable = true;
 

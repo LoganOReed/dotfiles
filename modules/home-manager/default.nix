@@ -11,6 +11,7 @@
   gbar = import ./gbar;
   nvim = import ./nvim;
   dunst = import ./dunst;
+  watson = import ./watson;
   xdg = import ./xdg;
   scripts = import ./scripts;
   zathura = import ./zathura;

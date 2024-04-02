@@ -138,7 +138,6 @@ in
     dracula-theme
     glib
     texlive.combined.scheme-full
-
     # for c comp exec (nvim requires it)
     gnumake
     cmake
