@@ -15,9 +15,7 @@ in {
             initExtra = ''
               #Setup bitwarden
               eval "$(bw completion --shell zsh); compdef _bw bw;"
-              bw config server $(cat ${config.sops.secrets."bitwarden/url".path})
-              export BW_CLIENTID="$(cat ${config.sops.secrets."bitwarden/api/client_id".path})"
-              export BW_CLIENTSECRET="$(cat ${config.sops.secrets."bitwarden/api/client_secret".path})"
+              bw config server https://vault.loganreed.org
               bw login --apikey
             '';
         };

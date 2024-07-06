@@ -87,6 +87,7 @@
 
   environment.sessionVariables = {
     FLAKE = "/home/occam/dotfiles";
+    EDITOR = "nvim";
   };
 
     # nix-helper
@@ -97,8 +98,6 @@
       clean.extraArgs = "--keep-since 7d --keep 10";
       flake = "/home/occam/dotfiles";
     };
-
-
 
 
   # List packages installed in system profile. To search, run:
@@ -115,6 +114,7 @@
     wl-clipboard
     bashmount
     firefox
+    sops
   ];
 
   programs.zsh.enable = true;
@@ -174,6 +174,14 @@
   security.polkit.enable = true;
   security.pam.services.swaylock = {
   	text = "auth include login";
+  };
+
+  xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        # gtk portal needed to make gtk apps happy
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        config.common.default = "*"; 
   };
 
   programs.sway = {
@@ -270,8 +278,10 @@
 
   sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
 
+
+  sops.secrets."razor/occam".neededForUsers = true;
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
-  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
+  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name; 
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
 
 
@@ -290,7 +300,7 @@
 
   users.users = {
     occam = {
-      initialPassword = "password";
+      hashedPasswordFile = config.sops.secrets."razor/occam".path;
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect

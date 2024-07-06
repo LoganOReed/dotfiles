@@ -6,8 +6,9 @@ let cfg = config.modules.xdg;
 in {
     options.modules.xdg = { enable = mkEnableOption "xdg"; };
     config = mkIf cfg.enable {
-        xdg.userDirs = {
-            enable = true;
+        xdg = {
+          enable = true;
+          userDirs = {
             documents = "$HOME/documents/";
             pictures = "$HOME/documents/pictures/";
             music = "$HOME/documents/music/";
@@ -16,6 +17,8 @@ in {
             desktop = "$HOME/misc/";
             publicShare = "$HOME/misc/";
             templates = "$HOME/misc/";
-        };
+          };
+
+        };    
     };
 }

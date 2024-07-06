@@ -9,7 +9,6 @@ in {
 	    zsh 
       disfetch
       eza
-      bitwarden-cli
 	];
 
 	programs.zoxide = {
@@ -33,8 +32,7 @@ in {
 		bindkey '^ ' autosuggest-accept
 		disfetch
 
-    #Setup bitwarden
-    eval "$(bw completion --shell zsh); compdef _bw bw;"
+
 
 
     # Customizing FZF

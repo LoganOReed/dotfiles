@@ -38,7 +38,7 @@
     tofi.enable = true;
     rofi.enable = true;
     zathura.enable = true;
-    bitwarden.enable = true;
+    # bitwarden.enable = true;
 
     # cli
     nvim.enable = true;
@@ -50,7 +50,7 @@
     powermenu.enable = true;
 
     # system
-    # xdg.enable = true;
+    xdg.enable = true;
   };
 
   nixpkgs = {
