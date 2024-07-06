@@ -10,7 +10,7 @@ let
 in {
     options.modules.kitty= { enable = mkEnableOption "kitty"; };
     config = mkIf cfg.enable {
-	programs.kitty = with config.stylix.base16Scheme; {
+	programs.kitty = with config.lib.stylix.colors; {
 	  enable = true;
 	  shellIntegration.enableZshIntegration = true;
 
@@ -62,9 +62,9 @@ in {
             "ctrl+shift+backspace" = "restore_font_size";
 	  };
 
-    # NOTE: This is how to override stylix options
-    # settings."font_size" = lib.mkForce 64;
-
+    # NOTE: This is how to override a single stylix option
+    # I had to isolate since I didn't know how to use stylix colors
+    settings."enable_audio_bell" = lib.mkForce "no";
 
 	  # settings = lib.mkForce {
 	  #   font_family = "Iosevka Comfy";

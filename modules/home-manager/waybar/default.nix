@@ -110,7 +110,7 @@ in {
             };
           };
 
-#           style = ''
+#           style = with config.lib.stylix.colors;''
 # * { 
 #     all: unset;
 #     border: none;
@@ -124,7 +124,7 @@ in {
 #     background: @theme_base_color;
 #     background-color: rgba(43, 48, 59, 0.9);
 #     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-#     color: #${config.stylix.base16Scheme.base06};
+#     color: #${base06};
 #     transition-property: background-color;
 #     transition-duration: .5s;
 #     border-radius: 0;
@@ -215,18 +215,18 @@ in {
 # }
 #
 # #clock {
-#     background-color: #${config.stylix.base16Scheme.base0B};
+#     background-color: #${base0B};
 #     color: #282a36;
 # }
 #
 # #battery {
-#     background-color: #${config.stylix.base16Scheme.base0C};
+#     background-color: #${base0C};
 #     color: #282a36;
 # }
 #
 # #battery.charging, #battery.plugged {
 #     color: #282a36;
-#     background-color: #${config.stylix.base16Scheme.base0C};
+#     background-color: #${base0C};
 # }
 #
 # @keyframes blink {
@@ -251,12 +251,12 @@ in {
 # }
 #
 # #cpu {
-#     background-color: #${config.stylix.base16Scheme.base0B};
+#     background-color: #${base0B};
 #     color: #282a36;
 # }
 #
 # #memory {
-#     background-color: #${config.stylix.base16Scheme.base0B};
+#     background-color: #${base0B};
 #     color: #282a36;
 # }
 #
@@ -265,7 +265,7 @@ in {
 # }
 #
 # #network {
-#     background-color: #${config.stylix.base16Scheme.base0A};
+#     background-color: #${base0A};
 #     color: #282a36;
 # }
 #
@@ -367,7 +367,7 @@ in {
 # }
 #
 # #custom-weather {
-#     background-color: #${config.stylix.base16Scheme.base0C};
+#     background-color: #${base0C};
 #     color: #282a36;
 #     margin-right: 5;
 # }
@@ -378,7 +378,7 @@ in {
 # }
 #
 # #sway-scratchpad {
-#     background-color: #${config.stylix.base16Scheme.base0A};
+#     background-color: #${base0A};
 #     color: #282a36;
 # }
 #           '';

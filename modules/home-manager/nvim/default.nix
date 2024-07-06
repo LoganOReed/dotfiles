@@ -10,6 +10,7 @@ in {
           # https://github.com/LoganOReed/kickstart-nix.nvim
           # which is the flake I use to configure nvim
             nvim-pkg
+            ripgrep
         ];
     };
 }

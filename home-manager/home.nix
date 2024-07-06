@@ -34,7 +34,7 @@
     # i3.enable = true;
     # gbar.enable = true;
     waybar.enable = true;
-    # tofi.enable = true;
+    tofi.enable = true;
     rofi.enable = true;
     zathura.enable = true;
 

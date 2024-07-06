@@ -8,7 +8,7 @@ in {
     options.modules.sway= { enable = mkEnableOption "sway"; };
     config = mkIf cfg.enable {
 	home.packages = with pkgs; [
-	 dunst rofi-wayland swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland xwayland
+	 dunst rofi-wayland swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland xwayland tofi
 	];
 
 
@@ -23,15 +23,14 @@ in {
     config.bars = [];
     extraConfig = ''
 bar swaybar_command waybar
-exec_always swaybg -i $NIXOS_CONFIG_DIR/pics/RainbowDracula.png
+# nixos stylix does this now
+# exec_always swaybg -i $NIXOS_CONFIG_DIR/pics/RainbowDracula.png
 exec_always --no-startup-id autotiling
-#exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 # notification manager
 exec_always --no-startup-id dunst
 # https://github.com/LandingEllipse/kitti3
 exec_always --no-startup-id kitti3 -n packageupdater -p RC -s .35 1 
 exec_always --no-startup-id kitti3 -n scratchpad -p CC -s 0.6 0.6 
-
 
 
 corner_radius 20
@@ -51,6 +50,8 @@ set $shutdown shutdown -h now
 set $reboot reboot
 set $suspend systemctl suspend
 set $hibernate systemctl hibernate
+
+set $fullmenu tofi-drun --drun-launch=true 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -145,8 +146,8 @@ bindsym $mod+i                  nop scratchpad
 bindsym $mod+Shift+s			      split toggle
 
 # d
-# bindsym $mod+d                  exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu_run -b -i -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
-bindsym $mod+d            exec firefox
+bindsym $mod+d                  exec --no-startup-id $fullmenu
+# bindsym $mod+d            exec firefox
 
 # f
 bindsym $mod+f			            fullscreen toggle
