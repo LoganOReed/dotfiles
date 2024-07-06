@@ -39,7 +39,7 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -88,9 +88,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    zsh
     vim
-    neovim
     bluetuith
     acpi
     tlp
@@ -103,18 +101,10 @@
     firefox
   ];
 
+  programs.zsh.enable = true;
 
-  # Install fonts
-  fonts = {
-      packages = with pkgs; [
-          iosevka-comfy.comfy
-          noto-fonts
-          font-awesome
-          powerline-symbols
-          openmoji-color
-          (nerdfonts.override { fonts = [ "Iosevka" ]; })
-      ];
-  };
+
+
 
    # A key remapping daemon for linux.
    # https://github.com/rvaiya/keyd
@@ -179,7 +169,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
   };
 
 
@@ -187,12 +177,52 @@
   hardware = {
       bluetooth.enable = true;
       bluetooth.powerOnBoot = true;
-      opengl = {
-          enable = true;
-          driSupport = true;
-          driSupport32Bit = true;
+      graphics = {
+        enable32Bit = true;
+        enable = true;
       };
     };
+
+  # Install fonts
+  fonts = {
+      packages = with pkgs; [
+          iosevka-comfy.comfy
+          iosevka-comfy.comfy-motion
+          noto-fonts-color-emoji
+          font-awesome
+          powerline-symbols
+          openmoji-color
+          (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      ];
+  };
+
+
+  # Stylix Config
+  stylix.enable = true;
+  stylix.image = ../pics/RainbowDracula.png;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+
+  stylix.fonts = {
+    serif = {
+      package = pkgs.iosevka-comfy.comfy-motion;
+      name = "Iosevka Comfy Serif";
+    };
+
+    sansSerif = {
+      package = pkgs.iosevka-comfy.comfy;
+      name = "Iosevka Comfy Sans";
+    };
+
+    monospace = {
+      package = pkgs.iosevka-comfy.comfy;
+      name = "Iosevka Comfy Sans";
+    };
+
+    emoji = {
+      package = pkgs.noto-fonts-color-emoji;
+      name = "Noto Color Emoji";
+    };
+  };
 
 
 
@@ -216,6 +246,7 @@
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "networkmanager" "wheel" "video" "audio" "input"];
+      shell = pkgs.zsh;
     };
   };
 

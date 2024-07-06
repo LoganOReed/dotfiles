@@ -12,17 +12,18 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-    outputs.homeManagerModules.zsh
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-  ];
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   modules = {
     zsh.enable = true;
+    nvim.enable = true;
+    direnv.enable = true;
   };
 
   nixpkgs = {
@@ -31,10 +32,11 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
+      inputs.kickstart-nix-nvim.overlays.default
 
       # Or define it inline, for example:
       # (final: prev: {
