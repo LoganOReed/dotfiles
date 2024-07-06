@@ -15,6 +15,7 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
+    inputs.gBar.homeManagerModules.x86_64-linux.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -24,6 +25,9 @@
     zsh.enable = true;
     nvim.enable = true;
     direnv.enable = true;
+    git.enable = true;
+    gbar.enable = true;
+    sway.enable = true;
   };
 
   nixpkgs = {

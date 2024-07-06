@@ -17,6 +17,8 @@
 
     kickstart-nix-nvim.url = "github:LoganOReed/kickstart-nix.nvim/main";
 
+    gBar.url = "github:scorpion-26/gBar";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

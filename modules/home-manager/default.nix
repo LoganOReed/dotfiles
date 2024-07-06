@@ -7,4 +7,6 @@
   nvim = import ./nvim;
   direnv = import ./direnv;
   git = import ./git;
+  gbar = import ./gbar;
+  sway = import ./sway;
 }

@@ -154,7 +154,10 @@
   	text = "auth include login";
   };
 
-  programs.sway.enable = true;
+  programs.sway = {
+    enable = true;
+    package = pkgs.swayfx;
+  };
 
 
   # Enable CUPS to print documents.
