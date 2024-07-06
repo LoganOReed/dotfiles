@@ -238,6 +238,8 @@
   stylix.cursor.name = "Dracula-cursors";
   stylix.cursor.size = 16;
 
+  stylix.polarity = "dark";
+
 
 
 # NOTE: END OF WHOLLY CUSTOM STUFF
