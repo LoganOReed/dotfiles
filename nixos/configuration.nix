@@ -69,11 +69,11 @@
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than-7d";
-    };
+    # gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than-7d";
+    # };
     # Opinionated: disable channels
     channel.enable = false;
 
@@ -83,6 +83,21 @@
   };
 
   # FIXME: Add the rest of your current configuration
+
+  environment.sessionVariables = {
+    FLAKE = "/home/occam/dotfiles";
+  };
+
+    # nix-helper
+    # nh os switch
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 10";
+      flake = "/home/occam/dotfiles";
+    };
+
+
 
 
   # List packages installed in system profile. To search, run:

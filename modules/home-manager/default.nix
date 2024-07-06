@@ -11,4 +11,14 @@
   waybar = import ./waybar;
   sway = import ./sway;
   kitty = import ./kitty;
+  gpg = import ./gpg;
+  hyprland = import ./hyprland;
+  watson = import ./watson;
+  xdg = import ./xdg;
+  firefox = import ./firefox;
+  dunst = import ./dunst;
+  eww = import ./eww;
+  zathura = import ./zathura;
+  tofi = import ./tofi;
+  i3 = import ./i3;
 }
