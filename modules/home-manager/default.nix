@@ -20,5 +20,6 @@
   eww = import ./eww;
   zathura = import ./zathura;
   tofi = import ./tofi;
+  rofi = import ./rofi;
   i3 = import ./i3;
 }

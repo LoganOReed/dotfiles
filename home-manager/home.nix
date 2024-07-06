@@ -24,14 +24,30 @@
   # stylix.targets.kitty.enable = false;
 
   modules = {
-    zsh.enable = true;
-    nvim.enable = true;
-    direnv.enable = true;
-    git.enable = true;
+    # gui
+    # firefox.enable = true;
+    kitty.enable = true;
+    # eww.enable = true;
+    dunst.enable = true;
+    # hyprland.enable = true;
+    sway.enable = true;
+    # i3.enable = true;
     # gbar.enable = true;
     waybar.enable = true;
-    sway.enable = true;
-    kitty.enable = true;
+    # tofi.enable = true;
+    rofi.enable = true;
+    zathura.enable = true;
+
+    # cli
+    nvim.enable = true;
+    watson.enable = true;
+    zsh.enable = true;
+    git.enable = true;
+    gpg.enable = true;
+    direnv.enable = true;
+
+    # system
+    # xdg.enable = true;
   };
 
   nixpkgs = {

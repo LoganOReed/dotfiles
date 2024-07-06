@@ -103,7 +103,8 @@ in {
                   car = "";
                   # "default": ["", "", ""]
                 };
-                on-right-click = "pavucontrol";
+                on-click = "rofi-bluetooth &";
+                on-click-right = "pavucontrol";
               };
 
             };
