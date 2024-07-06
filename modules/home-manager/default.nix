@@ -22,4 +22,5 @@
   tofi = import ./tofi;
   rofi = import ./rofi;
   i3 = import ./i3;
+  powermenu = import ./powermenu;
 }

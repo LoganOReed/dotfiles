@@ -45,6 +45,7 @@
     git.enable = true;
     gpg.enable = true;
     direnv.enable = true;
+    powermenu.enable = true;
 
     # system
     # xdg.enable = true;
