@@ -11,7 +11,6 @@
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -25,7 +24,12 @@
     ./hardware-configuration.nix
     ./disk-config.nix
     inputs.home-manager.nixosModules.home-manager
-  ];
+  ] ++ (builtins.attrValues outputs.nixosModules);
+
+  modules = {
+    wireguard.enable = true;
+  };
+
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
@@ -141,6 +145,7 @@
     bashmount
     firefox
     sops
+    networkmanagerapplet
   ];
 
   programs.zsh.enable = true;
@@ -306,6 +311,7 @@
 
 
   sops.secrets."razor/occam".neededForUsers = true;
+  sops.secrets."razor/wireguard/mullvad" = {};
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name; 
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;

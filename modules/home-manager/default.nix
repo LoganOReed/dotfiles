@@ -25,4 +25,5 @@
   i3 = import ./i3;
   powermenu = import ./powermenu;
   bitwarden = import ./bitwarden;
+
 }

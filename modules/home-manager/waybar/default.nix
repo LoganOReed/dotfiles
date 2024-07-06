@@ -56,6 +56,7 @@ in {
                       format-linked = "TEMPNAME (No IP) ";
                       format-disconnected = "Disconnected ⚠";
                       format-alt = "{ifname}: {ipaddr}/{cidr}";
+                      on-click = "nm-connection-editor";
                   };
 
               "idle_inhibitor" = {
