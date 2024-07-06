@@ -9,6 +9,7 @@ in {
 	    zsh 
       disfetch
       eza
+      bitwarden-cli
 	];
 
 	programs.zoxide = {
@@ -31,6 +32,10 @@ in {
 		dbus-update-activation-environment WAYLAND_DISPLAY
 		bindkey '^ ' autosuggest-accept
 		disfetch
+
+    #Setup bitwarden
+    eval "$(bw completion --shell zsh); compdef _bw bw;"
+
 
     # Customizing FZF
         export FZF_DEFAULT_COMMAND='rg --files --hidden'

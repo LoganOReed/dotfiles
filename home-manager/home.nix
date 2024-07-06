@@ -17,6 +17,7 @@
     # inputs.nix-colors.homeManagerModules.default
     inputs.gBar.homeManagerModules.x86_64-linux.default
 
+    inputs.sops-nix.homeManagerModules.sops
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ] ++ (builtins.attrValues outputs.homeManagerModules);

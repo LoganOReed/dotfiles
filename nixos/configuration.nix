@@ -16,6 +16,7 @@
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
+    inputs.sops-nix.nixosModules.sops
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -262,6 +263,24 @@
   stylix.polarity = "dark";
 
 
+
+  # Secrets and such
+  sops.defaultSopsFile = ../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+
+  sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
+
+
+  #Setup bitwarden
+  programs.zsh.initExtra = ''
+    eval "$(bw completion --shell zsh); compdef _bw bw;"
+    bw config server $(cat ${config.sops.secrets."bitwarden/url".path})
+    export BW_CLIENTID="$(cat ${config.sops.secrets."bitwarden/api/client_id".path})"
+    export BW_CLIENTSECRET="$(cat ${config.sops.secrets."bitwarden/api/client_secret".path})"
+    bw login --apikey
+  '';
+
+  
 
 # NOTE: END OF WHOLLY CUSTOM STUFF
 
