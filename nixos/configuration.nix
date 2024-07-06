@@ -226,6 +226,9 @@
       name = "Noto Color Emoji";
     };
   };
+  stylix.cursor.package = pkgs.Dracula-cursors;
+  stylix.cursor.name = "Dracula-cursors";
+  stylix.cursor.size = 16;
 
 
 

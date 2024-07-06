@@ -26,7 +26,8 @@
     nvim.enable = true;
     direnv.enable = true;
     git.enable = true;
-    gbar.enable = true;
+    # gbar.enable = true;
+    waybar.enable = true;
     sway.enable = true;
   };
 
@@ -64,6 +65,7 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

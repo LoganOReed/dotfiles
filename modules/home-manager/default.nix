@@ -8,5 +8,6 @@
   direnv = import ./direnv;
   git = import ./git;
   gbar = import ./gbar;
+  waybar = import ./waybar;
   sway = import ./sway;
 }
