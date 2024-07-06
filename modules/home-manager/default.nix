@@ -4,6 +4,7 @@
   # List your module files here
   # my-module = import ./my-module.nix;
   zsh = import ./zsh;
+  sops = import ./sops;
   nvim = import ./nvim;
   direnv = import ./direnv;
   git = import ./git;
@@ -23,4 +24,5 @@
   rofi = import ./rofi;
   i3 = import ./i3;
   powermenu = import ./powermenu;
+  bitwarden = import ./bitwarden;
 }

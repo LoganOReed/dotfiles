@@ -270,15 +270,10 @@
 
   sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
 
+  sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
+  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
+  sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
 
-  #Setup bitwarden
-  programs.zsh.initExtra = ''
-    eval "$(bw completion --shell zsh); compdef _bw bw;"
-    bw config server $(cat ${config.sops.secrets."bitwarden/url".path})
-    export BW_CLIENTID="$(cat ${config.sops.secrets."bitwarden/api/client_id".path})"
-    export BW_CLIENTSECRET="$(cat ${config.sops.secrets."bitwarden/api/client_secret".path})"
-    bw login --apikey
-  '';
 
   
 

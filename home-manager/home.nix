@@ -16,7 +16,6 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     inputs.gBar.homeManagerModules.x86_64-linux.default
-
     inputs.sops-nix.homeManagerModules.sops
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -27,6 +26,7 @@
   modules = {
     # gui
     # firefox.enable = true;
+    sops.enable = true;
     kitty.enable = true;
     # eww.enable = true;
     dunst.enable = true;
@@ -38,6 +38,7 @@
     tofi.enable = true;
     rofi.enable = true;
     zathura.enable = true;
+    bitwarden.enable = true;
 
     # cli
     nvim.enable = true;
