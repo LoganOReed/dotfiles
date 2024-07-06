@@ -89,7 +89,7 @@ bindsym $mod+Return 		         exec notify-send "Use slash or semicolon punk 
 # bindsym $mod+Shift+Return	       exec $term --hold -e neofetch
 
 bindsym $powbutton	             exec --no-startup-id $HOME/.config/rofi/powermenu/type-3/powermenu.sh
-bindsym $mod+Escape	             exec --no-startup-id swaylock --screenshots --clock --indicator --indicator-radius 200 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 6272a4 --key-hl-color ff79c6 --line-color 6272a400 --inside-color 282a3688 --separator-color 282a3600 --fade-in 0.2 --font 'Iosevka Comfy' --font-size 32 --timestr '%I:%M:%S' --datestr '%e %B %Y' --text-color f8f8f2
+bindsym $mod+Escape	             exec --no-startup-id rofi-powermenu
 # bindsym $mod+BackSpace
 # bindsym $mod+Shift+BackSpace	   exec --no-startup-id prompt "Reboot computer?" $reboot
 
