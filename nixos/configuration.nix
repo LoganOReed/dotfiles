@@ -160,6 +160,12 @@
     sway
   '';
 
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+    '';
+
+
   # Let wm access monitor light
   programs.light.enable = true;
 

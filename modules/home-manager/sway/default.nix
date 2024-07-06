@@ -7,6 +7,8 @@ let
 in {
     options.modules.sway= { enable = mkEnableOption "sway"; };
     config = mkIf cfg.enable {
+
+
 	home.packages = with pkgs; [
 	 dunst rofi-wayland swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland xwayland tofi
 	];

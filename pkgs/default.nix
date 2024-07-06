@@ -2,6 +2,7 @@
 # You can build them using 'nix build .#example'
 pkgs: {
   # example = pkgs.callPackage ./example { };
+
   Dracula-cursors = 
     pkgs.runCommand "moveUp" {} ''
     mkdir -p $out/share/icons
