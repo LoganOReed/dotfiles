@@ -8,6 +8,7 @@ in {
     	home.packages = with pkgs;[
 	    zsh 
       disfetch
+      eza
 	];
 
 	programs.zoxide = {
@@ -99,8 +100,8 @@ in {
 	    };
 
 	    shellAliases = {
-	        l = "exa --icons";
-	        la = "exa -a --icons";
+	        l = "eza --icons";
+	        la = "eza -a --icons";
 		cd = "z";
 		deploy = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_DIR";
 		n = "nvim";

@@ -21,6 +21,8 @@
     # ./nvim.nix
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
+  # stylix.targets.kitty.enable = false;
+
   modules = {
     zsh.enable = true;
     nvim.enable = true;
@@ -29,6 +31,7 @@
     # gbar.enable = true;
     waybar.enable = true;
     sway.enable = true;
+    kitty.enable = true;
   };
 
   nixpkgs = {

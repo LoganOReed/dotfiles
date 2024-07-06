@@ -10,4 +10,5 @@
   gbar = import ./gbar;
   waybar = import ./waybar;
   sway = import ./sway;
+  kitty = import ./kitty;
 }

@@ -226,6 +226,14 @@
       name = "Noto Color Emoji";
     };
   };
+
+  stylix.fonts.sizes = {
+      applications = 12;
+      terminal = 16;
+      desktop = 12;
+      popups = 12;
+    };
+
   stylix.cursor.package = pkgs.Dracula-cursors;
   stylix.cursor.name = "Dracula-cursors";
   stylix.cursor.size = 16;
