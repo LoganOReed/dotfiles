@@ -134,7 +134,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    mpc-cli #temp test for mpd
     vim
     bluetuith
     acpi
@@ -148,7 +147,7 @@
     firefox
     sops
     networkmanagerapplet
-    renoise
+    thunderbird
   ];
 
   programs.zsh.enable = true;
