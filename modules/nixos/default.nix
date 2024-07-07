@@ -5,4 +5,5 @@
   # my-module = import ./my-module.nix;
   wireguard = import ./wireguard;
   music = import ./music;
+  mpd = import ./mpd;
 }

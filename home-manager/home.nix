@@ -46,6 +46,7 @@
     zsh.enable = true;
     git.enable = true;
     gpg.enable = true;
+    ncmpcpp.enable = true;
     direnv.enable = true;
     powermenu.enable = true;
 

@@ -25,7 +25,7 @@ in {
       nixpkgs.overlays = [(final: prev: 
       {
         renoise = prev.renoise.override {
-          releasePath = /home/occam/documents/music/renoise;
+          releasePath = /home/occam/misc/renoise;
           };
       })];
     };
