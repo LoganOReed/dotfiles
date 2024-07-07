@@ -29,7 +29,6 @@
   modules = {
     wireguard.enable = true;
     music.enable = true;
-    # mpd.enable = true;
   };
 
 
@@ -135,6 +134,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    mpc-cli #temp test for mpd
     vim
     bluetuith
     acpi
@@ -229,6 +229,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
+  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
