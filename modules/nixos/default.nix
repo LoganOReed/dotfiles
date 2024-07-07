@@ -4,4 +4,5 @@
   # List your module files here
   # my-module = import ./my-module.nix;
   wireguard = import ./wireguard;
+  music = import ./music;
 }

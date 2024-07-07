@@ -22,6 +22,8 @@
 
     gBar.url = "github:scorpion-26/gBar";
 
+    musnix.url = "github:musnix/musnix";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +35,7 @@
     home-manager,
     disko,
     stylix,
+    musnix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -70,6 +73,7 @@
           ./nixos/configuration.nix
           disko.nixosModules.disko
           stylix.nixosModules.stylix
+          musnix.nixosModules.musnix
         ];
       };
     };
