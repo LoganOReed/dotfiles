@@ -13,6 +13,10 @@ in {
             ripgrep
         ];
 
+        home.file.".snippets/luasnip" = {
+          source = ./luasnip;
+          recursive = true;
+          };
 
     };
 }

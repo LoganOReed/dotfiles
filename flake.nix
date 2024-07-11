@@ -19,6 +19,7 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     kickstart-nix-nvim.url = "github:LoganOReed/kickstart-nix.nvim/main";
+    kickstart-nix-nvim.inputs.nixpkgs.follows = "nixpkgs";
 
     gBar.url = "github:scorpion-26/gBar";
 
