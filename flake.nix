@@ -21,6 +21,9 @@
     kickstart-nix-nvim.url = "github:LoganOReed/kickstart-nix.nvim/main";
     kickstart-nix-nvim.inputs.nixpkgs.follows = "nixpkgs";
 
+    watson-personal.url = "github:LoganOReed/watson";
+    watson-personal.inputs.nixpkgs.follows = "nixpkgs";
+
     gBar.url = "github:scorpion-26/gBar";
 
     musnix.url = "github:musnix/musnix";
