@@ -11,7 +11,18 @@ in {
 
 	home.packages = with pkgs; [
 	 dunst rofi-wayland swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland xwayland tofi
+   grim slurp wl-clipboard
 	];
+
+
+  programs.btop = {
+    enable = true;
+    settings = {
+      # color_theme = "Dracula";
+      vim_keys = true;
+      temp_scale = "fahrenheit";
+    };
+  };
 
 
 
@@ -123,9 +134,11 @@ bindsym $mod+r 			            exec --no-startup-id renoise
 bindsym $mod+t 			            workspace $ws7; exec $term -e btop; focus
 bindsym $mod+Shift+t            focus mode_toggle
 
+
 # y
-bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Media/Pictures/Screenshots
-bindsym $mod+Shift+y		        exec --no-startup-id flameshot full -p ~/Media/Pictures/Screenshots
+# bindsym $mod+y			            exec --no-startup-id grim -g "''$(slurp)" ''$XDG_PICTURES_DIR/''$(date +'%s_grim.png')
+# bindsym $mod+Shift+y			      exec --no-startup-id grim -g "$(swaymsg -t get_tree | ${pkgs.jq} -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ''$XDG_PICTURES_DIR/''$(date +'%s_grim.png')
+# bindsym $mod+y			            exec --no-startup-id grim -g "''$(slurp)" - | convert - -shave 1x1 PNG:- | ''$(xdg-user-dir PICTURES)/''$(date +'%s_grim.png')
 
 # u
 bindsym $mod+u                  [urgent=latest] focus
@@ -189,7 +202,7 @@ bindsym $mod+Ctrl+l		          move workspace to output right
 # bindsym $mod+Shift+x		        exec --no-startup-id $shutdown
 
 # p
-bindsym $mod+p			            nop packageupdater
+# bindsym $mod+p			            nop packageupdater
 # bindsym $mod+Shift+p		        exec --no-startup-id killall picom
 
 # Creepy facetime jumpscare
@@ -197,17 +210,17 @@ bindsym $mod+p			            nop packageupdater
 bindsym $mod+v			            exec --no-startup-id mpv /dev/video0
 
 # b
-bindsym $mod+b                  exec --no-startup-id rofi-bluetooth
-bindsym $mod+Shift+b			      exec --no-startup-id feh --bg-fill ~/Media/Pictures/dracula-soft-waves-6272a4.png
+# bindsym $mod+b                  exec --no-startup-id rofi-bluetooth
+# bindsym $mod+Shift+b			      exec --no-startup-id feh --bg-fill ~/Media/Pictures/dracula-soft-waves-6272a4.png
 
 # n
 # Lookup methods
 bindsym $mod+n		              exec --no-startup-id wmfocus
 
 # m
-# bindsym $mod+m		              workspace $ws10; exec $term -e ncmpcpp
-bindsym $mod+m		              exec --no-startup-id slippi
-bindsym $mod+Shift+m		        exec --no-startup-id minecraft
+bindsym $mod+m		              workspace $ws10; exec $term -e ncmpcpp
+# bindsym $mod+m		              exec --no-startup-id slippi
+# bindsym $mod+Shift+m		        exec --no-startup-id minecraft
 
 # read 1 character and go to the window with the character
 # bindsym $mod+Shift+m exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
@@ -225,16 +238,16 @@ bindsym $mod+Shift+slash	      kill
 #set $ws1 "1:Terminal  "
 #set $ws2 "2:Browser  "
 #set $ws3 "3:File  "
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 #set $ws8 "8: Mail  "
 #set $ws9 "9: Message  "
 #set $ws10 "10:Music  "
@@ -300,10 +313,12 @@ bindsym $mod+F3	          exec $term -e ncpamixer
 # bindsym $mod+F10			            exec --no-startup-id flameshot gui -p ~/Media/Pictures/Screenshots
 # bindsym $mod+Shift+F10		        exec --no-startup-id flameshot full -p ~/Media/Pictures/Screenshots
 # screenshots
-bindsym $mod+F10 exec grim  -g "$(slurp)" /tmp/$(date +'%H:%M:%S.png')
+bindsym $mod+F10                    exec --no-startup-id grim   ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')
+bindsym $mod+Shift+F10                    exec --no-startup-id grim  -g "$(slurp)" ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')
+
 
 # Wifi TUI
-bindsym $mod+F11	        exec --no-startup-id networkmanager_dmenu
+bindsym $mod+F11	        exec --no-startup-id rofi-bluetooth
 
 # #---Arrow Keys---# #
 bindsym $mod+Left		      focus left

@@ -20,7 +20,7 @@ in {
 
             audio_output {
             type                    "fifo"
-            name                    "FIFO"
+            name                    "Visualizer feed"
             path                    "/tmp/mpd.fifo"
             format                  "44100:16:2"
         }
@@ -87,9 +87,11 @@ in {
           connected_message_on_startup = "no";
           playlist_separate_albums = "no";
           allow_for_physical_item_deletion = "no";
+          visualizer_fps = 60;
+          visualizer_sync_interval = 60;
           visualizer_in_stereo = "yes";
           visualizer_data_source = "/tmp/mpd.fifo";
-          visualizer_type = "wave_filled";
+          visualizer_type = "spectrum";
           visualizer_look = "▉▋";
         };
       };

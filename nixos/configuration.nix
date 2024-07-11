@@ -135,7 +135,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    bluetuith
     acpi
     tlp
     wget
@@ -148,6 +147,9 @@
     sops
     networkmanagerapplet
     thunderbird
+    gimp-with-plugins
+    obs-studio
+    pulseaudio
   ];
 
   programs.zsh.enable = true;
@@ -228,7 +230,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

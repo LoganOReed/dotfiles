@@ -9,14 +9,14 @@ in {
         xdg = {
           enable = true;
           userDirs = {
-            documents = "$HOME/documents/";
-            pictures = "$HOME/documents/pictures/";
-            music = "$HOME/documents/music/";
-            videos = "$HOME/documents/videos/";
-            download = "$HOME/downloads/";
-            desktop = "$HOME/misc/";
-            publicShare = "$HOME/misc/";
-            templates = "$HOME/misc/";
+            documents = "${config.home.homeDirectory}/documents/";
+            pictures = "${config.home.homeDirectory}/documents/pictures/";
+            music = "${config.home.homeDirectory}/documents/music/";
+            videos = "${config.home.homeDirectory}/documents/videos/";
+            download = "${config.home.homeDirectory}/downloads/";
+            desktop = "${config.home.homeDirectory}/misc/";
+            publicShare = "${config.home.homeDirectory}/misc/";
+            templates = "${config.home.homeDirectory}/misc/";
           };
 
         };    
