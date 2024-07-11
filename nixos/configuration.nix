@@ -340,6 +340,7 @@
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCs+NG11ApioRAmzvOkinKkv8yN2u36bXqPqwgSX3PgiDv2n0VgLQvPjOr5/sxcinsJY/fNXAaHbMME5FtlxNZCX+dNbhlO7LCAyKVFEm2zkPteI2MpHDe+B4BP1g0IGJr/XyGy5TaUgGdVYqjyXxT09TtBdybYHf4ORLzEl+r7C3g5k9IHKkujnkZZK/YGEotexg6JISWJ68YRuZcOt5PXncHXAzA6gQFZBfW0MJCcWxOo5indO4FLt60bM1dam4hPH//hilGsAKQAhRRxB3dmDz+m0dm3aj7MDxD4hhLaHw6rSOa/c/npDtsGIyuyFDzP84uVV0i6MP3qfBxfame4cEXpENZuMv5LhIr2HohU2hpz6pEbieebnZZrR+aobqupl5/UI9Z4aQP5WnleQZyaAyAMr3r3o0MZpaF+8yfW5ASsIp2RsEeiv/CJBnFRoKUih2npQMFTYhtnCGjSY9/IhjDmR6QlPxzytC324B61Ms03ztZNhahGpQhevKypMT0= occam@blade"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "networkmanager" "wheel" "video" "audio" "input"];
