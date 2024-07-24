@@ -9,17 +9,19 @@
   ...
 }: {
   # You can import other home-manager modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
+  imports =
+    [
+      # If you want to use modules your own flake exports (from modules/home-manager):
+      # outputs.homeManagerModules.example
 
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
-    inputs.gBar.homeManagerModules.x86_64-linux.default
-    inputs.sops-nix.homeManagerModules.sops
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+      # Or modules exported from other flakes (such as nix-colors):
+      # inputs.nix-colors.homeManagerModules.default
+      inputs.gBar.homeManagerModules.x86_64-linux.default
+      inputs.sops-nix.homeManagerModules.sops
+      # You can also split up your configuration and import pieces of it here:
+      # ./nvim.nix
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   # stylix.targets.kitty.enable = false;
 
@@ -88,12 +90,11 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ 
+  # home.packages = with pkgs; [
   #   grim  #screenshot
   #   slurp #screenshot
   #   wl-clipboard
   # ];
-
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

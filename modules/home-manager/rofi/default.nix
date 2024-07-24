@@ -1,20 +1,21 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.modules.rofi;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.rofi;
 in {
-    options.modules.rofi = { enable = mkEnableOption "rofi"; };
+  options.modules.rofi = {enable = mkEnableOption "rofi";};
 
-    config = mkIf cfg.enable {
-      programs.rofi = {
-        enable = true;
-        package = pkgs.rofi-wayland;
-      };
-        home.packages = with pkgs; [
-          rofi-bluetooth
-        ];
+  config = mkIf cfg.enable {
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
     };
-
+    home.packages = with pkgs; [
+      rofi-bluetooth
+    ];
+  };
 }
-
-
-

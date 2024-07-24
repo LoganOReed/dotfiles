@@ -9,36 +9,36 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
+  imports =
+    [
+      # If you want to use modules your own flake exports (from modules/nixos):
 
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-    inputs.sops-nix.nixosModules.sops
+      # Or modules from other flakes (such as nixos-hardware):
+      # inputs.hardware.nixosModules.common-cpu-amd
+      # inputs.hardware.nixosModules.common-ssd
+      inputs.sops-nix.nixosModules.sops
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+      # You can also split up your configuration and import pieces of it here:
+      # ./users.nix
 
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
-    ./disk-config.nix
-    inputs.home-manager.nixosModules.home-manager
-  ] ++ (builtins.attrValues outputs.nixosModules);
+      # Import your generated (nixos-generate-config) hardware configuration
+      ./hardware-configuration.nix
+      ./disk-config.nix
+      inputs.home-manager.nixosModules.home-manager
+    ]
+    ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
     wireguard.enable = true;
     music.enable = true;
   };
 
-
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       occam = import ../home-manager/home.nix;
     };
   };
-
 
   nixpkgs = {
     overlays = [
@@ -69,7 +69,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      allowed-users = [ "occam" ];
+      allowed-users = ["occam"];
       # Opinionated: disable global registry
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
@@ -90,46 +90,44 @@
 
   # FIXME: Add the rest of your current configuration
 
+  # Set environment variables
+  # NOTE: I'm setting this so ~/Downloads stops showing up
+  environment.variables = {
+    NIXOS_CONFIG = "$HOME/dotfiles/nixos/configuration.nix";
+    NIXOS_CONFIG_DIR = "$HOME/dotfiles";
+    XDG_STATE_HOME = "$HOME/.local/state";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
+    GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
+    MOZ_ENABLE_WAYLAND = "1";
+    DISABLE_QT5_COMPAT = "0";
+    DIRENV_LOG_FORMAT = "";
 
-# Set environment variables
-# NOTE: I'm setting this so ~/Downloads stops showing up
-    environment.variables = {
-        NIXOS_CONFIG = "$HOME/dotfiles/nixos/configuration.nix";
-        NIXOS_CONFIG_DIR = "$HOME/dotfiles";
-        XDG_STATE_HOME = "$HOME/.local/state";
-        XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_DATA_HOME = "$HOME/.local/share";
-        XDG_CACHE_HOME = "$HOME/.cache";
-        GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
-        GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
-        MOZ_ENABLE_WAYLAND = "1";
-        DISABLE_QT5_COMPAT = "0";
-        DIRENV_LOG_FORMAT = "";
-
-        XDG_DESKTOP_DIR="$HOME/misc";
-        XDG_PUBLICSHARE_DIR="$HOME/misc";
-        XDG_TEMPLATES_DIR="$HOME/misc";
-        XDG_DOWNLOAD_DIR="$HOME/downloads";
-        XDG_DOCUMENTS_DIR="$HOME/documents";
-        XDG_MUSIC_DIR="$HOME/documents/music";
-        XDG_PICTURES_DIR="$HOME/documents/pictures";
-        XDG_VIDEOS_DIR="$HOME/documents/videos";
-    };
+    XDG_DESKTOP_DIR = "$HOME/misc";
+    XDG_PUBLICSHARE_DIR = "$HOME/misc";
+    XDG_TEMPLATES_DIR = "$HOME/misc";
+    XDG_DOWNLOAD_DIR = "$HOME/downloads";
+    XDG_DOCUMENTS_DIR = "$HOME/documents";
+    XDG_MUSIC_DIR = "$HOME/documents/music";
+    XDG_PICTURES_DIR = "$HOME/documents/pictures";
+    XDG_VIDEOS_DIR = "$HOME/documents/videos";
+  };
 
   environment.sessionVariables = {
     FLAKE = "/home/occam/dotfiles";
     EDITOR = "nvim";
   };
 
-    # nix-helper
-    # nh os switch
-    programs.nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 7d --keep 10";
-      flake = "/home/occam/dotfiles";
-    };
-
+  # nix-helper
+  # nh os switch
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 10";
+    flake = "/home/occam/dotfiles";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -154,25 +152,21 @@
 
   programs.zsh.enable = true;
 
-
-
-
-   # A key remapping daemon for linux.
-   # https://github.com/rvaiya/keyd
-   services.keyd = {
-     enable = true;
-     keyboards = {
-       default = {
-         settings = {
-           main = {
-             # overloads the capslock key to function as both escape (when tapped) and control (when held)
-             capslock = "overload(control, esc)";
-           };
-         };
-       };
-     };
-   };
-
+  # A key remapping daemon for linux.
+  # https://github.com/rvaiya/keyd
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        settings = {
+          main = {
+            # overloads the capslock key to function as both escape (when tapped) and control (when held)
+            capslock = "overload(control, esc)";
+          };
+        };
+      };
+    };
+  };
 
   # Enable the X11 windowing system for xwayland
   #services.xserver.enable = true;
@@ -180,15 +174,16 @@
   services.greetd = {
     enable = true;
     settings = {
-     default_session = {
-       user = "occam";
-       command = ''
-      ${pkgs.greetd.tuigreet}/bin/tuigreet \
-        --time \
-        --asterisks \
-        --user-menu \
-        --cmd sway
-    '';};
+      default_session = {
+        user = "occam";
+        command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet \
+            --time \
+            --asterisks \
+            --user-menu \
+            --cmd sway
+        '';
+      };
     };
   };
 
@@ -199,8 +194,7 @@
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
-    '';
-
+  '';
 
   # Let wm access monitor light
   programs.light.enable = true;
@@ -208,22 +202,21 @@
   # Setup sway
   security.polkit.enable = true;
   security.pam.services.swaylock = {
-  	text = "auth include login";
+    text = "auth include login";
   };
 
   xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        # gtk portal needed to make gtk apps happy
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-        config.common.default = "*"; 
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
   };
 
   programs.sway = {
     enable = true;
     package = pkgs.swayfx;
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -241,30 +234,28 @@
     jack.enable = true;
   };
 
-
   # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
   hardware = {
-      bluetooth.enable = true;
-      bluetooth.powerOnBoot = true;
-      graphics = {
-        enable32Bit = true;
-        enable = true;
-      };
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
+    graphics = {
+      enable32Bit = true;
+      enable = true;
     };
+  };
 
   # Install fonts
   fonts = {
-      packages = with pkgs; [
-          iosevka-comfy.comfy
-          iosevka-comfy.comfy-motion
-          noto-fonts-color-emoji
-          font-awesome
-          powerline-symbols
-          openmoji-color
-          (nerdfonts.override { fonts = [ "Iosevka" ]; })
-      ];
+    packages = with pkgs; [
+      iosevka-comfy.comfy
+      iosevka-comfy.comfy-motion
+      noto-fonts-color-emoji
+      font-awesome
+      powerline-symbols
+      openmoji-color
+      (nerdfonts.override {fonts = ["Iosevka"];})
+    ];
   };
-
 
   # Stylix Config
   stylix.enable = true;
@@ -294,11 +285,11 @@
   };
 
   stylix.fonts.sizes = {
-      applications = 12;
-      terminal = 16;
-      desktop = 12;
-      popups = 12;
-    };
+    applications = 12;
+    terminal = 16;
+    desktop = 12;
+    popups = 12;
+  };
 
   stylix.cursor.package = pkgs.Dracula-cursors;
   stylix.cursor.name = "Dracula-cursors";
@@ -306,28 +297,22 @@
 
   stylix.polarity = "dark";
 
-
-
   # Secrets and such
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
 
-
   sops.secrets."razor/occam".neededForUsers = true;
   sops.secrets."razor/wireguard/mullvad" = {};
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
-  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name; 
+  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
 
-
-  
-
-# NOTE: END OF WHOLLY CUSTOM STUFF
+  # NOTE: END OF WHOLLY CUSTOM STUFF
 
   networking.hostName = "razor";
-  networking.networkmanager.enable = true;  
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -344,7 +329,7 @@
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCs+NG11ApioRAmRvOkinKkv8yN2u36bXqPqwgSX3PgiDv2n0VgLQvPjOr5/sxcinsJY/fNXAaHbMME5FtlxNZCX+dNbhlO7LCAyKVFEm2zkPteI2MpHDe+B4BP1g0IGJr/XyGy5TaUgGdVYqjyXxT09TtBdybYHf4ORLzEl+r7C3g5k9IHKkujnkZZK/YGEotexg6JISWJ68YRuZcOt5PXncHXAzA6gQFZBfW0MJCcWxOo5indO4FLt60bM1dam4hPH//hilGsAKQAhRRxB3dmDz+m0dm3aj7MDxD4hhLaHw6rSOa/c/npDtsGIyuyFDzP84uVV0i6MP3qfBxfame4cEXpENZuMv5LhIr2HohU2hpz6pEbieebnZZrR+aobqupl5/UI9Z4aQP5WnleQZyaAyAMr3r3o0MZpaF+8yfW5ASsIp2RsEeiv/CJBnFRoKUih2npQMFTYhtnCGjSY9/IhjDmR6QlPxzytC324B61Ms03ztZNhahGpQhevKypMT0= occam@blade"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "networkmanager" "wheel" "video" "audio" "input"];
+      extraGroups = ["networkmanager" "wheel" "video" "audio" "input"];
       shell = pkgs.zsh;
     };
   };

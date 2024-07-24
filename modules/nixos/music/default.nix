@@ -1,36 +1,35 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let 
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.modules.music;
-
 in {
-    options.modules.music = { enable = mkEnableOption "music"; };
-    config = mkIf cfg.enable {
-
-      musnix = {
-        enable = true;
-        soundcardPciId = "00:1f.3";
-        kernel.realtime = true;
-        rtirq.enable = true;
-      };
-
-      environment.systemPackages = with pkgs; [
-        helm
-        renoise
-      ];
-
-      # TODO: Setup server to host this so I can fetch instead
-      # NOTE: Override demo files with personal version
-      nixpkgs.overlays = [(final: prev: 
-      {
-        renoise = prev.renoise.override {
-          releasePath = /home/occam/misc/renoise;
-          };
-      })];
+  options.modules.music = {enable = mkEnableOption "music";};
+  config = mkIf cfg.enable {
+    musnix = {
+      enable = true;
+      soundcardPciId = "00:1f.3";
+      kernel.realtime = true;
+      rtirq.enable = true;
     };
-}
 
+    environment.systemPackages = with pkgs; [
+      helm
+      renoise
+    ];
+
+    # TODO: Setup server to host this so I can fetch instead
+    # NOTE: Override demo files with personal version
+    nixpkgs.overlays = [(final: prev: {
+      renoise = prev.renoise.override {
+        releasePath = /home/occam/misc/renoise;
+      };
+    })];
+  };
+}
 # with pkgs; {
 #
 #     # make sure you do:
@@ -368,3 +367,4 @@ in {
 #   '';
 #
 # }
+

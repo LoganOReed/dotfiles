@@ -27,5 +27,4 @@
   powermenu = import ./powermenu;
   bitwarden = import ./bitwarden;
   ncmpcpp = import ./ncmpcpp;
-
 }
