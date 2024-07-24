@@ -23,6 +23,7 @@
   tofi = import ./tofi;
   rofi = import ./rofi;
   i3 = import ./i3;
+  lf = import ./lf;
   powermenu = import ./powermenu;
   bitwarden = import ./bitwarden;
   ncmpcpp = import ./ncmpcpp;

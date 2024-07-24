@@ -32,6 +32,7 @@
     dunst.enable = true;
     # hyprland.enable = true;
     sway.enable = true;
+    lf.enable = true;
     # i3.enable = true;
     # gbar.enable = true;
     waybar.enable = true;

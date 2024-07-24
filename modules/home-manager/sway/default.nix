@@ -11,7 +11,7 @@ in {
 
 	home.packages = with pkgs; [
 	 dunst rofi-wayland swaybg wlsunset pavucontrol swaylock-effects swayidle kitti3 autotiling wayland xwayland tofi
-   grim slurp wl-clipboard
+   grim slurp wl-clipboard kalker mpv
 	];
 
 
@@ -42,7 +42,7 @@ exec_always --no-startup-id autotiling
 # notification manager
 exec_always --no-startup-id dunst
 # https://github.com/LandingEllipse/kitti3
-exec_always --no-startup-id kitti3 -n packageupdater -p RC -s .35 1 
+exec_always --no-startup-id kitti3 -n scratchcalc -p RC -s .35 1 -- kalker
 exec_always --no-startup-id kitti3 -n scratchpad -p CC -s 0.6 0.6 
 
 
@@ -112,12 +112,8 @@ bindsym $mod+space 			         exec $term -e ranger
 bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-# w
-# Brave is a web browser idc about
-bindsym $mod+w 			            exec $term -e mapwacom -d "Wacom Intuos Pro M Pen stylus" -d "Wacom Intuos Pro M Pen cursor" -d "Wacom Intuos Pro M Pen eraser" -s "DisplayPort-2"
-
 # c
-bindsym $mod+c 			                  exec rofi -show calc -modi calc -no-show-match -no-sort 
+bindsym $mod+c			            nop scratchcalc
 # bindsym $mod+Shift+c		            exec --no-startup-id $suspend
 
 # For VSCode code-insiders
@@ -202,7 +198,7 @@ bindsym $mod+Ctrl+l		          move workspace to output right
 # bindsym $mod+Shift+x		        exec --no-startup-id $shutdown
 
 # p
-# bindsym $mod+p			            nop packageupdater
+# bindsym $mod+p			            nop scratchcalc
 # bindsym $mod+Shift+p		        exec --no-startup-id killall picom
 
 # Creepy facetime jumpscare
@@ -210,7 +206,8 @@ bindsym $mod+Ctrl+l		          move workspace to output right
 bindsym $mod+v			            exec --no-startup-id mpv /dev/video0
 
 # b
-# bindsym $mod+b                  exec --no-startup-id rofi-bluetooth
+
+#bindsym $mod+b                workspace $ws2; exec firefox; focus
 # bindsym $mod+Shift+b			      exec --no-startup-id feh --bg-fill ~/Media/Pictures/dracula-soft-waves-6272a4.png
 
 # n
