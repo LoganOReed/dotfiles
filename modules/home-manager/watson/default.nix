@@ -20,6 +20,12 @@ in {
           repo = "git@github.com:LoganOReed/watson-data";
         };
 
+        default_tags = {
+          wildflower = "TandemCo";
+          txjhs = "TandemCo";
+          dacamera = "TandemCo";
+        };
+
         options = {
           stop_on_start = true;
           stop_on_restart = false;
