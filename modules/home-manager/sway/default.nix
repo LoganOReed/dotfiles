@@ -27,6 +27,9 @@ in {
       wl-clipboard
       kalker
       mpv
+
+      dbus-sway-environment
+      configure-gtk
     ];
 
     programs.btop = {

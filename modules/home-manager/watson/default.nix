@@ -10,6 +10,8 @@ with lib; let
 in {
   options.modules.watson = {enable = mkEnableOption "watson";};
   config = mkIf cfg.enable {
+    # home.packages = with pkgs; [
+    # ];
     programs.watson = {
       enable = true;
       package = inputs.watson-personal.packages."x86_64-linux".watson;
