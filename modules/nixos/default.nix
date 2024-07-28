@@ -6,4 +6,5 @@
   wireguard = import ./wireguard;
   music = import ./music;
   sshfs = import ./sshfs;
+  syncthing = import ./syncthing;
 }

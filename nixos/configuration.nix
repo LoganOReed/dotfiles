@@ -31,8 +31,9 @@
   modules = {
     wireguard.enable = true;
     music.enable = true;
+    syncthing.enable = true;
     # disabled as it heavily lags when trying to access the directory
-    # sshfs.enable = true;
+    sshfs.enable = true;
   };
 
   home-manager = {
@@ -310,6 +311,10 @@
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
+
+
+
+
 
   # NOTE: END OF WHOLLY CUSTOM STUFF
 
