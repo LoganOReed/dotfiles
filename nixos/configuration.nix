@@ -154,6 +154,8 @@
   ];
 
   programs.zsh.enable = true;
+  environment.pathsToLink = [ "/share/zsh" ];
+
 
   # A key remapping daemon for linux.
   # https://github.com/rvaiya/keyd

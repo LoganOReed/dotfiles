@@ -3,6 +3,7 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  beets = import ./beets;
   zsh = import ./zsh;
   sops = import ./sops;
   nvim = import ./nvim;

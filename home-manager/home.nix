@@ -50,6 +50,7 @@
     git.enable = true;
     gpg.enable = true;
     ncmpcpp.enable = true;
+    beets.enable = true;
     direnv.enable = true;
     powermenu.enable = true;
 
