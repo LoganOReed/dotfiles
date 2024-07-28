@@ -9,6 +9,17 @@ with lib; let
 in {
   options.modules.waybar = {enable = mkEnableOption "waybar";};
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      playerctl
+      pavucontrol
+    ];
+
+    services.mpdris2 = {
+      enable = true;
+      multimediaKeys = true;
+      notifications = true;
+    };
+
     programs.waybar = {
       enable = true;
       settings = {
@@ -18,7 +29,7 @@ in {
           height = 30;
 
           modules-left = ["sway/workspaces" "tray" "sway/mode"];
-          modules-center = ["idle_inhibitor"];
+          modules-center = ["custom/playerlabel"];
           modules-right = ["network" "pulseaudio" "battery" "clock"];
 
           "sway/workspaces" = {
@@ -109,8 +120,60 @@ in {
             on-click = "rofi-bluetooth &";
             on-click-right = "pavucontrol";
           };
+          "custom/playerctl#backward" = {
+            format = "󰙣 ";
+            on-click = "playerctl previous";
+            on-scroll-up = "playerctl volume .05+";
+            on-scroll-down = "playerctl volume .05-";
+          };
+          "custom/playerctl#play" = {
+            format = "{icon}";
+            return-type = "json";
+            exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+            on-click = "playerctl play-pause";
+            on-scroll-up = "playerctl volume .05+";
+            on-scroll-down = "playerctl volume .05-";
+            format-icons = {
+              Playing = "<span>󰏥 </span>";
+              Paused = "<span> </span>";
+              Stopped = "<span> </span>";
+            };
+          };
+          "custom/playerctl#forward" = {
+            format = "󰙡 ";
+            on-click = "playerctl next";
+            on-scroll-up = "playerctl volume .05+";
+            on-scroll-down = "playerctl volume .05-";
+          };
+          "custom/playerlabel" = {
+            format = "<span>󰎈 {} 󰎈</span>";
+            return-type = "json";
+            max-length = 60;
+            exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+            on-click = "playerctl play-pause";
+            on-click-right = "kitty --class ncmpcpp ncmpcpp";
+          };
         };
       };
+
+      style = ''
+        #custom-playerctl.backward {
+            color: #cba6f7;
+            border-radius: 24px 0px 0px 10px;
+            padding-left: 16px;
+            margin-left: 7px;
+        }
+        #custom-playerctl.play {
+            color: #89b4fa;
+            padding: 0 5px;
+        }
+        #custom-playerctl.foward {
+            color: #f5f5f5;
+            border-radius: 0px 10px 24px 0px;
+            padding-right: 12px;
+            margin-right: 7px
+        }
+      '';
 
       #           style = with config.lib.stylix.colors;''
       # * {

@@ -15,8 +15,6 @@ in {
       eza
     ];
 
-
-
     programs.zoxide = {
       enable = true;
       enableZshIntegration = true;

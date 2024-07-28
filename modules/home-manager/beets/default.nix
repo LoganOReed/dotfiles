@@ -10,29 +10,29 @@ in {
   options.modules.beets = {enable = mkEnableOption "beets";};
 
   config = mkIf cfg.enable {
-
     home.packages = with pkgs; [
       rofi-bluetooth
     ];
 
-
     programs.beets = {
       enable = true;
-      package = (pkgs.beets.override { pluginOverrides = { 
-        lyrics.enable = true;
-        info.enable = true; 
-        fetchart.enable = true;
-        embedart.enable = true;
-        edit.enable = true;
-        mpdstats.enable = true;
-        mpdupdate.enable = true;
-        fromfilename.enable = true;
-        lastimport.enable = true;
-        replaygain.enable = true;
-        playlist.enable = true;
-        # discogs.enable = true;
-        scrub.enable = true;
-        }; });
+      package = pkgs.beets.override {
+        pluginOverrides = {
+          lyrics.enable = true;
+          info.enable = true;
+          fetchart.enable = true;
+          embedart.enable = true;
+          edit.enable = true;
+          mpdstats.enable = true;
+          mpdupdate.enable = true;
+          fromfilename.enable = true;
+          lastimport.enable = true;
+          replaygain.enable = true;
+          playlist.enable = true;
+          # discogs.enable = true;
+          scrub.enable = true;
+        };
+      };
       settings = {
         "directory" = "~/documents/music";
         "library" = "~/documents/.music.db";
@@ -51,14 +51,14 @@ in {
         };
         #autotagger
         "match" = {
-        "strong_rec_thresh" = 0.1;
-        "medium_rec_thresh" = 0.25;
-        "rec_gap_thresh" = 0.25;
-        "max_rec" = {
+          "strong_rec_thresh" = 0.1;
+          "medium_rec_thresh" = 0.25;
+          "rec_gap_thresh" = 0.25;
+          "max_rec" = {
             "missing_tracks" = "medium";
             "unmatched_tracks" = "medium";
-        };
-        "distance_weights" = {
+          };
+          "distance_weights" = {
             "source" = 2.0;
             "artist" = 3.0;
             "album" = 3.0;
@@ -78,10 +78,10 @@ in {
             "track_index" = 1.0;
             "track_length" = 2.0;
             "track_id" = 5.0;
-        };
-        "ignored" = [];
-        "track_length_grace" = 10;
-        "track_length_max" = 30;
+          };
+          "ignored" = [];
+          "track_length_grace" = 10;
+          "track_length_max" = 30;
         };
         # files matching these patterns are deleted from source after import
         "clutter" = ["Thumbs.DB" ".DS_Store" "*.m3u" ".pls" "*.torrent"];
@@ -132,7 +132,6 @@ in {
         };
       };
     };
-
 
     home.file.".zsh/completion/beet/beet.zsh-completion".source = ./beet.zsh-completion;
     programs.zsh = {

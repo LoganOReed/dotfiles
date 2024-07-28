@@ -154,8 +154,7 @@
   ];
 
   programs.zsh.enable = true;
-  environment.pathsToLink = [ "/share/zsh" ];
-
+  environment.pathsToLink = ["/share/zsh"];
 
   # A key remapping daemon for linux.
   # https://github.com/rvaiya/keyd
@@ -313,10 +312,6 @@
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
-
-
-
-
 
   # NOTE: END OF WHOLLY CUSTOM STUFF
 
