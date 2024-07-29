@@ -36,6 +36,7 @@ in {
       settings = {
         "directory" = "~/documents/music";
         "library" = "~/documents/.music.db";
+        "ignore_hidden" = true;
         "import" = {
           "write" = true;
           "move" = true;
