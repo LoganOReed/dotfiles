@@ -106,11 +106,14 @@ in {
         "threaded" = true;
         "timeout" = 5.0;
         "verbose" = false;
-        "plugins" = ["lyrics" "info" "fetchart" "embedart" "fromfilename" "lastimport" "replaygain" "playlist" "scrub" "mpdstats" "mpdupdate" "edit"];
+        "plugins" = ["lyrics" "info" "fetchart" "embedart" "fromfilename" "lastimport" "replaygain" "playlist" "scrub" "mpdupdate" "edit"];
         "playlist" = {
           "auto" = true;
           "relative_to" = "~/documents/music";
           "playlist_dir" = "~/.local/share/mpd/playlists";
+        };
+        "lyrics" = {
+          "auto" = true;
         };
         "fetchart" = {
           "auto" = true;
@@ -125,10 +128,6 @@ in {
         "mpd" = {
           "host" = "localhost";
           "port" = 6600;
-        };
-        "mpdstats" = {
-          "rating" = false;
-          "rating_mix" = 0.75;
         };
       };
     };

@@ -27,6 +27,7 @@ in {
       wl-clipboard
       kalker
       mpv
+      imv
 
       dbus-sway-environment
       configure-gtk

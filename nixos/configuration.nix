@@ -148,9 +148,10 @@
     sops
     networkmanagerapplet
     thunderbird
-    gimp-with-plugins
-    obs-studio
+    # gimp-with-plugins
+    # obs-studio
     pulseaudio
+    # qbittorrent
   ];
 
   programs.zsh.enable = true;
