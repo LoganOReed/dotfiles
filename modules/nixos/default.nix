@@ -5,6 +5,7 @@
   # my-module = import ./my-module.nix;
   wireguard = import ./wireguard;
   music = import ./music;
+  ssh = import ./ssh;
   sshfs = import ./sshfs;
   syncthing = import ./syncthing;
 }

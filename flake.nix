@@ -74,7 +74,17 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./nixos/configuration.nix
+          ./nixos/razor
+          disko.nixosModules.disko
+          stylix.nixosModules.stylix
+          musnix.nixosModules.musnix
+        ];
+      };
+      servo = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./nixos/servo
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
