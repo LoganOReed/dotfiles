@@ -416,7 +416,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBfmahPLv3UWKpmSP1Ufx+LWgLAao9uNUy/CjPT9w+LN me@loganreed.org"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["networkmanager" "wheel" "video" "audio" "input"];
+      extraGroups = ["networkmanager" "wheel" "video" "audio" "input" "docker"];
       shell = pkgs.zsh;
     };
   };
