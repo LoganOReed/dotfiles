@@ -35,13 +35,14 @@ in {
         settings = {
           devices = {
             "desktop" = {id = "AXRXWX6-4N3XCVB-2HMUK7T-YNBTDKE-I7W6B46-ERZFHBO-LVFCQ3T-7JQ5SA4";};
+            "servo" = {id = "C4FLKEL-RQEUMUS-7D22WHU-FWZ7CUK-BRU4IFY-BPTFNFJ-YOAT5D4-7SCXFQA";};
             # "coredns-server" = { id = "REALLY-LONG-COREDNS-SERVER-SYNCTHING-KEY-HERE"; };
           };
           folders = {
             "music" = {
               # Name of folder in Syncthing, also the folder ID
               path = "/home/occam/documents/music"; # Which folder to add to Syncthing
-              devices = ["desktop"]; # Which devices to share the folder with
+              devices = ["desktop" "servo"]; # Which devices to share the folder with
             };
             # "coredns-config" = {
             #   path = "/data/coredns-config";
