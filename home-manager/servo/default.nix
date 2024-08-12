@@ -64,6 +64,8 @@
       "downloads"
       "Downloads"
       "documents"
+      "dotfiles"
+      "server"
       "misc"
       ".gnupg"
       ".ssh"

@@ -34,6 +34,7 @@
     # syncthing.enable = true;
     # disabled as it heavily lags when trying to access the directory
     # sshfs.enable = true;
+    homeserver.enable = true;
   };
 
   home-manager = {
