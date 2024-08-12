@@ -28,6 +28,10 @@
 
     musnix.url = "github:musnix/musnix";
 
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +44,7 @@
     disko,
     stylix,
     musnix,
+    impermanence,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -78,6 +83,7 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
+	  impermanence.nixosModules.impermanence
         ];
       };
       servo = nixpkgs.lib.nixosSystem {
@@ -88,6 +94,7 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
+	  impermanence.nixosModules.impermanence
         ];
       };
     };

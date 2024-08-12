@@ -29,17 +29,17 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
-    wireguard.enable = true;
-    music.enable = true;
-    syncthing.enable = true;
+    # wireguard.enable = true;
+    # music.enable = true;
+    # syncthing.enable = true;
     # disabled as it heavily lags when trying to access the directory
-    sshfs.enable = true;
+    # sshfs.enable = true;
   };
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
-      occam = import ../home-manager/home.nix;
+      occam = import ../../home-manager/home.nix;
     };
   };
 
@@ -132,6 +132,83 @@
     flake = "/home/occam/dotfiles";
   };
 
+
+ fileSystems."/persist".neededForBoot = true;
+  environment.persistence."/persist/system" = {
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      #"/home/occam/dotfiles"
+      #"/home/occam/.ssh"
+      "/var/log"
+      "/storage"
+      #"/var/lib/bluetooth"
+      "/var/lib/nixos"
+      #"/var/lib/systemd/coredump"
+      #"/etc/NetworkManager/system-connections"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    ];
+    files = [
+      "/etc/machine-id"
+      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+    ];
+  };
+
+  # required for persistence with home manager
+  programs.fuse.userAllowOther = true;
+
+
+
+
+
+  # TODO: Reimplement this once setup is done
+
+  # boot.initrd.postDeviceCommands = lib.mkAfter ''
+  #   mkdir /btrfs_tmp
+  #   mount /dev/root_vg/root /btrfs_tmp
+  #   if [[ -e /btrfs_tmp/root ]]; then
+  #       mkdir -p /btrfs_tmp/old_roots
+  #       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+  #       mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+  #   fi
+  #
+  #   delete_subvolume_recursively() {
+  #       IFS=$'\n'
+  #       for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+  #           delete_subvolume_recursively "/btrfs_tmp/$i"
+  #       done
+  #       btrfs subvolume delete "$1"
+  #   }
+  #
+  #   for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+  #       delete_subvolume_recursively "$i"
+  #   done
+  #
+  #   btrfs subvolume create /btrfs_tmp/root
+  #   umount /btrfs_tmp
+  # '';
+
+
+
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.zfsSupport = true;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Define on which hard drive you want to install Grub.
+  boot.loader.grub.device = "nodev"; # or "nodev" for efi only
+
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.extraPools = ["storage"];
+  services.zfs.autoScrub.enable = true;
+  boot.zfs.forceImportRoot = false;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+
+  networking.hostName = "servo"; # Define your hostname.
+  networking.hostId = "2d87f0cc"; # Define your hostname. 
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -148,6 +225,8 @@
     sops
     networkmanagerapplet
     thunderbird
+    zfs
+    neovim
     # gimp-with-plugins
     # obs-studio
     pulseaudio
@@ -227,27 +306,27 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  # services.pipewire = {
+    # enable = true;
+    #alsa.enable = true;
+    #alsa.support32Bit = true;
+    #pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
+    #jack.enable = true;
+  # };
 
   # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
-  hardware = {
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
-    graphics = {
-      enable32Bit = true;
-      enable = true;
-    };
-  };
+  #hardware = {
+  #  bluetooth.enable = true;
+  #  bluetooth.powerOnBoot = true;
+    #graphics = {
+    #  enable32Bit = true;
+    #  enable = true;
+    #};
+  #};
 
   # Install fonts
   fonts = {
@@ -264,7 +343,7 @@
 
   # Stylix Config
   stylix.enable = true;
-  stylix.image = ../pics/RainbowDracula.png;
+  stylix.image = ../../pics/RainbowDracula.png;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
   stylix.fonts = {
@@ -303,20 +382,19 @@
   stylix.polarity = "dark";
 
   # Secrets and such
-  sops.defaultSopsFile = ../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-
-  sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
-
-  sops.secrets."razor/occam".neededForUsers = true;
-  sops.secrets."razor/wireguard/mullvad" = {};
-  sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
-  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
-  sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
+  # sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  # sops.defaultSopsFormat = "yaml";
+  #
+  # sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
+  #
+  # sops.secrets."razor/occam".neededForUsers = true;
+  # sops.secrets."razor/wireguard/mullvad" = {};
+  # sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
+  # sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
+  # sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
 
   # NOTE: END OF WHOLLY CUSTOM STUFF
 
-  networking.hostName = "razor";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -327,7 +405,8 @@
 
   users.users = {
     occam = {
-      hashedPasswordFile = config.sops.secrets."razor/occam".path;
+      #hashedPasswordFile = config.sops.secrets."razor/occam".path;
+      initialPassword = "password";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # Desktop
@@ -355,9 +434,9 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.configurationLimit = 10;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

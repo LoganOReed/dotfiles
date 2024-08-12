@@ -18,6 +18,7 @@
       # inputs.nix-colors.homeManagerModules.default
       inputs.gBar.homeManagerModules.x86_64-linux.default
       inputs.sops-nix.homeManagerModules.sops
+      inputs.impermanence.nixosModules.home-manager.impermanence
       # You can also split up your configuration and import pieces of it here:
       # ./nvim.nix
     ]
@@ -50,13 +51,39 @@
     git.enable = true;
     gpg.enable = true;
     ncmpcpp.enable = true;
-    beets.enable = true;
+    # beets.enable = true;
     direnv.enable = true;
-    powermenu.enable = true;
+    # powermenu.enable = true;
 
     # system
     xdg.enable = true;
   };
+
+ home.persistence."/persist/home" = {
+    directories = [
+      "downloads"
+      "Downloads"
+      "documents"
+      "misc"
+      ".gnupg"
+      ".ssh"
+      ".local/share/keyrings"
+      ".local/share/direnv"
+      {
+        directory = ".local/share/Steam";
+        method = "symlink";
+      }
+      {
+        directory = ".local/share/zsh";
+        method = "symlink";
+      }
+    ];
+    files = [
+      ".screenrc"
+    ];
+    allowOther = true;
+  };
+
 
   nixpkgs = {
     # You can add overlays here
