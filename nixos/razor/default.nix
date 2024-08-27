@@ -29,12 +29,12 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
-    wireguard.enable = true;
+    # wireguard.enable = true;
     music.enable = true;
     syncthing.enable = true;
     # ssh.enable = true;
     # disabled as it heavily lags when trying to access the directory
-    sshfs.enable = true;
+    # sshfs.enable = true;
   };
 
   home-manager = {
@@ -149,10 +149,11 @@
     sops
     networkmanagerapplet
     thunderbird
-    # gimp-with-plugins
+    gimp-with-plugins
     # obs-studio
+    inkscape
     pulseaudio
-    # qbittorrent
+    qbittorrent
   ];
 
   programs.zsh.enable = true;
@@ -227,8 +228,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
