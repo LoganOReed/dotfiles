@@ -1,3 +1,4 @@
+# https://github.com/EmergentMind/nix-config/blob/dev/docs/addnewhost.md#adding-a-new-host
 keys:
   - &laptop age1xcmezhqgn33mjqxh426f7ccwnm8zh5vs7k4sqr076kv364l4w3eqs9y847
   - &server age1wutyl82vteqg2hlvjycc9h47alaprs9hxq9g3xa4rm2ppgr0zaksu8afd2
