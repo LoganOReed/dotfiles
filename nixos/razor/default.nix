@@ -147,6 +147,8 @@
     bashmount
     firefox
     sops
+    age
+    ssh-to-age
     networkmanagerapplet
     thunderbird
     gimp-with-plugins
