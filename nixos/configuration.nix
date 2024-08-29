@@ -264,7 +264,7 @@
 
   # Stylix Config
   stylix.enable = true;
-  stylix.image = ../pics/RainbowDracula.png;
+  stylix.image = ../pics/nixos-wallpaper2.png;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
   stylix.fonts = {
