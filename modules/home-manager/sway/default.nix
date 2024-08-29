@@ -12,7 +12,7 @@ in {
     home.packages = with pkgs; [
       rofi-wayland
       wlsunset
-      # pavucontrol
+      pavucontrol
       swayidle
       wayland
       xwayland
@@ -177,9 +177,9 @@ in {
 
           # XF Keys
           "XF86PowerOff" = ''exec --no-startup-id rofi-powermenu'';
-          "XF86AudioRaiseVolume" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-volume @DEFAULT_SINK@ +10%'';
-          "XF86AudioLowerVolume" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-volume @DEFAULT_SINK@ -10%'';
-          "XF86AudioMute" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle'';
+          "XF86AudioRaiseVolume" = ''exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%'';
+          "XF86AudioLowerVolume" = ''exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%'';
+          "XF86AudioMute" = ''exec --no-startup-id bin/pactl set-sink-mute @DEFAULT_SINK@ toggle'';
           "XF86MonBrightnessDown" = ''exec ${pkgs.light}/bin/light -U 10'';
           "XF86MonBrightnessUp" = ''exec ${pkgs.light}/bin/light -A 10'';
           "XF86HomePage" = ''exec ${pkgs.dunst}/bin/dunstify "Home Button"'';
@@ -207,6 +207,7 @@ in {
         # swayfx config
         corner_radius 12
         for_window [class="^.*"] border pixel 2
+        for_window [floating] border pixel 2
 
         # TODO: Add https://github.com/ldelossa/sway-fzfify for this
 
