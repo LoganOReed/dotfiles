@@ -79,15 +79,15 @@ in {
         '';
 
         # postSetup = ''
-          # # Accept kdeconnect connections
-          # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p udp \
-          #     --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p tcp \
-          #     --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p udp \
-          #     --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p tcp \
-          #     --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+        # # Accept kdeconnect connections
+        # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p udp \
+        #     --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+        # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p tcp \
+        #     --dport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+        # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p udp \
+        #     --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
+        # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p tcp \
+        #     --sport 1714:1764 -m state --state NEW,ESTABLISHED -j ACCEPT
         #
         #   # Allow deluge web gui
         #   ${pkgs.iptables}/bin/iptables -I OUTPUT -o lo -p tcp \

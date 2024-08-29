@@ -59,7 +59,7 @@
     xdg.enable = true;
   };
 
- home.persistence."/persist/home" = {
+  home.persistence."/persist/home" = {
     directories = [
       "downloads"
       "Downloads"
@@ -85,7 +85,6 @@
     ];
     allowOther = true;
   };
-
 
   nixpkgs = {
     # You can add overlays here

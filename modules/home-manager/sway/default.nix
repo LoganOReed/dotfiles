@@ -10,25 +10,15 @@ in {
   options.modules.sway = {enable = mkEnableOption "sway";};
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      dunst
       rofi-wayland
-      swaybg
       wlsunset
-      pavucontrol
-      swaylock-effects
+      # pavucontrol
       swayidle
-      kitti3
-      autotiling
       wayland
       xwayland
-      tofi
-      grim
-      slurp
       wl-clipboard
-      kalker
       mpv
       imv
-
       dbus-sway-environment
       configure-gtk
     ];
@@ -49,52 +39,180 @@ in {
       package = pkgs.swayfx;
       wrapperFeatures.gtk = true;
       xwayland = true;
-      config.bars = [];
+      config = {
+        terminal = "${pkgs.kitty}/bin/kitty";
+        modifier = "Mod4";
+        floating.modifier = "Mod4";
+        # defined through stylix
+        # fonts = {
+        #   names = [ "Iosevka Comfy" "Iosevka Nerd Font" ];
+        #   size = 16.0;
+        # };
+
+        # This seems to mess with swayfx specifics
+        # window.border = 2;
+        # window.titlebar = false;
+        defaultWorkspace = "3";
+        gaps = {
+          smartGaps = true;
+          smartBorders = "on";
+          inner = 15;
+          outer = 0;
+        };
+        bars = [
+          {
+            command = "waybar";
+          }
+        ];
+        startup = [
+          {
+            command = "systemctl --user restart waybar";
+            always = true;
+          }
+          {
+            command = "--no-startup-id ${pkgs.autotiling}/bin/autotiling";
+            always = true;
+          }
+          {
+            command = "--no-startup-id ${pkgs.dunst}/bin/dunst";
+            always = true;
+          }
+          # https://github.com/LandingEllipse/kitti3
+          {
+            command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchcalc -p RC -s .35 1 -- ${pkgs.kalker}/bin/kalker";
+            always = true;
+          }
+          {
+            command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchpad -p CC -s 0.6 0.6";
+            always = true;
+          }
+          {command = "${pkgs.dbus-sway-environment}/bin/dbus-sway-environment";}
+          {command = "${pkgs.configure-gtk}/bin/configure-gtk";}
+        ];
+
+        keybindings = let
+          mod = config.wayland.windowManager.sway.config.modifier;
+          term = config.wayland.windowManager.sway.config.terminal;
+        in {
+          # alphabetical
+
+          # a
+          "${mod}+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox; focus'';
+          "${mod}+c" = ''nop scratchcalc'';
+          "${mod}+d" = ''exec --no-startup-id ${pkgs.tofi}/bin/tofi-drun --drun-launch=true'';
+          "${mod}+e" = ''workspace 8; exec ${pkgs.thunderbird}/bin/thunderbird; focus'';
+          "${mod}+f" = ''fullscreen toggle'';
+          "${mod}+Shift+f" = ''floating toggle'';
+          # g
+          "${mod}+h" = ''focus left'';
+          "${mod}+Shift+h" = ''move left 30'';
+          "${mod}+Ctrl+h" = ''move workspace to output left'';
+          "${mod}+i" = ''nop scratchpad'';
+          "${mod}+j" = ''focus down'';
+          "${mod}+Shift+j" = ''move down 30'';
+          "${mod}+Ctrl+j" = ''focus child'';
+          "${mod}+k" = ''focus up'';
+          "${mod}+Shift+k" = ''move up 30'';
+          "${mod}+Ctrl+k" = ''focus parent'';
+          "${mod}+l" = ''focus right'';
+          "${mod}+Shift+l" = ''move right 30'';
+          "${mod}+Ctrl+l" = ''move workspace to output right'';
+          "${mod}+m" = ''workspace 10; exec --no-startup-id ${term} -e ncmpcpp'';
+          # TODO: Make work in wayland
+          # "${mod}+Shift+m" = ''exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: ' '';
+
+          #n
+          #o
+          #p
+          "${mod}+q" = ''[con_id="__focused__" instance="^(?!dropdown_).*$"] kill'';
+          # TODO: Fix Shift q for wayland
+          "${mod}+Shift+q" = ''[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`'';
+          "${mod}+r" = ''exec --no-startup-id renoise'';
+          #s
+          "${mod}+t" = ''workspace 7; exec --no-startup-id ${term} -e ${pkgs.btop}/bin/btop; focus'';
+          "${mod}+u" = ''[urgent=latest] focus'';
+          "${mod}+v" = ''exec --no-startup-id ${pkgs.mpv}/bin/mpv /dev/video0'';
+          #w
+          #x
+          #y
+          #z
+
+          # numerical
+          "${mod}+1" = ''workspace 1'';
+          "${mod}+2" = ''workspace 2'';
+          "${mod}+3" = ''workspace 3'';
+          "${mod}+4" = ''workspace 4'';
+          "${mod}+5" = ''workspace 5'';
+          "${mod}+6" = ''workspace 6'';
+          "${mod}+7" = ''workspace 7'';
+          "${mod}+8" = ''workspace 8'';
+          "${mod}+9" = ''workspace 9'';
+          "${mod}+0" = ''workspace 10'';
+          "${mod}+Shift+1" = ''move container to workspace 1'';
+          "${mod}+Shift+2" = ''move container to workspace 2'';
+          "${mod}+Shift+3" = ''move container to workspace 3'';
+          "${mod}+Shift+4" = ''move container to workspace 4'';
+          "${mod}+Shift+5" = ''move container to workspace 5'';
+          "${mod}+Shift+6" = ''move container to workspace 6'';
+          "${mod}+Shift+7" = ''move container to workspace 7'';
+          "${mod}+Shift+8" = ''move container to workspace 8'';
+          "${mod}+Shift+9" = ''move container to workspace 9'';
+          "${mod}+Shift+0" = ''move container to workspace 10'';
+
+          # fn keys
+          "${mod}+F1" = ''restart'';
+          "${mod}+F10" = ''exec --no-startup-id ${pkgs.grim}/bin/grim   ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')'';
+          "${mod}+Shift+F10" = ''exec --no-startup-id ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')'';
+          "${mod}+F11" = ''exec --no-startup-id rofi-bluetooth'';
+
+          # other keys
+          "${mod}+Return" = ''exec ${pkgs.dunst}/bin/dunstify "Use slash or semicolon punk "'';
+          "${mod}+Space" = ''exec --no-startup-id ${term} -e ${pkgs.lf}/bin/lf'';
+          "${mod}+Escape" = ''exec --no-startup-id ${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 200 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 6272a4 --key-hl-color ff79c6 --line-color 6272a400 --inside-color 282a3688 --separator-color 282a3600 --fade-in 0.2 --font 'Iosevka Comfy' --font-size 32 --timestr '%I:%M:%S' --datestr '%e %B %Y' --text-color f8f8f2'';
+          "${mod}+Tab" = ''layout toggle tabbed split'';
+          "${mod}+grave" = ''workspace back_and_forth'';
+          "${mod}+apostrophe" = ''split horizontal ;; exec --no-startup-id ${term}'';
+          "${mod}+slash" = ''split vertical ;; exec --no-startup-id ${term}'';
+          "${mod}+Shift+slash" = ''kill'';
+
+          # XF Keys
+          "XF86PowerOff" = ''exec --no-startup-id rofi-powermenu'';
+          "XF86AudioRaiseVolume" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-volume @DEFAULT_SINK@ +10%'';
+          "XF86AudioLowerVolume" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-volume @DEFAULT_SINK@ -10%'';
+          "XF86AudioMute" = ''exec --no-startup-id ${pkgs.pavucontrol}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle'';
+          "XF86MonBrightnessDown" = ''exec ${pkgs.light}/bin/light -U 10'';
+          "XF86MonBrightnessUp" = ''exec ${pkgs.light}/bin/light -A 10'';
+          "XF86HomePage" = ''exec ${pkgs.dunst}/bin/dunstify "Home Button"'';
+
+          # Arrow Keys
+          "${mod}+Left" = ''focus left'';
+          "${mod}+Shift+Left" = ''resize shrink width 5 px or 5 ppt'';
+          "${mod}+Ctrl+Left" = ''move workspace to output right'';
+          "${mod}+Down" = ''focus down'';
+          "${mod}+Shift+Down" = ''resize shrink height 5 px or 5 ppt'';
+          "${mod}+Ctrl+Down" = ''move workspace to output up'';
+          "${mod}+Up" = ''focus up'';
+          "${mod}+Shift+Up" = ''resize grow height 5 px or 5 ppt'';
+          "${mod}+Ctrl+Up" = ''move workspace to output down'';
+          "${mod}+Right" = ''focus right'';
+          "${mod}+Shift+Right" = ''resize grow width 5 px or 5 ppt'';
+          "${mod}+Ctrl+Right" = ''move workspace to output left'';
+        };
+        keycodebindings = {
+          # The prt screen button
+          "107" = ''exec --no-startup-id ${pkgs.grim}/bin/grim   ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')'';
+        };
+      };
       extraConfig = ''
-        bar swaybar_command waybar
-        # nixos stylix does this now
-        # exec_always swaybg -i $NIXOS_CONFIG_DIR/pics/RainbowDracula.png
-        exec_always --no-startup-id autotiling
-        # notification manager
-        exec_always --no-startup-id dunst
-        # https://github.com/LandingEllipse/kitti3
-        exec_always --no-startup-id kitti3 -n scratchcalc -p RC -s .35 1 -- kalker
-        exec_always --no-startup-id kitti3 -n scratchpad -p CC -s 0.6 0.6
+        # swayfx config
+        corner_radius 12
+        for_window [class="^.*"] border pixel 2
 
+        # TODO: Add https://github.com/ldelossa/sway-fzfify for this
 
-        corner_radius 20
-
-
-        #
-        # #---Basic Definitions---# #
-        smart_gaps on
-        smart_borders on
-        set $inner_gaps 15px
-        set $outer_gaps 0
-        set $term --no-startup-id kitty
-        set $mod Mod4
-        set $alt Mod1
-        set $powbutton XF86PowerOff
-        set $shutdown shutdown -h now
-        set $reboot reboot
-        set $suspend systemctl suspend
-        set $hibernate systemctl hibernate
-
-        set $fullmenu tofi-drun --drun-launch=true
-
-        # Use Mouse+$mod to drag floating windows to their wanted position
-        floating_modifier $mod
-
-        # Fonts
-        # Iosevka package on arch uses NF abbr.
-        font pango:Iosevka Comfy 16
-        font pango:Iosevka Nerd Font 16
-        font pango:Iosevka Nerd Font 16
-
-        # Dracula Color Palette
-
+        # Stylix.nix has alternative definitions which are worse I think
         # class                 border  bground text    indicator child_border
-        client.focused          #50fa7b #6272A4 #F8F8F2 #6272A4   #6272A4
+        client.focused          #50fa7b #6272A4 #F8F8F2 #62d6e8   #62d6e8
         client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
         client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
         client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
@@ -102,267 +220,6 @@ in {
 
         client.background       #50fa7b
         #client.background       #F8F8F2
-
-
-        # #---Gaps---# #
-        for_window [class="^.*"] border pixel 2
-        gaps inner $inner_gaps
-        gaps outer $outer_gaps
-
-        # #---Basic Bindings---# #
-
-        # bindsym $mod+Return 		         exec $term --hold -e rxfetch
-        bindsym $mod+Return 		         exec notify-send "Use slash or semicolon punk "
-        # bindsym $mod+Shift+Return	       exec $term --hold -e neofetch
-
-        bindsym $powbutton	             exec --no-startup-id rofi-powermenu
-        bindsym $mod+Escape	             exec --no-startup-id swaylock --screenshots --clock --indicator --indicator-radius 200 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 6272a4 --key-hl-color ff79c6 --line-color 6272a400 --inside-color 282a3688 --separator-color 282a3600 --fade-in 0.2 --font 'Iosevka Comfy' --font-size 32 --timestr '%I:%M:%S' --datestr '%e %B %Y' --text-color f8f8f2
-        # bindsym $mod+BackSpace
-        # bindsym $mod+Shift+BackSpace	   exec --no-startup-id prompt "Reboot computer?" $reboot
-
-        # space
-        bindsym $mod+space 			         exec $term -e ranger
-
-
-        # #---Letter Key Bindings---# #
-        bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-        bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
-
-        # c
-        bindsym $mod+c			            nop scratchcalc
-        # bindsym $mod+Shift+c		            exec --no-startup-id $suspend
-
-        # For VSCode code-insiders
-        # e
-        bindsym $mod+e                        workspace $ws8; exec $term neomutt; focus
-        bindsym $mod+Shift+e                  exec --no-startup-id rofimoji -f nerd_font.csv --selector-args="-theme ~/.config/rofi/rofimoji.rasi -kb-mode-next Shift+Right -kb-mode-previous Shift+Left -kb-row-left Control+h -kb-row-right Control+l" --hidden-descriptions
-        # bindsym $mod+Shift+e 			            exec --no-startup-id emacs-28.2
-
-        # r
-        bindsym $mod+r 			            exec --no-startup-id renoise
-        # bindsym $mod+Shift+r		        exec --no-startup-id winresize
-        #
-        # t
-        bindsym $mod+t 			            workspace $ws7; exec $term -e btop; focus
-        bindsym $mod+Shift+t            focus mode_toggle
-
-
-        # y
-        # bindsym $mod+y			            exec --no-startup-id grim -g "''$(slurp)" ''$XDG_PICTURES_DIR/''$(date +'%s_grim.png')
-        # bindsym $mod+Shift+y			      exec --no-startup-id grim -g "$(swaymsg -t get_tree | ${pkgs.jq} -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ''$XDG_PICTURES_DIR/''$(date +'%s_grim.png')
-        # bindsym $mod+y			            exec --no-startup-id grim -g "''$(slurp)" - | convert - -shave 1x1 PNG:- | ''$(xdg-user-dir PICTURES)/''$(date +'%s_grim.png')
-
-        # u
-        bindsym $mod+u                  [urgent=latest] focus
-
-        # i
-        bindsym $mod+i                  nop scratchpad
-        # bindsym $mod+Shift+i 	          floating toggle
-
-        # o
-        # bindsym $mod+o			            nop scratchpad
-        # bindsym $mod+Shift			        exec --no-startup-id $term -e nvim ~/Repos
-
-        # a
-        # I removed todofi for todoist
-        # bindsym $mod+a		              exec ~/bin/todofi
-
-        # s
-        # I don't want to use spotify
-        # bindsym $mod+s        			    workspace $ws10; exec $term -e spt; focus
-        bindsym $mod+Shift+s			      split toggle
-
-        # d
-        bindsym $mod+d                  exec --no-startup-id $fullmenu
-        # bindsym $mod+d            exec firefox
-
-        # f
-        bindsym $mod+f			            fullscreen toggle
-        bindsym $mod+Shift+f 	          floating toggle
-
-        # g
-        bindsym $mod+g		              gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
-        bindsym $mod+Shift+g		        gaps inner current set 0; gaps outer current set 0
-
-        # h
-        bindsym $mod+h			            focus left
-        bindsym $mod+Shift+h		        move left 30
-        bindsym $mod+Ctrl+h		          move workspace to output left
-
-        # j
-        bindsym $mod+j			            focus down
-        bindsym $mod+Shift+j		        move down 30
-        bindsym $mod+Ctrl+j		          focus child
-
-        # k
-        bindsym $mod+k			            focus up
-        bindsym $mod+Shift+k		        move up 30
-        bindsym $mod+Ctrl+k		          focus parent
-
-        # l
-        bindsym $mod+l			            focus right
-        bindsym $mod+Shift+l		        move right 30
-        bindsym $mod+Ctrl+l		          move workspace to output right
-
-        # z
-        # not where my dotfiles are anymore
-        # bindsym $mod+z			            exec --no-startup-id $term -e nvim ~/.dotfiles
-
-        # x
-        # Why would I have this
-        # bindsym $mod+x 			            exec --no-startup-id $reboot
-        # bindsym $mod+Shift+x		        exec --no-startup-id $shutdown
-
-        # p
-        # bindsym $mod+p			            nop scratchcalc
-        # bindsym $mod+Shift+p		        exec --no-startup-id killall picom
-
-        # Creepy facetime jumpscare
-        # v
-        bindsym $mod+v			            exec --no-startup-id mpv /dev/video0
-
-        # b
-
-        #bindsym $mod+b                workspace $ws2; exec firefox; focus
-        # bindsym $mod+Shift+b			      exec --no-startup-id feh --bg-fill ~/Media/Pictures/dracula-soft-waves-6272a4.png
-
-        # n
-        # Lookup methods
-        bindsym $mod+n		              exec --no-startup-id wmfocus
-
-        # m
-        bindsym $mod+m		              workspace $ws10; exec $term -e ncmpcpp
-        # bindsym $mod+m		              exec --no-startup-id slippi
-        # bindsym $mod+Shift+m		        exec --no-startup-id minecraft
-
-        # read 1 character and go to the window with the character
-        # bindsym $mod+Shift+m exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
-
-        # #---Workspace Bindings---# #
-        # bindsym $mod+Tab		            exec --no-startup-id rofi-menu-windows
-        bindsym $mod+Tab		            layout toggle tabbed split
-        bindsym $mod+grave		          workspace back_and_forth
-        # bindsym $mod+Shift+Tab		      workspace prev
-        bindsym $mod+apostrophe		      split horizontal ;; exec $term
-        bindsym $mod+slash		          split vertical ;; exec $term --hold -e rxfetch
-        bindsym $mod+Shift+slash	      kill
-        # bindsym $mod+backslash		      workspace back_and_forth
-
-        #set $ws1 "1:Terminal  "
-        #set $ws2 "2:Browser  "
-        #set $ws3 "3:File  "
-        set $ws1 1
-        set $ws2 2
-        set $ws3 3
-        set $ws4 4
-        set $ws5 5
-        set $ws6 6
-        set $ws7 7
-        set $ws8 8
-        set $ws9 9
-        set $ws10 10
-        #set $ws8 "8: Mail  "
-        #set $ws9 "9: Message  "
-        #set $ws10 "10:Music  "
-
-        # Assign Workspaces:
-        # assign [class="Brave"] $ws1
-        # assign [class="Chromium"] $ws2
-        # assign [class="discord"] $ws8
-        # for_window [class="Spotify"] move to workspace $ws9
-        # assign [class="obs"] $ws10
-
-        # Assigning autofloat
-        # for_window [title=".*Emulator.*"] floating enable
-
-        # switch to workspace
-        bindsym $mod+1		workspace $ws1
-        bindsym $mod+2		workspace $ws2
-        bindsym $mod+3		workspace $ws3
-        bindsym $mod+4		workspace $ws4
-        bindsym $mod+5		workspace $ws5
-        bindsym $mod+6		workspace $ws6
-        bindsym $mod+7		workspace $ws7
-        bindsym $mod+8		workspace $ws8
-        bindsym $mod+9		workspace $ws9
-        bindsym $mod+0		workspace $ws10
-
-
-        # Dont work for some reason
-        # for_window [class="Zoom"] move workspace $ws10
-        # for_window [class="Steam"] move workspace $ws9
-
-        # move focused container to workspace
-        bindsym $mod+Shift+1	move container to workspace $ws1
-        bindsym $mod+Shift+2	move container to workspace $ws2
-        bindsym $mod+Shift+3	move container to workspace $ws3
-        bindsym $mod+Shift+4	move container to workspace $ws4
-        bindsym $mod+Shift+5	move container to workspace $ws5
-        bindsym $mod+Shift+6	move container to workspace $ws6
-        bindsym $mod+Shift+7	move container to workspace $ws7
-        bindsym $mod+Shift+8	move container to workspace $ws8
-        bindsym $mod+Shift+9	move container to workspace $ws9
-        bindsym $mod+Shift+0	move container to workspace $ws10
-
-        for_window [title="GIMP Startup"] move workspace $ws5
-        for_window [class="Gimp"] move workspace $ws5
-        for_window [window_role="GtkFileChooserDialog"] resize set 800 600
-        for_window [window_role="GtkFileChooserDialog"] move position center
-
-
-        # Dropdown / Scratchpad stuff
-        # exec $term --name="dropdown"
-        # for_window [instance="dropdown"] floating enable
-        # for_window [instance="dropdown"] resize set 1120 630
-        # for_window [instance="dropdown"] move scratchpad
-        # for_window [instance="dropdown"] border pixel 5
-
-
-        # #---Function Buttons---# #
-        bindsym $mod+F1		        restart
-        # bindsym $mod+F2		        exec --no-startup-id screenkey -p fixed -g 90%x10%+5%-10% --opacity .9 --font-color white
-        bindsym $mod+F3	          exec $term -e ncpamixer
-        # Screenshots
-        # bindsym $mod+F10			            exec --no-startup-id flameshot gui -p ~/Media/Pictures/Screenshots
-        # bindsym $mod+Shift+F10		        exec --no-startup-id flameshot full -p ~/Media/Pictures/Screenshots
-        # screenshots
-        bindsym $mod+F10                    exec --no-startup-id grim   ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')
-        bindsym $mod+Shift+F10                    exec --no-startup-id grim  -g "$(slurp)" ''$XDG_PICTURES_DIR/''$(date +'%H:%M:%S.png')
-
-
-        # Wifi TUI
-        bindsym $mod+F11	        exec --no-startup-id rofi-bluetooth
-
-        # #---Arrow Keys---# #
-        bindsym $mod+Left		      focus left
-        bindsym $mod+Shift+Left   resize shrink width 5 px or 5 ppt
-        bindsym $mod+Ctrl+Left		move workspace to output right
-        bindsym $mod+Down		      focus down
-        bindsym $mod+Shift+Down   resize shrink height 5 px or 5 ppt
-        bindsym $mod+Ctrl+Down		move workspace to output up
-        bindsym $mod+Up			      focus up
-        bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
-        bindsym $mod+Ctrl+Up		  move workspace to output down
-        bindsym $mod+Right 		    focus right
-        bindsym $mod+Shift+Right  resize grow width 5 px or 5 ppt
-        bindsym $mod+Ctrl+Right		move workspace to output left
-
-        # sets the sound fn keys to do what they are supposed to
-        # Pulse Audio controls
-        bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% #increase sound volume
-        bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% #decrease sound volume
-        bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
-
-        # Brightness
-        bindsym XF86MonBrightnessDown exec light -U 10
-        bindsym XF86MonBrightnessUp exec light -A 10
-
-
-
-
-        # Need for nixos
-        exec dbus-sway-environment
-        exec configure-gtk
       '';
     };
   };

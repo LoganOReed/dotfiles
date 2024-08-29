@@ -133,8 +133,7 @@
     flake = "/home/occam/dotfiles";
   };
 
-
- fileSystems."/persist".neededForBoot = true;
+  fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist/system" = {
     hideMounts = true;
     directories = [
@@ -147,20 +146,24 @@
       "/var/lib/nixos"
       #"/var/lib/systemd/coredump"
       #"/etc/NetworkManager/system-connections"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
     ];
     files = [
       "/etc/machine-id"
-      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      {
+        file = "/var/keys/secret_file";
+        parentDirectory = {mode = "u=rwx,g=,o=";};
+      }
     ];
   };
 
   # required for persistence with home manager
   programs.fuse.userAllowOther = true;
-
-
-
-
 
   # TODO: Reimplement this once setup is done
 
@@ -189,8 +192,6 @@
   #   umount /btrfs_tmp
   # '';
 
-
-
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.zfsSupport = true;
@@ -207,8 +208,7 @@
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   networking.hostName = "servo"; # Define your hostname.
-  networking.hostId = "2d87f0cc"; # Define your hostname. 
-
+  networking.hostId = "2d87f0cc"; # Define your hostname.
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -311,22 +311,22 @@
   # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   # services.pipewire = {
-    # enable = true;
-    #alsa.enable = true;
-    #alsa.support32Bit = true;
-    #pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  # enable = true;
+  #alsa.enable = true;
+  #alsa.support32Bit = true;
+  #pulse.enable = true;
+  # If you want to use JACK applications, uncomment this
+  #jack.enable = true;
   # };
 
   # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
   #hardware = {
   #  bluetooth.enable = true;
   #  bluetooth.powerOnBoot = true;
-    #graphics = {
-    #  enable32Bit = true;
-    #  enable = true;
-    #};
+  #graphics = {
+  #  enable32Bit = true;
+  #  enable = true;
+  #};
   #};
 
   # Install fonts
@@ -385,9 +385,9 @@
   # Secrets and such
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
-  
+
   sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
-  
+
   sops.secrets."server/occam".neededForUsers = true;
   sops.secrets."razor/wireguard/mullvad" = {};
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;

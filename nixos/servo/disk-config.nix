@@ -1,39 +1,39 @@
 {
   disko.devices = {
     disk = {
-    main = {
-      device = "/dev/nvme0n1";
-      type = "disk";
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            size = "500M";
-            type = "EF00";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
+      main = {
+        device = "/dev/nvme0n1";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              size = "500M";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+              };
             };
-          };
-          swap = {
-            size = "12G";
-            content = {
-              type = "swap";
-              resumeDevice = true;
+            swap = {
+              size = "12G";
+              content = {
+                type = "swap";
+                resumeDevice = true;
+              };
             };
-          };
-          root = {
-            name = "root";
-            size = "100%";
-            content = {
-              type = "lvm_pv";
-              vg = "root_vg";
+            root = {
+              name = "root";
+              size = "100%";
+              content = {
+                type = "lvm_pv";
+                vg = "root_vg";
+              };
             };
           };
         };
       };
-    };
     };
     lvm_vg = {
       root_vg = {
@@ -67,4 +67,3 @@
     };
   };
 }
-

@@ -83,7 +83,7 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
-	  impermanence.nixosModules.impermanence
+          impermanence.nixosModules.impermanence
         ];
       };
       servo = nixpkgs.lib.nixosSystem {
@@ -94,7 +94,7 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
-	  impermanence.nixosModules.impermanence
+          impermanence.nixosModules.impermanence
         ];
       };
     };
