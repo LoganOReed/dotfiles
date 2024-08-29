@@ -1,5 +1,5 @@
 {
-  description = "Laptop NixOS Config";
+  description = "Logan's NixOS Config";
 
   inputs = {
     # Nixpkgs
@@ -31,6 +31,8 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+    nix-inspect.url = "github:bluskript/nix-inspect";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";

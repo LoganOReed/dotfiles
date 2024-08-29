@@ -29,7 +29,7 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
-    # wireguard.enable = true;
+    wireguard.enable = true;
     music.enable = true;
     syncthing.enable = true;
     # ssh.enable = true;
@@ -156,6 +156,7 @@
     inkscape
     pulseaudio
     qbittorrent
+    nix-inspect
   ];
 
   programs.zsh.enable = true;
@@ -254,6 +255,7 @@
   # Install fonts
   fonts = {
     packages = with pkgs; [
+      monolisa
       iosevka-comfy.comfy
       iosevka-comfy.comfy-motion
       noto-fonts-color-emoji
@@ -266,28 +268,38 @@
 
   # Stylix Config
   stylix.enable = true;
-  stylix.image = ../../pics/RainbowDracula.png;
+  stylix.image = ../../pics/nixos-wallpaper2.png;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+
+
 
   stylix.fonts = {
     serif = {
-      package = pkgs.iosevka-comfy.comfy-motion;
-      name = "Iosevka Comfy Serif";
+      # package = pkgs.iosevka-comfy.comfy-motion;
+      # name = "Iosevka Comfy Serif";
+      package = pkgs.monolisa;
+      name = "MonoLisa Nerd Font";
     };
 
     sansSerif = {
-      package = pkgs.iosevka-comfy.comfy;
-      name = "Iosevka Comfy Sans";
+      # package = pkgs.iosevka-comfy.comfy;
+      # name = "Iosevka Comfy Sans";
+      package = pkgs.monolisa;
+      name = "MonoLisa Nerd Font";
     };
 
     monospace = {
-      package = pkgs.iosevka-comfy.comfy;
-      name = "Iosevka Comfy Sans";
+      # package = pkgs.iosevka-comfy.comfy;
+      # name = "Iosevka Comfy Sans";
+      package = pkgs.monolisa;
+      name = "MonoLisa Nerd Font";
     };
 
     emoji = {
       package = pkgs.noto-fonts-color-emoji;
       name = "Noto Color Emoji";
+      package = pkgs.monolisa;
+      name = "MonoLisa Nerd Font";
     };
   };
 

@@ -2,6 +2,7 @@
 # You can build them using 'nix build .#example'
 pkgs: {
   # example = pkgs.callPackage ./example { };
+  monolisa = pkgs.callPackage ./monolisa { };
 
   # NOTE: allows screen sharing
 
