@@ -21,6 +21,7 @@ in {
       imv
       dbus-sway-environment
       configure-gtk
+      vim-sway-nav
     ];
 
     programs.btop = {
@@ -104,17 +105,17 @@ in {
           "${mod}+f" = ''fullscreen toggle'';
           "${mod}+Shift+f" = ''floating toggle'';
           # g
-          "${mod}+h" = ''focus left'';
+          "${mod}+h" = ''exec vim-sway-nav left'';
           "${mod}+Shift+h" = ''move left 30'';
           "${mod}+Ctrl+h" = ''move workspace to output left'';
           "${mod}+i" = ''nop scratchpad'';
-          "${mod}+j" = ''focus down'';
+          "${mod}+j" = ''exec vim-sway-nav down'';
           "${mod}+Shift+j" = ''move down 30'';
           "${mod}+Ctrl+j" = ''focus child'';
-          "${mod}+k" = ''focus up'';
+          "${mod}+k" = ''exec vim-sway-nav up'';
           "${mod}+Shift+k" = ''move up 30'';
           "${mod}+Ctrl+k" = ''focus parent'';
-          "${mod}+l" = ''focus right'';
+          "${mod}+l" = ''exec vim-sway-nav right'';
           "${mod}+Shift+l" = ''move right 30'';
           "${mod}+Ctrl+l" = ''move workspace to output right'';
           "${mod}+m" = ''workspace 10; exec --no-startup-id ${term} -e ncmpcpp'';

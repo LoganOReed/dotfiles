@@ -275,17 +275,17 @@
 
   stylix.fonts = {
     serif = {
-      # package = pkgs.iosevka-comfy.comfy-motion;
-      # name = "Iosevka Comfy Serif";
-      package = pkgs.monolisa;
-      name = "MonoLisa Nerd Font";
+      package = pkgs.iosevka-comfy.comfy-motion;
+      name = "Iosevka Comfy Serif";
+      # package = pkgs.monolisa;
+      # name = "MonoLisa Nerd Font";
     };
 
     sansSerif = {
-      # package = pkgs.iosevka-comfy.comfy;
-      # name = "Iosevka Comfy Sans";
-      package = pkgs.monolisa;
-      name = "MonoLisa Nerd Font";
+      package = pkgs.iosevka-comfy.comfy;
+      name = "Iosevka Comfy Sans";
+      # package = pkgs.monolisa;
+      # name = "MonoLisa Nerd Font";
     };
 
     monospace = {
