@@ -296,8 +296,8 @@
     };
 
     emoji = {
-      package = pkgs.noto-fonts-color-emoji;
-      name = "Noto Color Emoji";
+      # package = pkgs.noto-fonts-color-emoji;
+      # name = "Noto Color Emoji";
       package = pkgs.monolisa;
       name = "MonoLisa Nerd Font";
     };
