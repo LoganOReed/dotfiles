@@ -21,5 +21,9 @@ in {
       source = ./luasnip;
       recursive = true;
     };
+    home.file.".snippets/UltiSnips" = {
+      source = ./UltiSnips;
+      recursive = true;
+    };
   };
 }

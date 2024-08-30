@@ -522,11 +522,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724932409,
-        "narHash": "sha256-rDdpf4iWaKwdrLlSK2k41hzPj0darNeuQEt0Z/U+/3M=",
+        "lastModified": 1724936250,
+        "narHash": "sha256-imj1B63vRYlx2RAgZJWJmKMVzQM3IEuqoV3mY/eGqp8=",
         "owner": "LoganOReed",
         "repo": "kickstart-nix.nvim",
-        "rev": "d5111ea1198e0eefc5b936e9c1ca5ca488c8bf25",
+        "rev": "66714828ffa5076d47a2cc6ef9188803597542b7",
         "type": "github"
       },
       "original": {

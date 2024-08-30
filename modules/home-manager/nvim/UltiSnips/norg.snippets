@@ -1,0 +1,60 @@
+
+
+snippet newNote "Setup for Basic Note" 
+@document.meta
+	title: `!p snip.rv = snip.basename`
+	description: ${1:PlaceHolder}
+	author: occam
+	categories: ${2:wip}
+	created: `date +%d.%m.%y`
+@end
+
+= TOC
+
+* $0
+endsnippet
+
+priority 10
+snippet "bold" "bold" riA
+*${1:${VISUAL}}*$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z]+)bold" "bold" riA
+*`!p snip.rv=match.group(1)`*
+endsnippet
+
+priority 10
+snippet "italic" "italic" riA
+/${1:${VISUAL}}/$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z]+)italic" "italic" riA
+/`!p snip.rv=match.group(1)`/
+endsnippet
+
+priority 10
+snippet "underline" "underline" riA
+_${1:${VISUAL}}_$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z]+)underline" "underline" riA
+_`!p snip.rv=match.group(1)`_
+endsnippet
+
+priority 10
+snippet "strikethrough" "strikethrough" riA
+-${1:${VISUAL}}-$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z]+)strikethrough" "strikethrough" riA
+-`!p snip.rv=match.group(1)`-
+endsnippet
+
+snippet link "Link Cmd" A
+{$1}[${2:${VISUAL}}]$0
+endsnippet
+
