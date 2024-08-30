@@ -88,6 +88,17 @@
           impermanence.nixosModules.impermanence
         ];
       };
+      blade = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./nixos/razor
+          disko.nixosModules.disko
+          stylix.nixosModules.stylix
+          musnix.nixosModules.musnix
+          impermanence.nixosModules.impermanence
+        ];
+      };
       servo = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
