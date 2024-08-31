@@ -29,7 +29,7 @@
 
   modules = {
     # wireguard.enable = true;
-    music.enable = true;
+    #music.enable = true;
     # syncthing.enable = true;
     # ssh.enable = true;
     # disabled as it heavily lags when trying to access the directory
@@ -145,7 +145,7 @@
     wl-clipboard
     bashmount
     firefox
-    sops
+    # sops
     age
     ssh-to-age
     networkmanagerapplet
@@ -200,10 +200,10 @@
     sway
   '';
 
-  services.logind.extraConfig = ''
-    # don’t shutdown when power button is short-pressed
-    HandlePowerKey=ignore
-  '';
+  # services.logind.extraConfig = ''
+  #   # don’t shutdown when power button is short-pressed
+  #   HandlePowerKey=ignore
+  # '';
 
   # Let wm access monitor light
   programs.light.enable = true;
@@ -376,6 +376,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 11;
+  # boot.plymouth.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

@@ -18,18 +18,18 @@ in {
 
     environment.systemPackages = with pkgs; [
       helm
-      renoise
+      #renoise
     ];
 
     # TODO: Setup server to host this so I can fetch instead
     # NOTE: Override demo files with personal version
-    nixpkgs.overlays = [
-      (final: prev: {
-        renoise = prev.renoise.override {
-          releasePath = /home/occam/misc/renoise;
-        };
-      })
-    ];
+    #nixpkgs.overlays = [
+      #(final: prev: {
+       # renoise = prev.renoise.override {
+          #releasePath = /home/occam/misc/renoise;
+        #};
+      #})
+    #];
   };
 }
 # with pkgs; {

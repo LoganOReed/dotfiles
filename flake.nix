@@ -92,7 +92,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./nixos/razor
+          ./nixos/blade
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           musnix.nixosModules.musnix
