@@ -324,6 +324,10 @@
 
   sops.secrets."razor/occam".neededForUsers = true;
   sops.secrets."razor/wireguard/mullvad" = {};
+  sops.secrets."razor/wireguard/private_key" = {};
+  sops.secrets."razor/wireguard/address" = {};
+  sops.secrets."razor/wireguard/public_key" = {};
+  sops.secrets."razor/wireguard/endpoint" = {};
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;

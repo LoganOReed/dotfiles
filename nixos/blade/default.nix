@@ -27,8 +27,9 @@
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
+
   modules = {
-    # wireguard.enable = true;
+    wireguard.enable = true;
     # music.enable = true;
     # syncthing.enable = true;
     # ssh.enable = true;
@@ -321,8 +322,12 @@
 
   sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
 
-  sops.secrets."razor/occam".neededForUsers = true;
-  sops.secrets."razor/wireguard/mullvad" = {};
+  sops.secrets."${config.networking.hostName}/occam".neededForUsers = true;
+  sops.secrets."${config.networking.hostName}/wireguard/mullvad" = {};
+  sops.secrets."${config.networking.hostName}/wireguard/private_key" = {};
+  sops.secrets."${config.networking.hostName}/wireguard/address" = {};
+  sops.secrets."${config.networking.hostName}/wireguard/public_key" = {};
+  sops.secrets."${config.networking.hostName}/wireguard/endpoint" = {};
   sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
   sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
@@ -340,7 +345,7 @@
 
   users.users = {
     occam = {
-      hashedPasswordFile = config.sops.secrets."razor/occam".path;
+      hashedPasswordFile = config.sops.secrets."${config.networking.hostName}/occam".path;
       # initialPassword = "password";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
