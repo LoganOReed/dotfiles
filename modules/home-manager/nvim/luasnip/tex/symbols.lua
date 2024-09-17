@@ -81,14 +81,10 @@ return {
   --     ]]
   --   )
   -- ),
-  -- s(
-  --   { trig = "([^%w]);G", regTrig=true, wordTrig=false, name="Gamma", dscr = "greek letter Gamma"},
-  --   fmta(
-  --     [[
-  --       \\Gamma 
-  --     ]]
-  --   )
-  -- ),
+  s(
+    { trig = "([^%w]);G", regTrig=true, wordTrig=false, name="Gamma", dscr = "greek letter Gamma"},
+    t("\\Gamma")
+  ),
 
 s({trig = '([^%a])ee', regTrig = true, wordTrig = false},
   fmta(
