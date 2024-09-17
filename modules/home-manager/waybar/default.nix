@@ -34,17 +34,23 @@ in {
 
           "sway/workspaces" = {
             disable-scroll = true;
-            all-outputs = true;
+            # only show workspaces on their respective monitors
+            all-outputs = false;
             format = "{icon} {name}";
             format-icons = {
               "1" = " ";
-              "2" = " ";
+              "2" = " ";
               "3" = " ";
-              "4" = " ";
-              "5" = " ";
+              # "4" = " ";
+              # "5" = " ";
+              "7" = " ";
+              "8" = "󰊫 ";
+              "9" = " ";
+              "0" = " ";
               urgent = " ";
               # focused = "";
-              default = " ";
+              # default = " ";
+              default = " ";
             };
           };
 
