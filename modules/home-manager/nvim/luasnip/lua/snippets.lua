@@ -200,20 +200,20 @@ return {
 s(
   { trig = "snc", name="Conditional Snippets", dscr = "Uses Env Conditions", snippetType = "autosnippet" },
   fmta(
-    [[
-      postfix(
+    [=[
+      s(
         {trig = "<>", name = "<>", dscr = "<>", snippetType = "autosnippet"},
            fmta(
-            \[\[
-              <>,
-            \]\],
+            [[
+              <>
+            ]],
           {
-            <>,
+            <>
           }
           ),
-          {condition = in_mathzone},
+          {condition = in_mathzone}
         ),
-    ]],
+    ]=],
     {
         i(1, "Trigger"),
         i(2, "Name"),
@@ -227,19 +227,19 @@ s(
 s(
   { trig = "snr", name="Regex Snippets", dscr = "Uses Regex for Conditions", snippetType = "autosnippet" },
   fmta(
-    [[
+    [=[
       s(
         {trig = "<>", regTrig=true, wordTrig=false, name = "<>", dscr = "<>"},
            fmta(
-            \[\[
-              <>,
-            \]\],
+            [[
+              <>
+            ]],
           {
-            <>,
+            <>
           }
           )
         ),
-    ]],
+    ]=],
     {
         i(1, "([^%w])Trigger"),
         i(2, "Name"),

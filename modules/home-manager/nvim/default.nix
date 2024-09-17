@@ -17,13 +17,21 @@ in {
       ripgrep
     ];
 
-    home.file.".snippets/luasnip" = {
-      source = ./luasnip;
-      recursive = true;
-    };
-    home.file.".snippets/UltiSnips" = {
-      source = ./UltiSnips;
-      recursive = true;
-    };
+    home.file.".config/nvim/README.md".text = ''
+    This directory exists specifically to make UltiSnipsEdit work.
+    I believe this is needed since UltiSnips is full vim not nvim.
+    '';
+
+# LuaSnip is commented as im migrating away
+# UltiSnips is commented bc i am using dotfiles dir
+# specifically, instead of symlinking
+    # home.file.".snippets/luasnip" = {
+    #   source = ./luasnip;
+    #   recursive = true;
+    # };
+    # home.file.".snippets/UltiSnips" = {
+    #   source = ./UltiSnips;
+    #   recursive = true;
+    # };
   };
 }
