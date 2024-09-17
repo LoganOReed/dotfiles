@@ -65,8 +65,8 @@ in {
             #interface = "enp1s0"; # (Optional) To force the use of this interface
             format-wifi = "{essid}  ";
             # format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
-            format-ethernet = "TEMP NAME ";
-            format-linked = "TEMPNAME (No IP) ";
+            format-ethernet = "";
+            format-linked = "(No IP) ";
             format-disconnected = "Disconnected ⚠";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
             on-click = "nm-connection-editor";
@@ -104,8 +104,8 @@ in {
             # format = "{volume}% {icon} {format_source}";
             format = "{volume}% {icon} ";
             format-bluetooth = "{volume}% {icon} {format_source}";
-            format-bluetooth-muted = " {icon} {format_source}";
-            format-muted = " {format_source}";
+            format-bluetooth-muted = " {icon} {format_source}";
+            format-muted = " {format_source}";
             format-source = "{volume}% ";
             format-source-muted = "";
             format-icons = {

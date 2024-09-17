@@ -29,7 +29,7 @@
 
   modules = {
     # wireguard.enable = true;
-    #music.enable = true;
+    # music.enable = true;
     # syncthing.enable = true;
     # ssh.enable = true;
     # disabled as it heavily lags when trying to access the directory
@@ -128,7 +128,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep-since 7d --keep 10";
+    clean.extraArgs = "--keep-since 7d --keep 9";
     flake = "/home/occam/dotfiles";
   };
 
@@ -145,7 +145,7 @@
     wl-clipboard
     bashmount
     firefox
-    # sops
+    sops
     age
     ssh-to-age
     networkmanagerapplet
@@ -316,16 +316,16 @@
   stylix.polarity = "dark";
 
   # Secrets and such
-  # sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  # sops.defaultSopsFormat = "yaml";
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
 
-  # sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/home/occam/.config/sops/age/keys.txt";
 
-  # sops.secrets."razor/occam".neededForUsers = true;
-  # sops.secrets."razor/wireguard/mullvad" = {};
-  # sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
-  # sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
-  # sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
+  sops.secrets."razor/occam".neededForUsers = true;
+  sops.secrets."razor/wireguard/mullvad" = {};
+  sops.secrets."bitwarden/url".owner = config.users.users.occam.name;
+  sops.secrets."bitwarden/api/client_id".owner = config.users.users.occam.name;
+  sops.secrets."bitwarden/api/client_secret".owner = config.users.users.occam.name;
 
   # NOTE: END OF WHOLLY CUSTOM STUFF
 
@@ -340,8 +340,8 @@
 
   users.users = {
     occam = {
-      # hashedPasswordFile = config.sops.secrets."razor/occam".path;
-      initialPassword = "password";
+      hashedPasswordFile = config.sops.secrets."razor/occam".path;
+      # initialPassword = "password";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # Desktop

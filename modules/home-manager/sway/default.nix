@@ -169,7 +169,8 @@ in {
           # other keys
           "${mod}+Return" = ''exec ${pkgs.dunst}/bin/dunstify "Use slash or semicolon punk "'';
           "${mod}+Space" = ''exec --no-startup-id ${term} -e ${pkgs.lf}/bin/lf'';
-          "${mod}+Escape" = ''exec --no-startup-id ${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 200 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 6272a4 --key-hl-color ff79c6 --line-color 6272a400 --inside-color 282a3688 --separator-color 282a3600 --fade-in 0.2 --font 'Iosevka Comfy' --font-size 32 --timestr '%I:%M:%S' --datestr '%e %B %Y' --text-color f8f8f2'';
+          # "${mod}+Escape" = ''exec --no-startup-id ${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 200 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 6272a4 --key-hl-color ff79c6 --line-color 6272a400 --inside-color 282a3688 --separator-color 282a3600 --fade-in 0.2 --font 'Iosevka Comfy' --font-size 32 --timestr '%I:%M:%S' --datestr '%e %B %Y' --text-color f8f8f2'';
+          "${mod}+Escape" = ''exec --no-startup-id rofi-powermenu'';
           "${mod}+Tab" = ''layout toggle tabbed split'';
           "${mod}+grave" = ''workspace back_and_forth'';
           "${mod}+apostrophe" = ''split horizontal ;; exec --no-startup-id ${term}'';
