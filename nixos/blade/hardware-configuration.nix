@@ -18,14 +18,20 @@
       fsType = "ext4";
     };
 
-  fileSystems."/downloads" =
+  fileSystems."/home/occam/downloads" =
     { device = "/dev/disk/by-uuid/5e4538cc-bbe0-4ba8-95e2-3fb59a721393";
       fsType = "ext4";
     };
 
-  fileSystems."/documents" =
+  fileSystems."/home/occam/documents" =
     { device = "/dev/disk/by-uuid/6fd938fe-1aea-4cec-ac78-827883b8d39e";
       fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/001E-03B0";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
