@@ -51,6 +51,7 @@
     gpg.enable = true;
     ncmpcpp.enable = true;
     beets.enable = true;
+    kdeconnect.enable = true;
     direnv.enable = true;
     powermenu.enable = true;
 

@@ -146,6 +146,7 @@
     wl-clipboard
     bashmount
     firefox
+    chromium
     sops
     age
     ssh-to-age
@@ -158,6 +159,7 @@
     qbittorrent
     nix-inspect
   ];
+
 
   programs.zsh.enable = true;
   environment.pathsToLink = ["/share/zsh"];
@@ -251,6 +253,13 @@
       enable = true;
     };
   };
+
+# Allows ipad to become tablet, requires vpn to be down
+  # programs.weylus = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   users = ["occam"];
+  # };
 
   # Install fonts
   fonts = {

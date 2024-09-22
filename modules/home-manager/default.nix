@@ -11,6 +11,7 @@
   git = import ./git;
   gbar = import ./gbar;
   waybar = import ./waybar;
+  kdeconnect = import ./kdeconnect;
   sway = import ./sway;
   kitty = import ./kitty;
   gpg = import ./gpg;

@@ -20,10 +20,7 @@ in {
 PrivateKey = ${config.sops.placeholder."${config.networking.hostName}/wireguard/private_key"}
 Address = ${config.sops.placeholder."${config.networking.hostName}/wireguard/address"}
 DNS = 10.64.0.1
-PostUp = wg set wg0 fwmark 51820; ${pkgs.iptables}/bin/iptables -A OUTPUT ! -d 192.168.0.0/16 ! -o wg0 -m mark ! --mark $(wg show wg0 fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
-PostUp = ${pkgs.iptables}/bin/ip6tables -A OUTPUT ! -o wg0 -m mark ! --mark $(wg show wg0 fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
-PostDown = ${pkgs.iptables}/bin/iptables -I OUTPUT -o lo -p tcp --dport 6600 -m state --state NEW,ESTABLISHED -j ACCEPT
-PostDown = ${pkgs.iptables}/bin/iptables -I OUTPUT -d 127.0.0.0/16 -j ACCEPT
+
 
 [Peer]
 PublicKey = ${config.sops.placeholder."${config.networking.hostName}/wireguard/public_key"}
@@ -57,14 +54,14 @@ PersistentKeepAlive = 25
             -j REJECT
 
           # Accept kdeconnect connections
-          # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p udp \
-          #     --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p tcp \
-          #     --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p udp \
-          #     --sport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
-          # ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p tcp \
-          #     --sport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+          ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p udp \
+              --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+          ${pkgs.iptables}/bin/iptables -A INPUT -i wg0 -p tcp \
+              --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+          ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p udp \
+              --sport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+          ${pkgs.iptables}/bin/iptables -A OUTPUT -o wg0 -p tcp \
+              --sport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
         '';
 
         postDown = ''

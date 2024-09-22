@@ -56,28 +56,28 @@ snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right)$0
 endsnippet
 
-snippet lrp "left( right)" i
+snippet lrp "left( right)" iA
 \left( ${1:${VISUAL}} \right)$0
 endsnippet
 
-snippet lr( "left( right)" i
-\left( ${1:${VISUAL}} \right$0
+snippet lr( "left( right)" iA
+\left( ${1:${VISUAL}} \right)$0
 endsnippet
 
-snippet lr| "left| right|" i
+snippet lr| "left| right|" iA
 \left| ${1:${VISUAL}} \right|$0
 endsnippet
 
-snippet lr{ "left\{ right\}" i
-\left\\{ ${1:${VISUAL}} \right\\$0
-endsnippet
-
-snippet lrb "left\{ right\}" i
+snippet lr{ "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
 
-snippet lr[ "left[ right]" i
-\left[ ${1:${VISUAL}} \right\\$0
+snippet lrb "left\{ right\}" iA
+\left\\{ ${1:${VISUAL}} \right\\}$0
+endsnippet
+
+snippet lr[ "left[ right]" iA
+\left[ ${1:${VISUAL}} \right]$0
 endsnippet
 
 snippet lra "leftangle rightangle" iA
@@ -153,11 +153,32 @@ snippet sb "subscript" iA
 _{${1:${VISUAL}}}$0
 endsnippet
 
+# subscript
+context "math()"
+snippet sup "suprimum" iA
+\sup_{${1:${VISUAL}}}\left\{ $2 \right\}$0
+endsnippet
+
+# subscript
+context "math()"
+snippet inf "infimum" iA
+\inf_{${1:${VISUAL}}}\left\{ $2 \right\}$0
+endsnippet
+
+context "math()"
+snippet lim "limit" iA
+\lim_{${1:n \to \infty}} ${2:${VISUAL}}
+endsnippet
+
 context "math()"
 snippet sum "Sigma Notation" wA
 \sum_{${1:i=0}}^{${2:\infty}} ${0:${VISUAL}}
 endsnippet
 
+context "math()"
+snippet prod "Product Pi Notation" wA
+\prod_{${1:i=0}}^{${2:\infty}} ${0:${VISUAL}}
+endsnippet
 
 
 # // => \frac{}{}
@@ -217,6 +238,16 @@ endsnippet
 context "math()"
 snippet sc "Cross Product" iA
 \times 
+endsnippet
+
+context "math()"
+snippet sn "Set Intersection" iA
+\bigcap_{${1:n=0}}^{${1:\infty}}$0
+endsnippet
+
+context "math()"
+snippet sm "Set Union" iA
+\bigcup_{${1:n=0}}^{${1:\infty}}$0 
 endsnippet
 
 context "math()"
@@ -313,7 +344,7 @@ endsnippet
 #
 
 context "math()"
-snippet inf "infinity" w
+snippet ifty "infinity" w
 \infty
 endsnippet
 
@@ -370,80 +401,74 @@ endsnippet
 
 priority 1000
 context "math()"
-snippet e "varepsilon" w
+snippet ee "varepsilon" w
 \varepsilon
 endsnippet
 
 priority 1000
 context "math()"
-snippet ee "Epsilon" w
-\Epsilon
-endsnippet
-
-priority 1000
-context "math()"
-snippet eee "epsilon" w
+snippet ep "epsilon" w
 \epsilon
 endsnippet
 
 
 priority 1000
 context "math()"
-snippet g "gamma" w
+snippet gg "gamma" w
 \gamma
 endsnippet
 
 priority 1000
 context "math()"
-snippet gg "Gamma" w
+snippet GG "Gamma" w
 \Gamma
 endsnippet
 
 
 priority 1000
 context "math()"
-snippet l "lambda" w
+snippet ll "lambda" w
 \lambda
 endsnippet
 
 priority 1000
 context "math()"
-snippet ll "Lambda" w
+snippet LL "Lambda" w
 \Lambda
 endsnippet
 
 
 priority 1000
 context "math()"
-snippet o "omega" w
+snippet oo "omega" w
 \omega
 endsnippet
 
 priority 1000
 context "math()"
-snippet oo "Omega" w
+snippet OO "Omega" w
 \Omega
 endsnippet
 
 priority 1000
 context "math()"
-snippet s "sigma" w
+snippet ss "sigma" w
 \sigma
 endsnippet
 
 priority 1000
 context "math()"
-snippet ss "Sigma" w
+snippet SS "Sigma" w
 \Sigma
 endsnippet
 
 context "math()"
-snippet p "phi" w
+snippet pp "phi" w
 \phi
 endsnippet
 
 context "math()"
-snippet pp "Phi" w
+snippet PP "Phi" w
 \Phi
 endsnippet
 
@@ -574,7 +599,7 @@ endsnippet
 
 priority 300
 context "math()"
-snippet int "integral" wA
+snippet igl "integral" wA
 \int_{ ${1:\Omega}} \! ${2:${VISUAL}} \, \mathrm{d}${3:x} $0
 endsnippet
 
@@ -645,4 +670,15 @@ context "math()"
 snippet hhh "H_0^1" i
 H_{0}^{1}
 endsnippet
+
+snippet pset "Problem" 
+\begin{problem}{${1:1}}
+	$0
+\end{problem}
+
+\begin{solution}
+	\todo{Solve $1}
+\end{solution}
+endsnippet
+
 
