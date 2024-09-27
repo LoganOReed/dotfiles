@@ -271,8 +271,6 @@
   stylix.image = ../../pics/nixos-wallpaper2.png;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
 
-
-
   stylix.fonts = {
     serif = {
       package = pkgs.iosevka-comfy.comfy-motion;
@@ -360,8 +358,8 @@
   };
 
   security.sudo.extraConfig = ''
-      Defaults        timestamp_timeout=60
-    '';
+    Defaults        timestamp_timeout=60
+  '';
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

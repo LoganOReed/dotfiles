@@ -2,8 +2,7 @@
 # You can build them using 'nix build .#example'
 pkgs: {
   # example = pkgs.callPackage ./example { };
-  monolisa = pkgs.callPackage ./monolisa { };
-
+  monolisa = pkgs.callPackage ./monolisa {};
 
   vim-sway-nav = pkgs.writeShellScriptBin "vim-sway-nav" ''
     # vim-sway-nav - Use the same bindings to move focus between sway windows and

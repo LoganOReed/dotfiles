@@ -53,7 +53,7 @@ in {
         # This seems to mess with swayfx specifics
         # window.border = 2;
         # window.titlebar = false;
-        defaultWorkspace = "3";
+        defaultWorkspace = "workspace 1";
         gaps = {
           smartGaps = true;
           smartBorders = "on";
@@ -87,9 +87,17 @@ in {
             command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchpad -p CC -s 0.6 0.6";
             always = true;
           }
+          {command = "${pkgs.firefox}/bin/firefox --class Firefox";}
+          {command = "${pkgs.thunderbird}/bin/thunderbird --class Thunderbird";}
           {command = "${pkgs.dbus-sway-environment}/bin/dbus-sway-environment";}
           {command = "${pkgs.configure-gtk}/bin/configure-gtk";}
         ];
+
+        assigns = {
+          "2" = [{class = "Firefox";}];
+          "7" = [{class = "btop";}];
+          "8" = [{class = "Thunderbird";}];
+        };
 
         keybindings = let
           mod = config.wayland.windowManager.sway.config.modifier;
@@ -98,10 +106,10 @@ in {
           # alphabetical
 
           # a
-          "${mod}+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox; focus'';
+          "${mod}+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox --class Firefox; focus'';
           "${mod}+c" = ''nop scratchcalc'';
           "${mod}+d" = ''exec --no-startup-id ${pkgs.tofi}/bin/tofi-drun --drun-launch=true'';
-          "${mod}+e" = ''workspace 8; exec ${pkgs.thunderbird}/bin/thunderbird; focus'';
+          "${mod}+e" = ''workspace 8; exec ${pkgs.thunderbird}/bin/thunderbird --class Thunderbird; focus'';
           "${mod}+f" = ''fullscreen toggle'';
           "${mod}+Shift+f" = ''floating toggle'';
           # g
@@ -130,7 +138,7 @@ in {
           "${mod}+Shift+q" = ''[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`'';
           "${mod}+r" = ''exec --no-startup-id renoise'';
           #s
-          "${mod}+t" = ''workspace 7; exec --no-startup-id ${term} -e ${pkgs.btop}/bin/btop; focus'';
+          "${mod}+t" = ''workspace 7; exec --no-startup-id ${term} -e ${pkgs.btop}/bin/btop --class btop; focus'';
           "${mod}+u" = ''[urgent=latest] focus'';
           "${mod}+v" = ''exec --no-startup-id ${pkgs.mpv}/bin/mpv /dev/video0'';
           #w
