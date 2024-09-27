@@ -66,10 +66,10 @@ in {
           }
         ];
         startup = [
-          {
-            command = "systemctl --user restart waybar";
-            always = true;
-          }
+          # {
+          #   command = "systemctl --user restart waybar";
+          #   always = true;
+          # }
           {
             command = "--no-startup-id ${pkgs.autotiling}/bin/autotiling";
             always = true;

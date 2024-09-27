@@ -242,12 +242,12 @@ endsnippet
 
 context "math()"
 snippet sn "Set Intersection" iA
-\bigcap_{${1:n=0}}^{${1:\infty}}$0
+\bigcap_{${1:n=0}}^{${2:\infty}}$0
 endsnippet
 
 context "math()"
 snippet sm "Set Union" iA
-\bigcup_{${1:n=0}}^{${1:\infty}}$0 
+\bigcup_{${1:n=0}}^{${2:\infty}}$0 
 endsnippet
 
 context "math()"
@@ -684,4 +684,7 @@ snippet pset "Problem"
 
 endsnippet
 
-
+context "math()"
+snippet om "Outer Measure" i
+m^{*}\left( ${1:${VISUAL}} \right)$0
+endsnippet
