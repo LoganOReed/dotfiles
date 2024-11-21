@@ -87,8 +87,8 @@ in {
             command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchpad -p CC -s 0.6 0.6";
             always = true;
           }
-          {command = "${pkgs.firefox}/bin/firefox --class Firefox";}
-          {command = "${pkgs.thunderbird}/bin/thunderbird --class Thunderbird";}
+          {command = "swaymsg workspace 2 && ${pkgs.firefox}/bin/firefox --class Firefox";}
+          {command = "swaymsg workspace 8 && ${pkgs.thunderbird}/bin/thunderbird --class Thunderbird";}
           {command = "${pkgs.dbus-sway-environment}/bin/dbus-sway-environment";}
           {command = "${pkgs.configure-gtk}/bin/configure-gtk";}
         ];

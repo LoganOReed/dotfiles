@@ -156,13 +156,13 @@ endsnippet
 # subscript
 context "math()"
 snippet sup "suprimum" iA
-\sup_{${1:${VISUAL}}}\left\{ $2 \right\}$0
+\sup_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
 endsnippet
 
 # subscript
 context "math()"
 snippet inf "infimum" iA
-\inf_{${1:${VISUAL}}}\left\{ $2 \right\}$0
+\inf_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
 endsnippet
 
 context "math()"
@@ -386,6 +386,12 @@ endsnippet
 #
 # Greek Letters
 #
+
+priority 1000
+context "math()"
+snippet aa "alpha" w
+\alpha
+endsnippet
 
 priority 1000
 context "math()"
