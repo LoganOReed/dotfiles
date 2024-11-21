@@ -362,6 +362,8 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKyXa8tn7dqVcTCaKSOvBXn9UX5H7lcN1wNdDb8wMik6 occam@blade"
         # laptop
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBfmahPLv3UWKpmSP1Ufx+LWgLAao9uNUy/CjPT9w+LN me@loganreed.org"
+        #servo
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKorXdfBVr77CHWdCSywtTECIDmB1uUR6tGi1dHSFuNU me@loganreed.org"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = ["networkmanager" "wheel" "video" "audio" "input" "uinput" "ydotool"];
