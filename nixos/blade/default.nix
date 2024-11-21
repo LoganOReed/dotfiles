@@ -28,7 +28,7 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
-    # wireguard.enable = true;
+    wireguard.enable = true;
     # music.enable = true;
     # syncthing.enable = true;
     # ssh.enable = true;
