@@ -9,6 +9,9 @@
     # Also see the 'stable-packages' overlay at 'overlays/default.nix'.
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
+    templates.url = "github:LoganOReed/templates";
+    # templates.inputs.nixpkgs.follows = "nixpkgs";
+
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs-stable";
 
@@ -47,6 +50,7 @@
     stylix,
     musnix,
     impermanence,
+    templates,
     ...
   } @ inputs: let
     inherit (self) outputs;

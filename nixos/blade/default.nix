@@ -28,6 +28,7 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
+    anki.enable = true;
     wireguard.enable = true;
     # music.enable = true;
     # syncthing.enable = true;
@@ -157,8 +158,6 @@
     pulseaudio
     qbittorrent
     nix-inspect
-    anki-bin
-    texlive.combined.scheme-full
   ];
 
   programs.zsh.enable = true;

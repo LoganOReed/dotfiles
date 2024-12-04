@@ -3,6 +3,7 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  anki = import ./anki;
   wireguard = import ./wireguard;
   music = import ./music;
   homeserver = import ./homeserver;

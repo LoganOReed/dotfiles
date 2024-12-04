@@ -29,6 +29,7 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   modules = {
+    anki.enable = true;
     wireguard.enable = true;
     music.enable = true;
     syncthing.enable = true;

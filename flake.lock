@@ -110,11 +110,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732109232,
-        "narHash": "sha256-iYh6h8yueU8IyOfNclbiBG2+fBFcjjUfXm90ZBzk0c0=",
+        "lastModified": 1732221404,
+        "narHash": "sha256-fWTyjgGt+BHmkeJ5IxOR4zGF4/uc+ceWmhBjOBSVkgQ=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "a0c384e0a3b8bcaed30a6bcf3783f8a7c8b35be4",
+        "rev": "97c0c4d7072f19b598ed332e9f7f8ad562c6885b",
         "type": "github"
       },
       "original": {
@@ -824,6 +824,21 @@
         "type": "github"
       }
     },
+    "official-templates": {
+      "locked": {
+        "lastModified": 1725249436,
+        "narHash": "sha256-qqKaxlPv+6Fyj+NUuOLPOlD82caqDkmpw63qOQkIzzc=",
+        "owner": "NixOS",
+        "repo": "templates",
+        "rev": "ad0e221dda33c4b564fad976281130ce34a20cb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "templates",
+        "type": "github"
+      }
+    },
     "parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -946,6 +961,7 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "templates": "templates",
         "watson-personal": "watson-personal"
       }
     },
@@ -1145,6 +1161,24 @@
       "original": {
         "id": "systems",
         "type": "indirect"
+      }
+    },
+    "templates": {
+      "inputs": {
+        "official-templates": "official-templates"
+      },
+      "locked": {
+        "lastModified": 1732226361,
+        "narHash": "sha256-7Jupb1RgYbbljMe7+NPs75wBn6CD6c1IM7RdY+kzt7k=",
+        "owner": "LoganOReed",
+        "repo": "templates",
+        "rev": "626198d5717007cfa68aa1ccdc5f586268ce70b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LoganOReed",
+        "repo": "templates",
+        "type": "github"
       }
     },
     "tinted-foot": {

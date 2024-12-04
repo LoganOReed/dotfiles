@@ -153,6 +153,38 @@ snippet sb "subscript" iA
 _{${1:${VISUAL}}}$0
 endsnippet
 
+context "math()"
+snippet xnn "xn" iA
+x_{n}
+endsnippet
+
+context "math()"
+snippet ynn "yn" iA
+y_{n}
+endsnippet
+
+
+context "math()"
+snippet xii "xi" iA
+x_{i}
+endsnippet
+
+context "math()"
+snippet yii "yi" iA
+y_{i}
+endsnippet
+
+context "math()"
+snippet xjj "xj" iA
+x_{j}
+endsnippet
+
+context "math()"
+snippet yjj "yj" iA
+y_{j}
+endsnippet
+
+
 # subscript
 context "math()"
 snippet sup "suprimum" iA
@@ -172,7 +204,7 @@ endsnippet
 
 context "math()"
 snippet sum "Sigma Notation" wA
-\sum_{${1:i=0}}^{${2:\infty}} ${0:${VISUAL}}
+\sum_{${1:${2:i}=${3:0}}}^{${4:\infty}} ${0:${VISUAL}}
 endsnippet
 
 context "math()"
@@ -255,6 +287,9 @@ snippet << "Subset" iA
 \subset 
 endsnippet
 
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rw
+\\`!p snip.rv = match.group(1)`
+endsnippet
 
 context "math()"
 snippet ma "Map definition" w
@@ -339,12 +374,36 @@ snippet "([a-zA-Z])bold" "bold" riA
 \textbf{`!p snip.rv=match.group(1)`}
 endsnippet
 
+priority 10
+context "math()"
+snippet "text" "text" riA
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])text" "text" riA
+\text{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "(\w+)bold" "Bold" ri
+\textbf{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "(\w+)it" "Italic" ri
+\textit{`!p snip.rv=match.group(1)`}
+endsnippet
+
 #
 # Letters/Variables
 #
 
 context "math()"
 snippet ifty "infinity" w
+\infty
+endsnippet
+
+snippet ooo "\infty" iA
 \infty
 endsnippet
 
@@ -602,11 +661,17 @@ snippet del "Del" iA
 \partial
 endsnippet
 
+priority 300
+context "math()"
+snippet digl "definite integral" wA
+\int_{${1:-\infty}}^{${2:\infty}} \! ${3:${VISUAL}} \, \mathrm{d}${4:x} $0
+endsnippet
+
 
 priority 300
 context "math()"
 snippet igl "integral" wA
-\int_{ ${1:\Omega}} \! ${2:${VISUAL}} \, \mathrm{d}${3:x} $0
+\int_{${1:\Omega}} \! ${2:${VISUAL}} \, \mathrm{d}${3:x} $0
 endsnippet
 
 priority 300
@@ -694,3 +759,25 @@ context "math()"
 snippet om "Outer Measure" i
 m^{*}\left( ${1:${VISUAL}} \right)$0
 endsnippet
+
+# Example from https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt#L925
+snippet "testbe(gin)?( (\S+))?" "begin{} / end{}" br
+\begin{${1:`!p
+snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
+		${2:${VISUAL}}
+\end{$1}$0
+endsnippet
+
+snippet note "Latex Note for anki" b
+\begin{note}
+	\xplain{`uuidgen`}
+	\tags{${1:def}$2}
+	\xfield{${3:Front}}
+		\begin{field}
+			${4:Back}
+		\end{field}
+\end{note}
+$0
+endsnippet
+
+
