@@ -263,7 +263,7 @@
       font-awesome
       powerline-symbols
       openmoji-color
-      (nerdfonts.override {fonts = ["Iosevka"];})
+      nerd-fonts.iosevka
     ];
   };
 

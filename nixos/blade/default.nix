@@ -158,6 +158,7 @@
     pulseaudio
     qbittorrent
     nix-inspect
+    manix
   ];
 
   programs.zsh.enable = true;
@@ -272,7 +273,7 @@
       font-awesome
       powerline-symbols
       openmoji-color
-      (nerdfonts.override {fonts = ["Iosevka"];})
+      nerd-fonts.iosevka
     ];
   };
 
