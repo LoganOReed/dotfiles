@@ -31,7 +31,7 @@
   modules = {
     anki.enable = true;
     wireguard.enable = true;
-    music.enable = true;
+    # music.enable = true;
     syncthing.enable = true;
     # ssh.enable = true;
     # disabled as it heavily lags when trying to access the directory
