@@ -68,6 +68,10 @@ snippet lr| "left| right|" iA
 \left| ${1:${VISUAL}} \right|$0
 endsnippet
 
+snippet || "norm" iA
+\left\| ${1:${VISUAL}} \right\|$0
+endsnippet
+
 snippet lr{ "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
@@ -77,6 +81,10 @@ snippet lrb "left\{ right\}" iA
 endsnippet
 
 snippet lr[ "left[ right]" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+snippet lrs "left[ right]" iA
 \left[ ${1:${VISUAL}} \right]$0
 endsnippet
 
@@ -203,6 +211,11 @@ snippet lim "limit" iA
 endsnippet
 
 context "math()"
+snippet det "determinant" iA
+\det\left( ${1:${VISUAL}} \right)
+endsnippet
+
+context "math()"
 snippet sum "Sigma Notation" wA
 \sum_{${1:${2:i}=${3:0}}}^{${4:\infty}} ${0:${VISUAL}}
 endsnippet
@@ -283,6 +296,12 @@ snippet sm "Set Union" iA
 endsnippet
 
 context "math()"
+snippet xx "cross multiplication" iA
+\times $0
+endsnippet
+
+
+context "math()"
 snippet << "Subset" iA
 \subset 
 endsnippet
@@ -352,13 +371,13 @@ endsnippet
 priority 10
 context "math()"
 snippet "norm" "norm" riA
-|| ${1:${VISUAL}} ||$0
+\| ${1:${VISUAL}} \|$0
 endsnippet
 
 priority 100
 context "math()"
 snippet "([a-zA-Z])norm" "norm" riA
-|| `!p snip.rv=match.group(1)` ||
+\| `!p snip.rv=match.group(1)` \|
 endsnippet
 
 
@@ -430,7 +449,7 @@ endsnippet
 
 context "math()"
 snippet CC "Complex" iA
-\mathbb{C}
+\mathbb{C}^{$1}
 endsnippet
 
 context "math()"
@@ -460,6 +479,12 @@ priority 1000
 context "math()"
 snippet aa "alpha" w
 \alpha
+endsnippet
+
+priority 1000
+context "math()"
+snippet bb "beta" w
+\beta
 endsnippet
 
 priority 1000
@@ -547,6 +572,10 @@ snippet PP "Phi" w
 \Phi
 endsnippet
 
+context "math()"
+snippet rr "rho" w
+\rho
+endsnippet
 
 
 #
@@ -738,13 +767,25 @@ endsnippet
 
 context "math()"
 snippet ;a "parenthesis" iA
-(${1:${VISUAL}})$0
+\left( ${1:${VISUAL}} \right)$0
 endsnippet
 
 context "math()"
 snippet a; "parenthesis" iA
-(${1:${VISUAL}})$0
+\left( ${1:${VISUAL}} \right)$0
 endsnippet
+
+context "math()"
+snippet ;s "square bracket" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+context "math()"
+snippet s; "square bracket" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+
 
 # temp
 context "math()"
