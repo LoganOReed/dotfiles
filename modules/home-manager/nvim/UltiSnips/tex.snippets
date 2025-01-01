@@ -97,6 +97,18 @@ snippet ... "ldots" iA
 \ldots
 endsnippet
 
+
+context "math()"
+snippet ! "not" i
+\not
+endsnippet
+
+context "math()"
+snippet not "not" i
+\not
+endsnippet
+
+
 snippet != "equals" iA
 \neq 
 endsnippet
@@ -394,16 +406,6 @@ snippet "([a-zA-Z])bold" "bold" riA
 endsnippet
 
 priority 10
-snippet "bold" "bold" ri
-\textbf{${1:${VISUAL}}}$0
-endsnippet
-
-priority 100
-snippet "([a-zA-Z])bold" "bold" ri
-\textbf{`!p snip.rv=match.group(1)`}
-endsnippet
-
-priority 10
 context "math()"
 snippet "text" "text" riA
 \text{${1:${VISUAL}}}$0
@@ -415,6 +417,12 @@ snippet "([a-zA-Z])text" "text" riA
 \text{`!p snip.rv=match.group(1)`}
 endsnippet
 
+priority 10
+snippet "bold" "bold" ri
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
 snippet "(\w+)bold" "Bold" ri
 \textbf{`!p snip.rv=match.group(1)`}
 endsnippet
@@ -752,8 +760,8 @@ endsnippet
 # Szegő
 # endsnippet
 #
-snippet it "Italic" 
-\textit{$1} $0
+snippet it "Item" 
+\item[$1] $0
 endsnippet
 
 # snippet TODO "Todo Item" iA
@@ -819,7 +827,7 @@ snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
 \end{$1}$0
 endsnippet
 
-snippet note "Latex Note for anki" b
+snippet snote "Latex Note for anki" b
 \begin{note}
 	\xplain{`uuidgen`}
 	\tags{${1:def}$2}
@@ -827,8 +835,30 @@ snippet note "Latex Note for anki" b
 		\begin{field}
 			${4:Back}
 		\end{field}
-\end{note}
-$0
+\end{note}$0
+endsnippet
+
+snippet note "Latex Note for anki" b
+\begin{note}
+	\xplain{`uuidgen`}
+	\tags{${1:def}$2}
+	\begin{field}
+		${3:Front}
+	\end{field}
+	\begin{field}
+		${4:Back}
+	\end{field}
+\end{note}$0
+endsnippet
+
+
+
+snippet uuid "UUIDGEN" iA
+`uuidgen`
+endsnippet
+
+snippet un "Unknown Placeholder" i
+{\color{red}\textbf{${1:???}}}
 endsnippet
 
 
