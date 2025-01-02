@@ -16,7 +16,7 @@ in {
 
     programs.beets = {
       enable = true;
-      package = pkgs.beets.override {
+      package = pkgs.stable.beets.override {
         pluginOverrides = {
           lyrics.enable = true;
           info.enable = true;

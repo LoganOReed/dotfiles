@@ -9,23 +9,171 @@ with lib; let
 in {
   options.modules.ncmpcpp = {enable = mkEnableOption "ncmpcpp";};
   config = mkIf cfg.enable {
-    services.mpd = {
+    services.mpd.musicDirectory = "/documents/music";
+    services.mopidy = let
+      mopidyPackagesOverride = pkgs.mopidyPackages.overrideScope (prev: final: {
+        extraPkgs = pkgs: [ pkgs.yt-dlp pkgs.gst_all_1.gst-plugins-base ];
+      });
+    in {
       enable = true;
-      musicDirectory = "${config.home.homeDirectory}/documents/music";
-      extraConfig = ''
-            audio_output {
-              type "pipewire"
-              name "My Pipewire output"
-            }
-
-            audio_output {
-            type                    "fifo"
-            name                    "Visualizer feed"
-            path                    "/tmp/mpd.fifo"
-            format                  "44100:16:2"
-        }
-      '';
+      extensionPackages = with mopidyPackagesOverride; [
+        mopidy-notify
+        mopidy-mpd
+        mopidy-jellyfin
+        mopidy-local
+        mopidy-mpris
+      ];
+      settings = {
+        mpd = {
+          enabled = true;
+          hostname = "localhost";
+          port = 6600;
+          connection_timeout = 300;
+        };
+        audio = {
+          mixer = "software";
+          output = "tee name=t ! queue ! autoaudiosink t. ! queue ! audio/x-raw,rate=44100,channels=2,format=S16LE ! udpsink host=localhost port=5555";
+        };
+        notify = {
+          enabled = true;
+        };
+        jellyfin = {
+          hostname = "mus.loganreed.org";
+          # token = "eb6e5376fa9a4e4cbdafbaa6fc39c0bc";
+          username = "occam";
+          password = "Logsdad01cheese"; 
+          libraries = "Music";
+          albumartistsort = false;
+        };
+        local = {
+          enabled = true;
+          media_dir = "/documents/music";
+        };
+        softwaremixer = {
+          enabled = true;
+        };
+        mpris = {
+          enabled = true;
+          bus_type = "session";
+        };
+      };
     };
+#       settings = ''
+# [mpd]
+# enabled = true
+# # Useful if you want to control this instance from a remote MPD client
+# hostname = localhost
+# port = 6600
+# # This will help avoid timeout errors for  artists or folders with large amounts of files
+# connection_timeout = 300
+#
+# # Used in the event you want to control this system from a web browser
+# # [http]
+# #hostname = 127.0.0.1
+# #port = 6680
+#
+# [audio]
+# mixer = software
+# output = tee name=t ! queue ! autoaudiosink t. ! queue ! audio/x-raw,rate=44100,channels=2,format=S16LE ! udpsink host=localhost port=5555
+#
+#
+# [jellyfin]
+# hostname = mus.loganreed.org
+# username = occam
+# password = Logsdad01cheese
+# libraries = Music
+# albumartistsort = False
+# album_format = {Name}
+#
+# [local]
+# enabled = true
+# media_dir = /documents/music
+#
+# [softwaremixer]
+# enabled = true
+#
+#       '';
+    # services.mpd = {
+    #   enable = true;
+    #   musicDirectory = "${config.home.homeDirectory}/documents/music";
+    #   extraConfig = ''
+    #         audio_output {
+    #           type "pipewire"
+    #           name "My Pipewire output"
+    #         }
+    #
+    #         audio_output {
+    #         type                    "fifo"
+    #         name                    "Visualizer feed"
+    #         path                    "/tmp/mpd.fifo"
+    #         format                  "44100:16:2"
+    #     }
+    #   '';
+    # };
+
+    # services.mopidy.enable = true;
+    # services.mopidy.extensionPackages = with pkgs; 
+    # [ 
+    #   mopidy-jellyfin 
+    #     mopidy-local 
+    #     mopidy-mpd 
+    #     mopidy-notify
+    # ];
+    # services.mopidy.settings = {
+    #   file = {
+    #     media-dirs = [ "/home/occam/documents|music|Music" ];
+    #     follow_symlinks = true;
+    #     excluded_file_extensions = [
+    #       ".html"
+    #         ".zip"
+    #         ".jpg"
+    #         ".jpeg"
+    #         ".png"
+    #     ];
+    #   };
+    #   audio = {
+    #     mixer = "software";
+    #     output ="autoaudiosink" ;
+    #   };
+    #   core = {
+    #     cache_dir = "$XDG_CACHE_DIR/mopidy";
+    #     restore_state = true;
+    #   };
+    #   jellyfin = {
+    #     enabled = true;
+    #     hostname = "mus.loganreed.org";
+    #     username = "occam";
+    #     password = "Logsdad01cheese";
+    #
+    #   };
+    #   mpd = {
+    #     enabled = true;
+    #     port = 6600;
+    #     zeroconf = "Mopidy server on $hostname";
+    #     default_playlist_scheme = "m3u";
+    #
+    #   };
+    #   podcast = {
+    #     enabled = true;
+    #   };
+    #   local = {
+    #     enabled = true;
+    #     media_dir = "~/documents/music";
+    #     excluded_file_extensions = ''
+    #       .directory
+    #       .html
+    #       .jpeg
+    #       .jpg
+    #       .log
+    #       .nfo
+    #       .png
+    #       .txt
+    #       '';
+    #   };
+    #   softwaremixer = {
+    #     enabled = true;
+    #   };
+    # };
 
     programs.ncmpcpp = {
       enable = true;
@@ -85,6 +233,9 @@ in {
         cyclic_scrolling = "yes";
         mouse_list_scroll_whole_page = "no";
 
+        mpd_host = "localhost";
+        mpd_port = "6600";
+
         # Varias configuraciones:
         autocenter_mode = "yes";
         display_bitrate = "yes";
@@ -95,12 +246,15 @@ in {
 
         # Visualizador de música:
         visualizer_output_name = "Visualizer feed";
-        visualizer_in_stereo = "no";
-        visualizer_fifo_path = "/tmp/mpd.fifo";
-        visualizer_sync_interval = "10";
+        visualizer_in_stereo = "yes";
+        visualizer_data_source = "localhost:5555";
+        # visualizer_sync_interval = "10";
+        visualizer_fps = 60;
+        visualizer_autoscale = "no";
         visualizer_type = "spectrum";
-        visualizer_look = "▋▋";
-
+        visualizer_look = "●▋";
+        visualizer_spectrum_smooth_look = "yes";
+        visualizer_spectrum_gain = 10;
         # Color:
         color1 = "white";
         color2 = "red";
@@ -180,4 +334,6 @@ in {
 #   visualizer_type = "spectrum";
 #   visualizer_look = "▉▋";
 # };
+
+
 
