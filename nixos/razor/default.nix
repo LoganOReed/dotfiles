@@ -24,6 +24,7 @@
       # Import your generated (nixos-generate-config) hardware configuration
       ./hardware-configuration.nix
       ./disk-config.nix
+      ./../shared/yubikey-pam.nix
       inputs.home-manager.nixosModules.home-manager
     ]
     ++ (builtins.attrValues outputs.nixosModules);
@@ -212,9 +213,7 @@
 
   # Setup sway
   security.polkit.enable = true;
-  security.pam.services.swaylock = {
-    text = "auth include login";
-  };
+  
 
   xdg.portal = {
     enable = true;

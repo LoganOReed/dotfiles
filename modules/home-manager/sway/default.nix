@@ -87,14 +87,14 @@ in {
             command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchpad -p CC -s 0.6 0.6";
             always = true;
           }
-          {command = "swaymsg workspace 2 && ${pkgs.firefox}/bin/firefox --class Firefox";}
+          {command = "swaymsg workspace 2 && ${pkgs.qutebrowser}/bin/qutebrowser --class QuteBrowser";}
           {command = "swaymsg workspace 8 && ${pkgs.thunderbird}/bin/thunderbird --class Thunderbird";}
           {command = "${pkgs.dbus-sway-environment}/bin/dbus-sway-environment";}
           {command = "${pkgs.configure-gtk}/bin/configure-gtk";}
         ];
 
         assigns = {
-          "2" = [{class = "Firefox";}];
+          "2" = [{class = "QuteBrowser";}];
           "7" = [{class = "btop";}];
           "8" = [{class = "Thunderbird";}];
         };
