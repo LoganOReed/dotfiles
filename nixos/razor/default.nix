@@ -152,9 +152,9 @@
     ssh-to-age
     networkmanagerapplet
     thunderbird
-    gimp-with-plugins
+    stable.gimp-with-plugins
     # obs-studio
-    inkscape
+    stable.inkscape
     pulseaudio
     qbittorrent
     nix-inspect
