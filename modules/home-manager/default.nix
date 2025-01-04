@@ -19,6 +19,7 @@
   watson = import ./watson;
   xdg = import ./xdg;
   firefox = import ./firefox;
+  qutebrowser = import ./qutebrowser;
   dunst = import ./dunst;
   eww = import ./eww;
   zathura = import ./zathura;

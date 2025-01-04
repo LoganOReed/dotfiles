@@ -155,7 +155,7 @@ in {
             format = "<span>󰎈 {} 󰎈</span>";
             return-type = "json";
             max-length = 60;
-            exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+            exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}'";
             on-click = "playerctl play-pause";
             on-click-right = "kitty --class ncmpcpp ncmpcpp";
           };

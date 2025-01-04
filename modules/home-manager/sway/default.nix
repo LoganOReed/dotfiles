@@ -87,14 +87,14 @@ in {
             command = "--no-startup-id ${pkgs.kitti3}/bin/kitti3 -n scratchpad -p CC -s 0.6 0.6";
             always = true;
           }
-          {command = "swaymsg workspace 2 && ${pkgs.firefox}/bin/firefox --class Firefox";}
+          {command = "swaymsg workspace 2 && ${pkgs.qutebrowser}/bin/qutebrowser --class QuteBrowser";}
           {command = "swaymsg workspace 8 && ${pkgs.thunderbird}/bin/thunderbird --class Thunderbird";}
           {command = "${pkgs.dbus-sway-environment}/bin/dbus-sway-environment";}
           {command = "${pkgs.configure-gtk}/bin/configure-gtk";}
         ];
 
         assigns = {
-          "2" = [{class = "Firefox";}];
+          "2" = [{class = "QuteBrowser";}];
           "7" = [{class = "btop";}];
           "8" = [{class = "Thunderbird";}];
         };
@@ -106,7 +106,8 @@ in {
           # alphabetical
 
           # a
-          "${mod}+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox --class Firefox; focus'';
+          "${mod}+b" = ''workspace 2; exec qutebrowser; focus'';
+          "${mod}+Shift+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox --class Firefox; focus'';
           "${mod}+c" = ''nop scratchcalc'';
           "${mod}+d" = ''exec --no-startup-id ${pkgs.tofi}/bin/tofi-drun --drun-launch=true'';
           "${mod}+e" = ''workspace 8; exec ${pkgs.thunderbird}/bin/thunderbird --class Thunderbird; focus'';

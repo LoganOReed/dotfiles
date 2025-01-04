@@ -28,6 +28,7 @@
   modules = {
     # gui
     # firefox.enable = true;
+    qutebrowser.enable = true;
     sops.enable = true;
     kitty.enable = true;
     # eww.enable = true;
