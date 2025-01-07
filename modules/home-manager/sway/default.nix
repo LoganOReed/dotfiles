@@ -22,6 +22,7 @@ in {
       dbus-sway-environment
       configure-gtk
       vim-sway-nav
+      rofi-bluetooth
     ];
 
     programs.btop = {

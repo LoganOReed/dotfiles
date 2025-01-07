@@ -20,6 +20,7 @@
 
       # You can also split up your configuration and import pieces of it here:
       # ./users.nix
+      ./../shared/yubikey-pam.nix
 
       # Import your generated (nixos-generate-config) hardware configuration
       ./hardware-configuration.nix
@@ -159,6 +160,7 @@
     qbittorrent
     nix-inspect
     manix
+
   ];
 
   programs.zsh.enable = true;
@@ -214,25 +216,8 @@
   # Setup sway
   security.polkit.enable = true;
 
-  security.pam.services = {
-    swaylock.u2fAuth = true;
-    login.u2fAuth = true;
-    sudo.u2fAuth = true;
-  };
 
-  # Yubikey stuff
-  security.pam.u2f = {
-    enable = true;
-    settings = {
-      interactive = true;
-      cue = true;
-      origin = "pam://yubi";
-      authfile = pkgs.writeText "u2f-mappings" (lib.concatStrings [
-        "occam"
-        ":DTudv4m1IOG1f73ackmJtYmiAxyN223GQqHHfn8Oota9+iKE1q8ItmFB3EiyP645hwZwdGrp9Lo3laxIN20nAA==,s8BBGUCEtcspC0uI6u9wgCltpvkqRN/wO1KuAq6gYGlCtigfEoQBrkr9fcXvwZds8QWGcbFzeRkF9LHybqUC4Q==,es256,+presence"
-      ]);
-    };
-  };
+
 
   xdg.portal = {
     enable = true;
@@ -262,6 +247,8 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
+
+  services.blueman.enable = true;
 
   # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
   hardware = {
