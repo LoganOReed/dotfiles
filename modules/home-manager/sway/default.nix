@@ -107,6 +107,7 @@ in {
           # alphabetical
 
           # a
+          "${mod}+a" = ''workspace 6; exec anki; focus'';
           "${mod}+b" = ''workspace 2; exec qutebrowser; focus'';
           "${mod}+Shift+b" = ''workspace 2; exec ${pkgs.firefox}/bin/firefox --class Firefox; focus'';
           "${mod}+c" = ''nop scratchcalc'';
