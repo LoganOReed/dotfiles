@@ -1,0 +1,74 @@
+snippet flp "floating point precision" b
+use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
+endsnippet
+
+snippet use "use/import structure" b
+use ${1:module_name}, only: ${2:function_or_variable}
+endsnippet
+
+snippet prog "program" b
+program ${1:name}
+	implicit none
+	$2
+end program $1
+$0
+endsnippet
+
+snippet module "module" b
+module ${1:module_name}
+	implicit none
+	$2
+end module $1
+$0
+endsnippet
+
+snippet block "block" b
+block
+	$1
+end block
+$0
+endsnippet
+
+
+snippet re "real variable" bw
+real :: ${1:x}
+endsnippet
+
+snippet int "integer variable" bw
+integer :: ${1:n}
+endsnippet
+
+snippet com "complex variable" bw
+complex :: ${1:z}
+endsnippet
+
+snippet pr "print to stdout" b
+print *, $1
+endsnippet
+
+snippet print "print to stdout" b
+print *, $1
+endsnippet
+
+snippet re "standard read" b
+read(*,*) $1
+endsnippet
+
+snippet read "standard read" b
+read(*,*) $1
+endsnippet
+
+snippet ar "array declaration" b
+${1:integer}, dimension(${2:10}) :: ${3:arr_name}
+endsnippet
+
+snippet ari "int array declaration" b
+integer, dimension(${2:10}) :: ${3:arr_name}
+endsnippet
+
+snippet are "real array declaration" b
+real, dimension(${2:10}) :: ${3:arr_name}
+endsnippet
+
+
+

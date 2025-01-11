@@ -38,6 +38,19 @@ local in_mathzone = function()
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
+local rec_ls
+rec_ls = function()
+	return sn(
+		nil,
+		c(1, {
+			-- Order is important, sn(...) first would cause infinite loop of expansion.
+			t(""),
+			sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
+		})
+	)
+end
+
+
 
 -- Bad way
 -- return {
@@ -112,4 +125,13 @@ return {
       d(1, get_visual),
     })
   ),
+
+	-- rec_ls is self-referencing. That makes this snippet 'infinite' eg. have as many
+	-- \item as necessary by utilizing a choiceNode.
+	s("ls", {
+		t({ "\\begin{itemize}", "\t\\item " }),
+		i(1),
+		d(2, rec_ls, {}),
+		t({ "", "\\end{itemize}" }),
+	}),
 }

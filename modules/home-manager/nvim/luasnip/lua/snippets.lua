@@ -178,6 +178,34 @@ return {
     )
   ),
   s(
+    { trig = "c", name = "c()", dscr = "Choice Node" },
+    fmta(
+      [[
+        c(<>, {
+          <>
+        }),
+      ]],
+      {
+        i(1, "1"),
+        i(2, "nodes"),
+      }
+    )
+  ),
+  s(
+    { trig = "sn", name = "sn()", dscr = "Snippet Node" },
+    fmta(
+      [[
+        sn(<>, {
+          <>
+        }),
+      ]],
+      {
+        i(1, "nil"),
+        i(2, "nodes"),
+      }
+    )
+  ),
+  s(
     { trig = "snp", name="postfix", dscr = "snippet to edit string's concat'd on the front", snippetType = "autosnippet" },
     fmta(
       [[
