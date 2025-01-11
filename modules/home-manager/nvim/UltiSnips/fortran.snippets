@@ -22,6 +22,17 @@ end module $1
 $0
 endsnippet
 
+snippet sub "subroutine" b
+subroutine ${1:name}(${2:ret_val}, ${3:parameters})
+  use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
+  implicit none
+  !f2py intent(in) $3
+  !f2py intent(out) $2
+  $4
+end subroutine $1
+endsnippet
+
+
 snippet block "block" b
 block
 	$1

@@ -89,18 +89,44 @@ return {
     )
   ),
   s(
+    { trig = "elif", name="else if", dscr = "else if"},
+    fmta(
+      [[
+        else if (<>) then
+          <>
+      ]],
+      {
+        i(1),
+        i(2),
+      }
+    )
+  ),
+  s(
+    { trig = "else", name="else", dscr = "else"},
+    fmta(
+      [[
+        else
+          <>
+      ]],
+      {
+        i(1),
+      }
+    )
+  ),
+  s(
     { trig = "do", name="do", dscr = "do"},
     fmta(
       [[
-        do <> = <>
+        do <> = <>, <>
           <>
         end do
         <>
       ]],
       {
         i(1, "i"),
-        i(2, "1, 10"),
-        i(3),
+        i(2, "1"),
+        i(3, "10"),
+        i(4),
         i(0),
       }
     )
