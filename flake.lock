@@ -569,11 +569,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736571962,
-        "narHash": "sha256-N1HnslVXkdWmQG4UGYzhF1fCDbQ6EP/N+Ls8kdCjz9A=",
+        "lastModified": 1736680803,
+        "narHash": "sha256-uiB7cdH2w6CRq58GR/EROjvqSQC72s17ma8dEzqNg8A=",
         "owner": "LoganOReed",
         "repo": "kickstart-nix.nvim",
-        "rev": "31b0c09f99adab89e9a68ca80af877cf7394f365",
+        "rev": "c01bdcf70219a2c9634741aa0ccf7aec1409f2c0",
         "type": "github"
       },
       "original": {
@@ -1299,11 +1299,11 @@
         "poetry": "poetry"
       },
       "locked": {
-        "lastModified": 1733812913,
-        "narHash": "sha256-M4cTUMOivFjGi+g5WsHSxQJ+rd1wrw79MqAXIGYCGUw=",
+        "lastModified": 1736675953,
+        "narHash": "sha256-pQlW+NEGpbStbxtI2TDNTCK3hch5UOVP4KrzlrgomUE=",
         "owner": "LoganOReed",
         "repo": "templates",
-        "rev": "5720cc13a24d057f6d3916b8bb068b126d74f77b",
+        "rev": "b9d7c1f25051be752a4e65ca7d5973b780c143d7",
         "type": "github"
       },
       "original": {
