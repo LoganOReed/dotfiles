@@ -31,9 +31,10 @@
 
   modules = {
     anki.enable = true;
-    wireguard.enable = true;
+#TODO: FIX wireguard and syncthing, probably due to sops
+    # wireguard.enable = true;
     # music.enable = true;
-    syncthing.enable = true;
+    # syncthing.enable = true;
     # ssh.enable = true;
     # disabled as it heavily lags when trying to access the directory
     # sshfs.enable = true;
