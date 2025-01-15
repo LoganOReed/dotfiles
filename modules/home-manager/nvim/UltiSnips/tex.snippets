@@ -211,6 +211,18 @@ snippet sup "suprimum" iA
 \sup_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
 endsnippet
 
+context "math()"
+snippet max "maximum" iA
+\max_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
+endsnippet
+
+context "math()"
+snippet tr "trace" i
+\text{tr}$0
+endsnippet
+
+
+
 # subscript
 context "math()"
 snippet inf "infimum" iA
@@ -229,7 +241,7 @@ endsnippet
 
 context "math()"
 snippet sum "Sigma Notation" wA
-\sum_{${1:${2:i}=${3:0}}}^{${4:\infty}} ${0:${VISUAL}}
+\sum_{${1:i=0}}^{${4:\infty}} ${0:${VISUAL}}
 endsnippet
 
 context "math()"
@@ -545,6 +557,11 @@ snippet LL "Lambda" w
 \Lambda
 endsnippet
 
+priority 1000
+context "math()"
+snippet kk "kappa" w
+\kappa
+endsnippet
 
 priority 1000
 context "math()"
@@ -827,17 +844,6 @@ snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
 \end{$1}$0
 endsnippet
 
-snippet snote "Latex Note for anki" b
-\begin{note}
-	\xplain{`uuidgen`}
-	\tags{${1:def}$2}
-	\xfield{${3:Front}}
-		\begin{field}
-			${4:Back}
-		\end{field}
-\end{note}$0
-endsnippet
-
 snippet note "Latex Note for anki" b
 \begin{note}
 	\xplain{`uuidgen`}
@@ -850,6 +856,20 @@ snippet note "Latex Note for anki" b
 	\end{field}
 \end{note}$0
 endsnippet
+
+snippet nnote "Latex Note for anki" b
+\begin{note}
+	\xplain{`uuidgen`}
+	\tags{${1:def}$2}
+	\begin{field}
+		$4$3
+	\end{field}
+	\begin{field}
+		${3:Front}
+	\end{field}
+\end{note}$0
+endsnippet
+
 
 
 
