@@ -141,7 +141,7 @@ in {
           "${mod}+Shift+q" = ''[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`'';
           "${mod}+r" = ''exec --no-startup-id renoise'';
           #s
-          "${mod}+t" = ''workspace 7; exec --no-startup-id ${term} -e ${pkgs.btop}/bin/btop --class btop; focus'';
+          "${mod}+t" = ''workspace 7; exec --no-startup-id ${term} -e btop'';
           "${mod}+u" = ''[urgent=latest] focus'';
           "${mod}+v" = ''exec --no-startup-id ${pkgs.mpv}/bin/mpv /dev/video0'';
           #w
