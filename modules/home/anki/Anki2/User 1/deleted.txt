@@ -1,0 +1,14 @@
+nid	mid	fields
+1734054481645	1472310773282	87f26699-299b-43e3-bb47-b7b90e1404f0	[latex]What is the smallest scale Physical System?[/latex]	[latex]<br>      Quantum Mechanics.<br>    [/latex]	multi					
+1734054481646	1472310773282	ee0ee771-c575-41b3-8318-26a2081d77e1	[latex]What equation is used to describe Quantum Mechanics?[/latex]	[latex]<br>      Schrodinger Equation.<br>    [/latex]	multi					
+1734054481647	1472310773282	d8860a62-4abe-4a74-a6d3-92fb850cce0a	[latex]What is the physical system one step above QM?[/latex]	[latex]<br>      Molecular Dynamics.<br>    [/latex]	multi					
+1734054481648	1472310773282	7e0e7a5a-a695-4b46-84d7-4f562763d8a4	[latex]What equation is used to describe Molecular Dynamics?[/latex]	[latex]<br>      Newton's Equations<br>    [/latex]						
+1734054481649	1472310773282	48048bc0-c078-42b4-821c-2a627172f375	[latex]Describe Density Functional Theory.[/latex]	[latex]<br>      Instead of exactly describing all bodies, DFT uses pdfs to move to a lower dimensional pde.<br>    [/latex]	multi					
+1734054481650	1472310773282	70128401-8445-4366-a217-8480fbe5251c	[latex]What is the physical system above Molecular Dynamics?[/latex]	[latex]<br>      Kinetic Theory.<br>    [/latex]	multi					
+1734054481651	1472310773282	0091b9ab-d432-4f6c-873e-acae21084ef5	[latex]What equation describes Kinetic Theory?[/latex]	[latex]<br>      Boltzmann Equation.<br>    [/latex]	multi					
+1734054481652	1472310773282	350877aa-8394-4071-a369-39aa41125635	[latex]Describe Statistical Mechanics.[/latex]	[latex]<br>      Move from Newton Equations to a pde with stochastic descriptions of the interactions between molecules.<br>    [/latex]	multi					
+1734054481653	1472310773282	cc8b3ec0-8cf7-49ff-a754-0bf348ef0774	[latex]What is above Kinetic Theory?[/latex]	[latex]<br>      Hydrodynamics.<br>    [/latex]	multi					
+1734054481654	1472310773282	ac281df4-0570-4cb4-a7e0-44c953510c79	[latex]What are Asymptotic Preserving Methods?[/latex]	[latex]<br>      Given an algorithm which has parameters for grid scale and epsilon size, it is AP if the limit of it as epsilon goes to zero is consistent and stable.<br>    [/latex]	multi					
+1734054902352	1472310773282	8ceb8941-f320-43c3-9f5f-1c8cc11c76e9	[latex]What is the multiscale between QM and Molecular Dynamics?[/latex]	[latex]<br>      Density Functional Theory.<br>    [/latex]	multi					
+1734054902353	1472310773282	ed13df5b-a8db-40ee-91de-59409978cc7c	[latex]What is the multiscale technique to go from Molecular Dynamics and Kinetic Theory?[/latex]	[latex]<br>      Statistical Mechanics.<br>    [/latex]	multi					
+1734054902354	1472310773282	493cb545-038a-42f9-918b-f06ff4f10ce9	[latex]What is the multiscale between Kinetic Theory and Hydrodynamics?[/latex]	[latex]<br>      H-Theory.<br>    [/latex]	multi					

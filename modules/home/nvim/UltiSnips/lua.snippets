@@ -1,0 +1,17 @@
+snippet pr
+	print($0)
+endsnippet
+
+snippet hello
+	fuckMe
+endsnippet
+
+snippet pc
+	local status, ${1:plugin} = pcall(require, "${2:plugin_name}")
+	if not status then
+		print("Something went wrong:", $1)
+	else
+		${3:${VISUAL}}
+	end
+	$0
+endsnippet

@@ -1,0 +1,864 @@
+# Allows us to only have snippets in certain environments
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+
+endglobal
+
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{tabular}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	${0:${VISUAL}}
+\\end{$1}
+endsnippet
+
+snippet ali "Align" bA
+\begin{align*}
+	${1:${VISUAL}}
+.\end{align*}
+endsnippet
+
+snippet case "Cases" bA
+\[
+	${1:f(x) =} 
+	\begin{cases}
+		${2:0} & ${3:\text{if } x \in X} \\\\
+		${4:0} & ${5:\text{if } x \not\in X}
+	\end{cases}
+\] 
+$0
+endsnippet
+
+
+context "math()"
+snippet () "left( right)" iA
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+snippet lr "left( right)" i
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+snippet lrp "left( right)" iA
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+snippet lr( "left( right)" iA
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+snippet lr| "left| right|" iA
+\left| ${1:${VISUAL}} \right|$0
+endsnippet
+
+snippet || "norm" iA
+\left\| ${1:${VISUAL}} \right\|$0
+endsnippet
+
+snippet lr{ "left\{ right\}" iA
+\left\\{ ${1:${VISUAL}} \right\\}$0
+endsnippet
+
+snippet lrb "left\{ right\}" iA
+\left\\{ ${1:${VISUAL}} \right\\}$0
+endsnippet
+
+snippet lr[ "left[ right]" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+snippet lrs "left[ right]" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+snippet lra "leftangle rightangle" iA
+\left<${1:${VISUAL}} \right>$0
+endsnippet
+
+priority 100
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+
+context "math()"
+snippet ! "not" i
+\not
+endsnippet
+
+context "math()"
+snippet not "not" i
+\not
+endsnippet
+
+
+snippet != "equals" iA
+\neq 
+endsnippet
+
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wA
+\[
+${1:${VISUAL}}
+.\] $0
+endsnippet
+
+# A string of char followed by 1 or 2 numbers 
+# turns into subscript
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet _ "auto bracket for subscript" iA
+_{${1:${VISUAL}}}$0
+endsnippet
+
+
+context "math()"
+snippet sr "\sqrt{}" iA
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet sq "^2" iA
+^{2}
+endsnippet
+
+context "math()"
+snippet cb "^3" iA
+^3
+endsnippet
+
+# To the Power of 
+context "math()"
+snippet tp "superscript" iA
+^{${1:${VISUAL}}}$0
+endsnippet
+
+# subscript
+context "math()"
+snippet sb "subscript" iA
+_{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet xnn "xn" iA
+x_{n}
+endsnippet
+
+context "math()"
+snippet ynn "yn" iA
+y_{n}
+endsnippet
+
+
+context "math()"
+snippet xii "xi" iA
+x_{i}
+endsnippet
+
+context "math()"
+snippet yii "yi" iA
+y_{i}
+endsnippet
+
+context "math()"
+snippet xjj "xj" iA
+x_{j}
+endsnippet
+
+context "math()"
+snippet yjj "yj" iA
+y_{j}
+endsnippet
+
+
+# subscript
+context "math()"
+snippet sup "suprimum" iA
+\sup_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
+endsnippet
+
+# subscript
+context "math()"
+snippet inf "infimum" iA
+\inf_{${1:${VISUAL}}}\left\\\{ $2 \right\\\}$0
+endsnippet
+
+context "math()"
+snippet lim "limit" iA
+\lim_{${1:n \to \infty}} ${2:${VISUAL}}
+endsnippet
+
+context "math()"
+snippet det "determinant" iA
+\det\left( ${1:${VISUAL}} \right)
+endsnippet
+
+context "math()"
+snippet sum "Sigma Notation" wA
+\sum_{${1:${2:i}=${3:0}}}^{${4:\infty}} ${0:${VISUAL}}
+endsnippet
+
+context "math()"
+snippet prod "Product Pi Notation" wA
+\prod_{${1:i=0}}^{${2:\infty}} ${0:${VISUAL}}
+endsnippet
+
+
+# // => \frac{}{}
+# 3/ => \frac{3}{}
+# 4\pi^2/ => \frac{4\pi^2}{}
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 1000
+context "math()"
+snippet '^.*\)/' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+#
+# shortcuts for common symbols
+#
+priority 1000
+context "math()"
+snippet in "Element of" w
+\in 
+endsnippet
+
+
+context "math()"
+snippet >> "to" iA
+\to 
+endsnippet
+
+context "math()"
+snippet /> "Maps to" iA
+\mapsto 
+endsnippet
+
+context "math()"
+snippet fc "Function composition" iA
+\circ 
+endsnippet
+
+context "math()"
+snippet sc "Cross Product" iA
+\times 
+endsnippet
+
+context "math()"
+snippet sn "Set Intersection" iA
+\bigcap_{${1:n=0}}^{${2:\infty}}$0
+endsnippet
+
+context "math()"
+snippet sm "Set Union" iA
+\bigcup_{${1:n=0}}^{${2:\infty}}$0 
+endsnippet
+
+context "math()"
+snippet xx "cross multiplication" iA
+\times $0
+endsnippet
+
+
+context "math()"
+snippet << "Subset" iA
+\subset 
+endsnippet
+
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rw
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+context "math()"
+snippet ma "Map definition" w
+${1:${VISUAL}} : ${2:X} \to ${3:Y} 
+endsnippet
+
+
+context "math()"
+snippet <= "leq" iA
+\leq 
+endsnippet
+
+context "math()"
+snippet leq "leq" iA
+\leq 
+endsnippet
+
+
+context "math()"
+snippet geq "geq" iA
+\geq 
+endsnippet
+
+priority 10
+context "math()"
+snippet "bar" "bar" riA
+\overline{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bar" "bar" riA
+\overline{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "til" "tilde" riA
+\widetilde{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])til" "tilde" riA
+\widetilde{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "mag" "mag" riA
+| ${1:${VISUAL}} |$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])mag" "mag" riA
+| `!p snip.rv=match.group(1)` | 
+endsnippet
+
+priority 10
+context "math()"
+snippet "norm" "norm" riA
+\| ${1:${VISUAL}} \|$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])norm" "norm" riA
+\| `!p snip.rv=match.group(1)` \|
+endsnippet
+
+
+priority 10
+context "math()"
+snippet "bold" "bold" riA
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bold" "bold" riA
+\textbf{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "text" "text" riA
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])text" "text" riA
+\text{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+snippet "bold" "bold" ri
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+snippet "(\w+)bold" "Bold" ri
+\textbf{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "(\w+)it" "Italic" ri
+\textit{`!p snip.rv=match.group(1)`}
+endsnippet
+
+#
+# Letters/Variables
+#
+
+context "math()"
+snippet ifty "infinity" w
+\infty
+endsnippet
+
+snippet ooo "\infty" iA
+\infty
+endsnippet
+
+
+context "math()"
+snippet OO "emptyset" iA
+\mathcal{O}
+endsnippet
+
+context "math()"
+snippet RR "real" iA
+\mathbb{R}^{$1}
+endsnippet
+
+context "math()"
+snippet CC "Complex" iA
+\mathbb{C}^{$1}
+endsnippet
+
+context "math()"
+snippet NN "Natural" iA
+\mathbb{N}
+endsnippet
+
+
+context "math()"
+snippet ZZ "integers" iA
+\mathbb{Z}
+endsnippet
+
+context "math()"
+snippet HH "Hilbert" iA
+\mathbb{H}
+endsnippet
+
+
+
+
+#
+# Greek Letters
+#
+
+priority 1000
+context "math()"
+snippet aa "alpha" w
+\alpha
+endsnippet
+
+priority 1000
+context "math()"
+snippet bb "beta" w
+\beta
+endsnippet
+
+priority 1000
+context "math()"
+snippet dd "delta" w
+\delta
+endsnippet
+
+priority 1000
+context "math()"
+snippet DD "Delta" w
+\Delta
+endsnippet
+
+priority 1000
+context "math()"
+snippet ee "varepsilon" w
+\varepsilon
+endsnippet
+
+priority 1000
+context "math()"
+snippet ep "epsilon" w
+\epsilon
+endsnippet
+
+
+priority 1000
+context "math()"
+snippet gg "gamma" w
+\gamma
+endsnippet
+
+priority 1000
+context "math()"
+snippet GG "Gamma" w
+\Gamma
+endsnippet
+
+
+priority 1000
+context "math()"
+snippet ll "lambda" w
+\lambda
+endsnippet
+
+priority 1000
+context "math()"
+snippet LL "Lambda" w
+\Lambda
+endsnippet
+
+
+priority 1000
+context "math()"
+snippet oo "omega" w
+\omega
+endsnippet
+
+priority 1000
+context "math()"
+snippet OO "Omega" w
+\Omega
+endsnippet
+
+priority 1000
+context "math()"
+snippet ss "sigma" w
+\sigma
+endsnippet
+
+priority 1000
+context "math()"
+snippet SS "Sigma" w
+\Sigma
+endsnippet
+
+context "math()"
+snippet pp "phi" w
+\phi
+endsnippet
+
+context "math()"
+snippet PP "Phi" w
+\Phi
+endsnippet
+
+context "math()"
+snippet rr "rho" w
+\rho
+endsnippet
+
+
+#
+#
+# Alg Top and Cat Theory
+#
+#
+
+context "math()"
+snippet hom "Homotopy" iA
+\simeq 
+endsnippet
+
+context "math()"
+snippet heo "Homeomorphism" iA
+\cong  
+endsnippet
+
+context "math()"
+snippet fgp "Fundamental Groupoid" iA
+\Pi(${1:${VISUAL}}) $0
+endsnippet
+
+context "math()"
+snippet hgp "Homotopy Groupoid" iA
+\Pi(${1:X}, ${2:Y}) $0
+endsnippet
+
+context "math()"
+snippet nhg "n-homotopy group of pointed pair" iA
+\pi_{${1:1}}(${2:X}, ${3:x_0}) $0
+endsnippet
+
+
+
+context "math()"
+snippet hcm "Homotopy Classes of Maps" iA
+\left[ ${1:${VISUAL}}, $2 \right] $0
+endsnippet
+
+context "math()"
+snippet hcp "Pointed Homotopy Classes of Maps" iA
+\left[ ${1:${VISUAL}}, $2 \right]^{0} $0
+endsnippet
+
+context "math()"
+snippet hco "Homotopy Classes over __" iA
+\left[ ${1:${VISUAL}}, $2 \right]^{$3} $0
+endsnippet
+
+context "math()"
+snippet hcu "Homotopy Classes under __" iA
+\left[ ${1:${VISUAL}}, $2 \right]_{$3} $0
+endsnippet
+
+context "math()"
+snippet bd "Boundary" iA
+\partial $1 
+endsnippet
+
+
+
+#
+# Others
+#
+
+# sympy integration
+snippet sympy "sympy block " w
+sympy $1 sympy$0
+endsnippet
+
+priority 10000
+snippet 'sympy(.*)sympy' "evaluate sympy" wr
+`!p
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
+    .replace('^', '**') \
+    .replace('{', '(') \
+    .replace('}', ')') + ')')
+`
+endsnippet
+
+
+#
+# Snippets specifically for thesis
+#
+
+context "math()"
+snippet la "Laplace Operator" i
+\Delta $0
+endsnippet
+
+
+context "math()"
+snippet nn "normal vector" i
+\textbf{${1:n}} $0
+endsnippet
+
+
+context "math()"
+snippet der "d/d x" w
+\D[${1:1}]{}{${2:x}} $0
+endsnippet
+
+context "math()"
+snippet dder "directional derivative" w
+\pderiv[${1:1}]{${2:u}}{${3:n}} $0
+endsnippet
+
+
+context "math()"
+snippet part "del/del x" w
+\pderiv[${1:1}]{}{${2:x}} $0
+endsnippet
+
+context "math()"
+snippet del "Del" iA
+\partial
+endsnippet
+
+priority 300
+context "math()"
+snippet digl "definite integral" wA
+\int_{${1:-\infty}}^{${2:\infty}} \! ${3:${VISUAL}} \, \mathrm{d}${4:x} $0
+endsnippet
+
+
+priority 300
+context "math()"
+snippet igl "integral" wA
+\int_{${1:\Omega}} \! ${2:${VISUAL}} \, \mathrm{d}${3:x} $0
+endsnippet
+
+priority 300
+context "math()"
+snippet bint "boundary integral" wA
+\int_{\partial ${1:\Omega}} \! ${2:${VISUAL}} \, \mathrm{d}${3:S} $0
+endsnippet
+
+context "math()"
+snippet div "divergence" w
+\mathrm{div}(${1:F}) 
+endsnippet
+
+context "math()"
+snippet <> "angled brackets" w
+\langle ${1:x} \rangle $0
+endsnippet
+
+context "math()"
+snippet hs "Sobolev Hilbert with Dirichlet Boundary" w
+H_{0}^{1}(${1:\Omega})$0 
+endsnippet
+
+context "math()"
+snippet * "Star" iA
+^{*}$0
+endsnippet
+
+context "math()"
+snippet grad "Gradient Operator" w
+\nabla $0
+endsnippet
+
+# snippet Polya "Correct Polya" w
+# Pólya
+# endsnippet
+#
+# snippet Szego "Correct Szego" w
+# Szegő
+# endsnippet
+#
+snippet it "Item" 
+\item[$1] $0
+endsnippet
+
+# snippet TODO "Todo Item" iA
+# \todo[inline]{${1:${VISUAL}}}$0
+# endsnippet
+
+context "math()"
+snippet Dom "Domain" iA
+\text{Dom}(${1:${VISUAL}})$0
+endsnippet
+
+context "math()"
+snippet ;a "parenthesis" iA
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+context "math()"
+snippet a; "parenthesis" iA
+\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+context "math()"
+snippet ;s "square bracket" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+context "math()"
+snippet s; "square bracket" iA
+\left[ ${1:${VISUAL}} \right]$0
+endsnippet
+
+
+
+# temp
+context "math()"
+snippet hhh "H_0^1" i
+H_{0}^{1}
+endsnippet
+
+snippet pset "Problem" 
+\begin{problem}{${1:1}}
+	$0
+\end{problem}
+
+\begin{solution}
+	\todo{Solve $1}
+\end{solution}
+
+\pagebreak
+
+endsnippet
+
+context "math()"
+snippet om "Outer Measure" i
+m^{*}\left( ${1:${VISUAL}} \right)$0
+endsnippet
+
+# Example from https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt#L925
+snippet "testbe(gin)?( (\S+))?" "begin{} / end{}" br
+\begin{${1:`!p
+snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
+		${2:${VISUAL}}
+\end{$1}$0
+endsnippet
+
+snippet snote "Latex Note for anki" b
+\begin{note}
+	\xplain{`uuidgen`}
+	\tags{${1:def}$2}
+	\xfield{${3:Front}}
+		\begin{field}
+			${4:Back}
+		\end{field}
+\end{note}$0
+endsnippet
+
+snippet note "Latex Note for anki" b
+\begin{note}
+	\xplain{`uuidgen`}
+	\tags{${1:def}$2}
+	\begin{field}
+		${3:Front}
+	\end{field}
+	\begin{field}
+		${4:Back}
+	\end{field}
+\end{note}$0
+endsnippet
+
+
+
+snippet uuid "UUIDGEN" iA
+`uuidgen`
+endsnippet
+
+snippet un "Unknown Placeholder" i
+{\color{red}\textbf{${1:???}}}
+endsnippet
+
+
