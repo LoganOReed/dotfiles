@@ -19,7 +19,7 @@ in {
     # Really just the repo but whatever
     programs.zsh = {
       initExtra = ''
-        export ANKI_BASE="/home/occam/nix-config/modules/home/anki/Anki2"
+        export ANKI_BASE="/home/occam/dotfiles/modules/home/anki/Anki2"
       '';
     };
   };

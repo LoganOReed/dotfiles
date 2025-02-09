@@ -33,7 +33,7 @@ in {
 
   # FLAKE is directory of config
   environment.sessionVariables = {
-    FLAKE = "/home/occam/nix-config";
+    FLAKE = "/home/occam/dotfiles";
     EDITOR = "nvim";
   };
 
@@ -43,7 +43,7 @@ in {
 
   # nh os switch
   programs.nh = {
-    flake = "/home/occam/nix-config";
+    flake = "/home/occam/dotfiles";
   };
 
 }
