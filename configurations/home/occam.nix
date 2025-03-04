@@ -16,7 +16,7 @@ in {
     # gui
     # firefox.enable = true;
     qutebrowser.enable = true;
-    anki.enable = true;
+    # anki.enable = true;
     kitty.enable = true;
     dunst.enable = true;
     # hyprland.enable = true;
