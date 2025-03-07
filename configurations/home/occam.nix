@@ -19,6 +19,7 @@ in {
     anki.enable = true;
     kitty.enable = true;
     dunst.enable = true;
+    kanshi.enable = true;
     # hyprland.enable = true;
     sway.enable = true;
     lf.enable = true;
