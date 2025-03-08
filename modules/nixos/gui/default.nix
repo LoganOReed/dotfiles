@@ -17,5 +17,7 @@
     xclip
     wl-clipboard
     btop
+    zotero
+    papis
   ];
 }

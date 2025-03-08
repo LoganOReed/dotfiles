@@ -8,8 +8,8 @@
   inherit (pkgs.stdenv.hostPlatform) system;
 in {
   imports = [
-    ./io
     ./os
+    ./io
     ./users
   ];
 

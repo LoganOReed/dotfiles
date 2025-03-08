@@ -17,6 +17,11 @@ in
     vim-sway-nav = self.callPackage "${packages}/vim-sway-nav.nix" {};
     qutebrowser = super.qutebrowser.override { enableWideVine = true; };
 
+    zotero = self.callPackage "${packages}/zotero.nix" {};
+    
+
+
+
 
 
     stable = import inputs.nixpkgs-stable {

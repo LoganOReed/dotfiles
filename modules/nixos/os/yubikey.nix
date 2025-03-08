@@ -7,6 +7,8 @@
   environment.systemPackages = with pkgs; [
     yubikey-personalization 
     yubikey-manager
+    age 
+    age-plugin-yubikey 
   ];
 
   security.pam.services = {

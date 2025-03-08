@@ -24,20 +24,37 @@ in
       overrideFolders = true;
       settings.gui = {
         user = "${config.networking.hostName}";
-        password = "password";
+        # passwordFile = lib.mkIf (host == "razor") config.age.secrets."syncthing-gui-password-razor".path;
+        passwordFile = config.age.secrets."syncthing-gui-password-${config.networking.hostName}".path;
       };
       settings = {
 
         devices = {
           "ipad" = { id = "RAKNRHN-76DSQJA-MB6HG5R-Y74PYLA-FJAUWEI-FLR6H7X-22LVNFG-7SSZKQL"; };
+          # nothing is set if mkIf evaluates to false
+          "razor" = lib.mkIf (config.networking.hostName != "razor") {id = "H4XHEY7-LAXMMD3-EBX5YTR-2RQLIMK-JEBTVVM-KJYYGDG-M75DCIE-K3PYWQ2";};
+          # "blade" = lib.mkIf (config.networking.hostName != "blade") {id = "FINDTHIS";};
           # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
         };
         folders = {
           # This fuckery is using dropbox and notability's in built backup system, which I force syncthing into
           # I'm sure it will break at some point and I'll have no idea how to fix it.
           "notability" = {
-            path = "/home/occam/documents/notes/notability";
+            path = "/home/${me.username}/documents/notes/notability";
             devices = [ "ipad" ];
+          };
+          # https://nicolasshu.com/zotero_and_papis.html
+          "stacks" = {
+            path = "/home/${me.username}/documents/library/stacks";
+            # devices = ["blade"];
+          };
+          "zotero" = {
+            path = "/home/${me.username}/documents/library/zotero";
+            # devices = ["blade"];
+          };
+          "music" = {
+            path = "/home/${me.username}/documents/music";
+            # devices = [""]
           };
           # "Example" = {
           #   path = "/home/myusername/Example";

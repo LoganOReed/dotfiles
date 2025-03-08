@@ -1,4 +1,4 @@
-{flake, config, pkgs, agenix, ... }:
+{flake, config, pkgs, ... }:
 
 let 
   inherit (flake.config) me;
@@ -55,6 +55,12 @@ in
     owner = "${user}";
     group = "wheel";
   };
+
+
+  age.secrets."syncthing-gui-password-razor" = {
+    file = "${secrets}/syncthing-gui-password-razor.age";
+  };
+
 
   # age.secrets."github-signing-key" = {
   #   symlink = false;

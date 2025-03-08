@@ -6,6 +6,7 @@
 in {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.agenix.nixosModules.default
     ./configuration.nix
   ];
 
