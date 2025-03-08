@@ -14,9 +14,10 @@ in {
     ];
     services.kanshi = {
       enable = true;
-      profiles = {
-        blade = {
-          outputs = [
+      settings = [
+      {
+        profile.name = "blade";
+        profile.outputs = [
           {
             criteria = "AOC 2590G4 0x0001E45A";
             mode = "1920x1080@144.001Hz";
@@ -34,17 +35,18 @@ in {
             transform = "270";
           }
           ];
-        };
-        razor = {
-          outputs = [
+      }
+      {
+        profile.name = "razor";
+        profile.outputs = [
           {
             criteria = "BOE 0x0932 Unknown";
             mode = "1920x1080@60.003Hz";
             position = "0,0";
           }
-          ];
-        };
-      };
+        ];
+      }
+      ];
     };
   };
 }

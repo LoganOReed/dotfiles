@@ -12,6 +12,7 @@ in {
     ./boot.nix
     ./nix.nix
     ./yubikey.nix
+    ./secrets.nix
   ];
   security.sudo.extraConfig = ''
     Defaults        timestamp_timeout=60

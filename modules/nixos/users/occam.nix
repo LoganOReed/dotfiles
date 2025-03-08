@@ -1,6 +1,6 @@
 # See /modules/nixos/* for actual settings
 # This file is just *top-level* configuration.
-{flake, pkgs, ...}: let
+{flake, config, pkgs, ...}: let
   inherit (flake) inputs;
   inherit (inputs) self;
 in {
@@ -9,6 +9,7 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.occam = {
+    hashedPasswordFile = config.age.secrets."github-ssh-key".path;
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       # Desktop

@@ -1,25 +1,29 @@
 # local access: http://127.0.0.1:8384/
 {
+  flake,
   pkgs,
   lib,
   config,
   ...
 }:
+let
+  inherit (flake.config) me;
+in
 {
     # environment.systemPackages = with pkgs; [
     # ];
     services.syncthing = {
       enable = true;
       systemService = true;
-      user = "occam";
+      user = "${me.username}";
       group = "users";
-      dataDir = "/home/occam";  # default location for new folders
-      configDir = "/home/occam/.config/syncthing";
+      dataDir = "/home/${me.username}";  # default location for new folders
+      configDir = "/home/${me.username}/.config/syncthing";
       openDefaultPorts = true;
       overrideDevices = true;
       overrideFolders = true;
       settings.gui = {
-        user = "razor";
+        user = "${config.networking.hostName}";
         password = "password";
       };
       settings = {

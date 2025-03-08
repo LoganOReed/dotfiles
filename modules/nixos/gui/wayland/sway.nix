@@ -1,8 +1,13 @@
 {
+  flake,
   pkgs,
   config,
   ...
-}: {
+}:
+let
+  inherit (flake.config) me;
+in
+{
   environment.systemPackages = with pkgs; [
     vim-sway-nav
   ];
@@ -10,7 +15,7 @@
     enable = true;
     settings = {
       default_session = {
-        user = "occam";
+        user = "${me.username}";
         command = ''
           ${pkgs.greetd.tuigreet}/bin/tuigreet \
             --time \

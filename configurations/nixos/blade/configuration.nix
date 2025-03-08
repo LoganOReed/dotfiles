@@ -15,6 +15,8 @@ in {
     self.nixosModules.default
     self.nixosModules.nh
     self.nixosModules.gui # system-wide sway stuff and stylix
+    self.nixosModules.vm
+
 
 
 

@@ -5,6 +5,7 @@
   inherit (inputs) self;
 in {
   imports = [
+    inputs.agenix.nixosModules.default
     ./configuration.nix
   ];
 
