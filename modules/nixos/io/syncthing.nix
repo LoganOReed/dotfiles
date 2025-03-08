@@ -52,11 +52,11 @@ in
               # https://nicolasshu.com/zotero_and_papis.html
               "stacks" = {
                 path = "/home/${me.username}/documents/library/stacks";
-                devices = [ "ipad" "blade" ];
+                devices = [ "blade" ];
               };
               "zotero" = {
                 path = "/home/${me.username}/documents/library/zotero";
-                devices = [ "ipad" "blade" ];
+                devices = [ "blade" ];
               };
 
 
