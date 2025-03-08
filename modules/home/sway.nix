@@ -67,10 +67,14 @@ in {
           }
         ];
         startup = [
-          # {
-          #   command = "systemctl --user restart waybar";
-          #   always = true;
-          # }
+          {
+            command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi";
+            always = true;
+          }
+          {
+            command = "--no-startup-id ${pkgs.kanshi}/bin/kanshi";
+            always = true;
+          }
           {
             command = "--no-startup-id ${pkgs.autotiling}/bin/autotiling";
             always = true;

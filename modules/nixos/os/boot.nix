@@ -14,6 +14,5 @@ in {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # TODO: Uncomment, this was only changed to make iso
-  # boot.loader.timeout = null;
+  boot.loader.timeout = null;
 }
