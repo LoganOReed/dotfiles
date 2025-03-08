@@ -18,6 +18,7 @@
     wl-clipboard
     btop
     zotero
+    zotero2papis
     papis
   ];
 }

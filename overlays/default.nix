@@ -18,6 +18,8 @@ in
     qutebrowser = super.qutebrowser.override { enableWideVine = true; };
 
     zotero = self.callPackage "${packages}/zotero.nix" {};
+    zotero2papis = self.callPackage "${packages}/zotero2papis.nix" {};
+
     
 
 
