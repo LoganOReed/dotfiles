@@ -61,6 +61,10 @@ in
     file = "${secrets}/syncthing-gui-password-razor.age";
   };
 
+  age.secrets."syncthing-gui-password-blade" = {
+    file = "${secrets}/syncthing-gui-password-blade.age";
+  };
+
 
   # age.secrets."github-signing-key" = {
   #   symlink = false;

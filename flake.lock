@@ -938,11 +938,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1741452581,
-        "narHash": "sha256-2kXDsdHjxYazrOBClt7xvv0uyalTqYVQb8s+9ki2QgQ=",
+        "lastModified": 1741471663,
+        "narHash": "sha256-0H32gvUrYDshAuRGZCRFTnl/ljwSGBO14FStWGgm2sM=",
         "ref": "refs/heads/main",
-        "rev": "a54df8022ffc1f24d15b3eefb3159eaf40844e57",
-        "revCount": 6,
+        "rev": "7a765558dfb14518fcf542369a3dad8aba8af0b7",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/LoganOReed/nix-secrets.git"
       },
