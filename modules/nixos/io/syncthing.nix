@@ -31,6 +31,7 @@ in
 
         devices = {
           "ipad" = { id = "RAKNRHN-76DSQJA-MB6HG5R-Y74PYLA-FJAUWEI-FLR6H7X-22LVNFG-7SSZKQL"; };
+          "phone" = { id = "BJURHLS-VN3RRTR-ERG54SB-NGLMTFI-4LBODHW-AGGLNCR-N74NE5T-F3EDLAG "; };
           # nothing is set if mkIf evaluates to false
           "razor" = lib.mkIf (config.networking.hostName != "razor") {id = "H4XHEY7-LAXMMD3-EBX5YTR-2RQLIMK-JEBTVVM-KJYYGDG-M75DCIE-K3PYWQ2";};
           "blade" = lib.mkIf (config.networking.hostName != "blade") {id = "SY6BIYE-KECKE4W-ELMV3D2-XLEFNDQ-Q347PXG-T35BL3L-ZWS54VJ-FU5WDAI";};
@@ -64,6 +65,10 @@ in
                 path = "/home/${me.username}/documents/music";
                 devices = ["blade"];
               };
+              "hw" = {
+                path = "/home/${me.username}/documents/old/hw";
+                devices = ["phone" "blade"];
+              };
 
           })
           (lib.mkIf ("${config.networking.hostName}" == "blade") {
@@ -81,6 +86,11 @@ in
               "music" = {
                 path = "/home/${me.username}/documents/music";
                 devices = ["razor"];
+              };
+
+            "hw" = {
+                path = "/home/${me.username}/documents/old/hw";
+                devices = ["phone" "razor"];
               };
           })
         ];
