@@ -66,7 +66,7 @@ in
                 devices = ["blade"];
               };
               "hw" = {
-                path = "/home/${me.username}/documents/old/hw";
+                path = "/home/${me.username}/.old/hw";
                 devices = ["phone" "blade"];
               };
 
@@ -89,7 +89,7 @@ in
               };
 
             "hw" = {
-                path = "/home/${me.username}/documents/old/hw";
+                path = "/home/${me.username}/.old/hw";
                 devices = ["phone" "razor"];
               };
           })
